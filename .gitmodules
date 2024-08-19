@@ -6,3 +6,12 @@
 	path = gatekeeper
 	url = https://github.com/stolostron/gatekeeper.git
 	branch = release-3.15
+[submodule "tools/mock"]
+	path = tools/mock
+	url = https://github.com/uber-go/mock
+[submodule "tools/controller-tools"]
+	path = tools/controller-tools
+	url = https://github.com/kubernetes-sigs/controller-tools.git
+[submodule "tools/protobuf"]
+	path = tools/protobuf
+	url = https://github.com/protocolbuffers/protobuf.git
