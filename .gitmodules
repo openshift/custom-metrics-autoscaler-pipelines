@@ -1,11 +1,3 @@
-[submodule "gatekeeper-operator"]
-	path = gatekeeper-operator
-	url = https://github.com/stolostron/gatekeeper-operator.git
-	branch = release-3.15
-[submodule "gatekeeper"]
-	path = gatekeeper
-	url = https://github.com/stolostron/gatekeeper.git
-	branch = release-3.15
 [submodule "tools/mock"]
 	path = tools/mock
 	url = https://github.com/uber-go/mock
@@ -15,3 +7,9 @@
 [submodule "tools/protobuf"]
 	path = tools/protobuf
 	url = https://github.com/protocolbuffers/protobuf.git
+[submodule "custom-metrics-autoscaler-operator"]
+	path = custom-metrics-autoscaler-operator
+	url = https://github.com/openshift/custom-metrics-autoscaler-operator
+[submodule "kedacore-keda"]
+	path = kedacore-keda
+	url = https://github.com/openshift/kedacore-keda
