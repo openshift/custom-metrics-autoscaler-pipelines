@@ -41,7 +41,7 @@ RUN INSTALL_PKGS=" \
       rsync \
       tar \
       " && \
-    microdnf install -y $INSTALL_PKGS && \
+    microdnf --disablerepo=* --enablerepo=ubi-9-baseos-rpms --enablerepo=ubi-9-appstream-rpms install -y $INSTALL_PKGS && \
     rpm -V $INSTALL_PKGS && \
     microdnf clean all
 
