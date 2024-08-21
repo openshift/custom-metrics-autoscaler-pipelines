@@ -21,7 +21,7 @@ RUN ./update_bundle.sh
 
 RUN rm /manifests/keda.*.clusterserviceversion.yaml
 
-FROM scratch
+FROM ubi9
 
 # Core bundle labels.
 LABEL operators.operatorframework.io.bundle.mediatype.v1=registry+v1
