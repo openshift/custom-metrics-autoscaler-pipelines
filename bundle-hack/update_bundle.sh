@@ -19,6 +19,20 @@ export KEDA_WEBHOOK_PULLSPEC=quay.io/repository/redhat-user-workloads/cma-podaut
 # Since we moved the versioned manifest to /manifests, we can just use it from there
 export CSV_FILE=/manifests/cma.v${VERSION}.clusterserviceversion.yaml
 
+
+# CPaaS used to do this for us, but now we have to do it ourselves 
+cat << EOF >> ${CSV_FILE}
+  relatedImages: 
+    - name: keda-operator
+      image: ${KEDA_OPERATOR_PULLSPEC}
+    - name: keda-adapter
+      image: ${KEDA_ADAPTER_PULLSPEC}
+    - name: keda-webhooks
+      image: ${KEDA_WEBHOOK_PULLSPEC}
+    - name: cma-operator
+      image: ${CMA_OPERATOR_PULLSPEC}
+EOF
+
 # Update image references to use brew-built images
 # Put the allowed repositories: OSBS proxy and registry.redhat.io.
 # The pinning to SHA1 will happen after thanks to the config in container.yaml.
