@@ -11,10 +11,10 @@ export CI_SPEC_RELEASE="454"
 
 # TODO(jkyros): So here's how this works -- we put these variables in here, and then Konflux comes through and updates them when the builds get updated, ideally
 # not causing cyclical builds, so we have to exclude this somehow I think 
-export CMA_OPERATOR_PULLSPEC=quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator@sha256:4632bc387e54960ce0bb0fdb4fdda89dbc8c7afc16c2427ff6e517fb47379256
-export KEDA_OPERATOR_PULLSPEC=quay.io/redhat-user-workloads/cma-podauto-tenant/keda-operator@sha256:4632bc387e54960ce0bb0fdb4fdda89dbc8c7afc16c2427ff6e517fb47379256
-export KEDA_ADAPTER_PULLSPEC=quay.io/redhat-user-workloads/cma-podauto-tenant/keda-adapter@sha256:4632bc387e54960ce0bb0fdb4fdda89dbc8c7afc16c2427ff6e517fb47379256
-export KEDA_WEBHOOK_PULLSPEC=quay.io/redhat-user-workloads/cma-podauto-tenant/keda-webhooks@sha256:4632bc387e54960ce0bb0fdb4fdda89dbc8c7afc16c2427ff6e517fb47379256
+export CMA_OPERATOR_PULLSPEC=quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/custom-metrics-autoscaler-operator@sha256:a9b5e2464e1e99fd79f8e6877e34f85d77ddb424c66fe3a0c9b178f025d383f3
+export KEDA_OPERATOR_PULLSPEC=quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/keda-operator@sha256:4632bc387e54960ce0bb0fdb4fdda89dbc8c7afc16c2427ff6e517fb47379256
+export KEDA_ADAPTER_PULLSPEC=quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/keda-adapter@sha256:4632bc387e54960ce0bb0fdb4fdda89dbc8c7afc16c2427ff6e517fb47379256
+export KEDA_WEBHOOK_PULLSPEC=quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/keda-webhooks@sha256:2236ad64f9f0486c569b42e3141ec80886d68e2edd9bdda5ffe06483d28e5257
 
 # Since we moved the versioned manifest to /manifests, we can just use it from there
 export CSV_FILE=/manifests/cma.v${VERSION}.clusterserviceversion.yaml
