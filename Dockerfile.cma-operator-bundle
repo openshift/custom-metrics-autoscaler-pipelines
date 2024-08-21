@@ -21,6 +21,10 @@ RUN ./update_bundle.sh
 
 RUN rm /manifests/keda.*.clusterserviceversion.yaml
 
+#TODO(jkyros): our cma annotations have been wrong since forever, apparently, we should fix that :) 
+# the opm template renderer uses these actually and will do really weird stuff if the package doesn't match 
+RUN sed -i -e 's#operators.operatorframework.io.bundle.package.v1:.*#operators.operatorframework.io.bundle.package.v1: openshift-custom-metrics-autoscaler-operator#g' metadata/annotations.yaml
+
 FROM ubi9
 
 # Core bundle labels.
