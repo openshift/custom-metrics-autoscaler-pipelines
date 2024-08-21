@@ -27,6 +27,8 @@ RUN sed -i 's/\(Namespace *[:=] *\)"keda"/\1"openshift-keda"/' \
     sed -i '/^kind: PodMonitor$/,$ s/\(name: *\)keda-olm-operator$/\1custom-metrics-autoscaler-operator/' \
         resources/keda-olm-operator.yaml
 
+RUN find controllers && find resources
+
 RUN make build
 
 FROM registry.redhat.io/openshift4/ose-cli:latest AS cli
@@ -54,9 +56,15 @@ COPY --from=builder /src/must-gather/collection-scripts/* /usr/bin/
 COPY --from=cli /usr/bin/oc /usr/bin
 RUN ln -s /usr/bin/oc /usr/bin/kubectl
 
+RUN ls /resources/*
+
 # TODO(jkyros): This seems weird, why do we do this? 
-RUN mkdir -p /src/keda-operator/app && \
-    ln -s /resources /src/keda-operator/app/resources
+RUN mkdir -p /src/cma-operator/app && \
+    ln -s /resources /src/cma-operator/app/resources 
+
+#TODO(jkyros): I've goofed somewhere, it's looking here instead and not finding it, but why
+RUN mkdir -p /src/resources && \
+    ln -s /resources /src/resources
 USER nobody
 
 CMD ["/usr/bin/manager"]
