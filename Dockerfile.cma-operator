@@ -61,8 +61,7 @@ RUN mkdir -p /src/cma-operator/app && \
     ln -s /resources /src/cma-operator/app/resources 
 
 #TODO(jkyros): I've goofed somewhere, it's looking here instead and not finding it, but why
-RUN mkdir -p /src/resources && \
-    ln -s /resources /src/resources
+RUN ln -s /resources /src/resources
 USER nobody
 
 CMD ["/usr/bin/manager"]
