@@ -56,8 +56,6 @@ COPY --from=builder /src/must-gather/collection-scripts/* /usr/bin/
 COPY --from=cli /usr/bin/oc /usr/bin
 RUN ln -s /usr/bin/oc /usr/bin/kubectl
 
-RUN ls /resources/*
-
 # TODO(jkyros): This seems weird, why do we do this? 
 RUN mkdir -p /src/cma-operator/app && \
     ln -s /resources /src/cma-operator/app/resources 
