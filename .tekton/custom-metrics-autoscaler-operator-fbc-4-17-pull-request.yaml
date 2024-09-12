@@ -28,6 +28,8 @@ spec:
     value: 5d
   - name: dockerfile
     value: catalogs/v4.17/Containerfile.catalog
+  - name: path-context
+    value: catalogs/v4.17
   pipelineSpec:
     finally:
     - name: show-sbom
