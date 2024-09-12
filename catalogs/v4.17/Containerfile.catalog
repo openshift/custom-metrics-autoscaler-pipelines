@@ -3,7 +3,7 @@
 #FROM quay.io/operator-framework/opm:latest as builder
 
 
-# TODO(jkyros): if you don't use a version of opm that matches the registry server
+# TODO(jkyros): if you don't use a version of opm that matches the ose-operator-registry server
 # it will generate an incompatible database and it will complane that the "cache 
 # directory has unexpected contents"
 FROM registry.redhat.io/openshift4/ose-operator-registry:latest as builder

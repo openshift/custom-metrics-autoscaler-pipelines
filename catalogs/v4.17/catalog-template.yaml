@@ -1,0 +1,43 @@
+---
+entries:
+- defaultChannel: stable
+  icon:
+    base64data: PHN2ZyBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAzOCAzOCIgdmlld0JveD0iMCAwIDM4IDM4IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Im0yNy43IDEuNmgtMTcuNGMtNC44IDAtOC43IDMuOS04LjcgOC43djE3LjRjMCA0LjggMy45IDguNyA4LjcgOC43aDE3LjRjNC44IDAgOC43LTMuOSA4LjctOC43di0xNy40YzAtNC44LTMuOS04LjctOC43LTguN3oiIGZpbGw9IiNmZmYiLz48cGF0aCBkPSJtMjggMi4yYzQuMyAwIDcuOCAzLjUgNy44IDcuOHYxOGMwIDQuMy0zLjUgNy44LTcuOCA3LjhoLTE4Yy00LjMgMC03LjgtMy41LTcuOC03Ljh2LTE4YzAtNC4zIDMuNS03LjggNy44LTcuOHptMC0xLjJoLTE4Yy01IDAtOSA0LTkgOXYxOGMwIDUgNCA5IDkgOWgxOGM1IDAgOS00IDktOXYtMThjMC01LTQtOS05LTl6Ii8+PHBhdGggZD0ibTI4IDI0LjFjLS4yIDAtLjQtLjEtLjUtLjMtLjItLjMtLjEtLjcuMi0uOWwuNi0uM3YtLjZjMC0uMy4zLS42LjYtLjZzLjYuMy42LjZ2MWMwIC4yLS4xLjQtLjMuNWwtLjkuNWMtLjEuMS0uMi4xLS4zLjF6Ii8+PHBhdGggZD0ibTI4LjkgMjAuMmMtLjMgMC0uNi0uMy0uNi0uNnYtMS4yYzAtLjMuMy0uNi42LS42cy42LjMuNi42djEuMmMwIC4zLS4zLjYtLjYuNnoiLz48cGF0aCBkPSJtMjguOSAxNi42Yy0uMyAwLS42LS4zLS42LS42di0uNmwtLjYtLjRjLS4zLS4yLS40LS42LS4yLS45cy42LS40LjktLjJsLjkuNWMuMi4xLjMuMy4zLjV2MWMtLjEuNC0uNC43LS43Ljd6Ii8+PHBhdGggZD0ibTI1LjkgMTMuOWMtLjEgMC0uMiAwLS4zLS4xbC0xLS42Yy0uMy0uMi0uNC0uNi0uMi0uOXMuNi0uNC45LS4ybDEgLjZjLjMuMi40LjYuMi45LS4yLjItLjQuMy0uNi4zeiIvPjxwYXRoIGQ9Im0yMi44IDEyLjFjLS4xIDAtLjIgMC0uMy0uMWwtLjYtLjMtLjUuM2MtLjMuMi0uNy4xLS45LS4ycy0uMS0uNy4yLS45bC45LS41Yy4yLS4xLjQtLjEuNiAwbC45LjVjLjMuMi40LjYuMi45LS4xLjItLjMuMy0uNS4zeiIvPjxwYXRoIGQ9Im0yMS45IDI3LjZjLS4xIDAtLjIgMC0uMy0uMWwtLjgtLjVjLS4zLS4yLS40LS42LS4yLS45cy42LS40LjktLjJsLjYuMy42LS4zYy4zLS4yLjctLjEuOS4ycy4xLjctLjIuOWwtLjkuNWMtLjQuMS0uNS4xLS42LjF6Ii8+PHBhdGggZD0ibTI0LjkgMjUuOWMtLjIgMC0uNC0uMS0uNS0uMy0uMi0uMy0uMS0uNy4yLS45bDEtLjZjLjMtLjIuNy0uMS45LjJzLjEuNy0uMi45bC0xIC42Yy0uMi4xLS4zLjEtLjQuMXoiLz48cGF0aCBkPSJtMjMgMjN2LThsLTYuOS00LTcgNHY4bDcgNHoiIGZpbGw9IiNmZmYiLz48cGF0aCBkPSJtMTYuMSAyNy42Yy0uMSAwLS4yIDAtLjMtLjFsLTYuOS00Yy0uMi0uMS0uMy0uMy0uMy0uNXYtOGMwLS4yLjEtLjQuMy0uNWw2LjktNGMuMi0uMS40LS4xLjYgMGw2LjkgNGMuMi4xLjMuMy4zLjV2OGMwIC4yLS4xLjQtLjMuNWwtNi45IDRjLS4xLjEtLjIuMS0uMy4xem0tNi4zLTUgNi4zIDMuNiA2LjMtMy42di03LjNsLTYuMy0zLjYtNi4zIDMuNnoiLz48cGF0aCBkPSJtMTguNiAxNy45Yy0uMS0uMi0uMy0uMy0uNS0uM2gtMXYtMy4xYzAtLjMtLjItLjUtLjUtLjZzLS42LjEtLjcuNGwtMi4zIDUuM2MtLjEuMi0uMS40IDAgLjZzLjMuMy41LjNoMXYzLjFjMCAuMy4yLjUuNS42aC4xYy4yIDAgLjUtLjEuNi0uNGwyLjMtNS4yYy4xLS4zLjEtLjUgMC0uN3oiIGZpbGw9IiNlMDAiLz48L3N2Zz4=
+    mediatype: image/svg+xml
+  name: openshift-custom-metrics-autoscaler-operator
+  schema: olm.package
+- entries:
+  - name: custom-metrics-autoscaler.v2.10.1-267
+    skipRange: '>=2.7.1 <2.10.1-267'
+  - name: custom-metrics-autoscaler.v2.11.2-311
+    replaces: custom-metrics-autoscaler.v2.10.1-267
+    skipRange: '>=2.7.1 <2.11.2-311'
+  - name: custom-metrics-autoscaler.v2.11.2-322
+    replaces: custom-metrics-autoscaler.v2.11.2-311
+    skipRange: '>=2.7.1 <2.11.2-322'
+  - name: custom-metrics-autoscaler.v2.12.1-394
+    replaces: custom-metrics-autoscaler.v2.11.2-322
+    skipRange: '>=2.7.1 <2.12.1-394'
+  - name: custom-metrics-autoscaler.v2.13.1-427
+    replaces: custom-metrics-autoscaler.v2.12.1-394
+    skipRange: '>=2.7.1 <2.13.1-427'
+  - name: custom-metrics-autoscaler.v2.14.1-454
+    replaces: custom-metrics-autoscaler.v2.13.1-427
+    skipRange: '>=2.7.1 <2.14.1-454'
+  name: stable
+  package: openshift-custom-metrics-autoscaler-operator
+  schema: olm.channel
+- image: brew.registry.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler-operator-bundle@sha256:4cd5be0884dc739a5c56b65392d946cfd4a1f4cc9d4a212261bd00f70bfa1f48
+  schema: olm.bundle
+- image: brew.registry.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler-operator-bundle@sha256:b09cda6ffe202e3cf734014b677b71667253a3184f2e316f94567f0d4ee1d632
+  schema: olm.bundle
+- image: brew.registry.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler-operator-bundle@sha256:f66bacfad9cab2c65003cc86331a42fe68336a73feaf802365a3badd4cf5f1b5
+  schema: olm.bundle
+- image: brew.registry.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler-operator-bundle@sha256:b37be6f77b561de87de3a1678ac59edf6fc56fac6eabb86d767013ba5beca423
+  schema: olm.bundle
+- image: brew.registry.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler-operator-bundle@sha256:cd13afa4679ac827b9a8a541748d6fc2e4880a61225386f32678f9590bfe69d6
+  schema: olm.bundle
+- image: quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/custom-metrics-autoscaler-operator-bundle@sha256:02374adb062347d386c71f75c8f717c8afec3c124f11426d057b2bd13f2ff166
+  schema: olm.bundle
+schema: olm.template.basic
+
