@@ -1,30 +1,23 @@
-# The builder image is expected to contain
-# /bin/opm (with serve subcommand)
-#FROM quay.io/operator-framework/opm:latest as builder
-
-
-# TODO(jkyros): if you don't use a version of opm that matches the ose-operator-registry server
-# it will generate an incompatible database and it will complane that the "cache 
-# directory has unexpected contents"
-FROM registry.redhat.io/openshift4/ose-operator-registry:latest as builder
-# Copy FBC root into image at /configs and pre-populate serve cache
-ADD fbc /configs
-RUN ["/bin/opm", "serve", "/configs", "--cache-dir=/tmp/cache", "--cache-only"]
-
+# The base image is expected to contain /bin/opm (with a serve subcommand) and /bin/grpc_health_probe
 FROM registry.redhat.io/openshift4/ose-operator-registry:latest
-# The base image is expected to contain
-# /bin/opm (with serve subcommand) and /bin/grpc_health_probe
 
-# Configure the entrypoint and command
 ENTRYPOINT ["/bin/opm"]
 CMD ["serve", "/configs", "--cache-dir=/tmp/cache"]
 
-COPY --from=builder /configs /configs
-# TODO(jkyros): I'm getting 'cache directory has unexpected contents', god forbid it would say what it was
-# the only thing in there is the pogreb database it generated. I'm assuming there is skew between the latest builder and 
-# the runner image
-COPY --from=builder /tmp/cache /tmp/cache
+COPY catalog/ /configs
 
-# Set FBC-specific label for the location of the FBC root directory
-# in the image
+RUN ["/bin/opm", "serve", "/configs", "--cache-dir=/tmp/cache", "--cache-only"]
+
+# Core bundle labels.
+
+# TODO(jkyros): these labels seem like maybe the type of thing we should be generating
+# rather than maintaining by hand 
+LABEL operators.operatorframework.io.bundle.mediatype.v1=registry+v1
+LABEL operators.operatorframework.io.bundle.manifests.v1=manifests/
+LABEL operators.operatorframework.io.bundle.metadata.v1=metadata/
+LABEL operators.operatorframework.io.bundle.package.v1=custom-metrics-autoscaler-operator
+LABEL operators.operatorframework.io.bundle.channels.v1=alpha
+LABEL operators.operatorframework.io.metrics.builder=operator-sdk-v1.33.1
+LABEL operators.operatorframework.io.metrics.mediatype.v1=metrics+v1
+LABEL operators.operatorframework.io.metrics.project_layout=go.kubebuilder.io/v3
 LABEL operators.operatorframework.io.index.configs.v1=/configs
