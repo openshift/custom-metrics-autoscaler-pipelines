@@ -13,12 +13,20 @@ ENV GO_COMPLIANCE_DEBUG=0
 # downloading the latest version
 ENV GOTOOLCHAIN=local
 
+# If you don't set this as args, you don't seem to get them
+ARG TARGETOS
+ARG TARGETARCH
+
 # TODO(jkyros): entirlements are always a clown show for some reason, if you don't do this, you get
 # cert errors because it's looking at rhsm-host and not rhsm and won't find the cert
 RUN rm -rf /etc/rhsm-host && ln -s /etc/rhsm /etc/rhsm-host
 # protobuf-compiler lives in the codeready channels
 # TODO(jkyros): pin this to cache when we are able 
-RUN dnf install --enablerepo=codeready-builder-for-rhel-9-x86_64-rpms  -y protobuf-compiler 
+RUN ARCH=${TARGETARCH}; \ 
+    if [ ${ARCH} == "arm64" ] ; then ARCH="aarch64"; \
+    elif [ ${ARCH} == "amd64" ]; then ARCH="x86_64"; \
+    fi; \
+    dnf install --enablerepo=codeready-builder-for-rhel-9-${ARCH}-rpms -y protobuf-compiler 
 
 
 ## Get the sources in here

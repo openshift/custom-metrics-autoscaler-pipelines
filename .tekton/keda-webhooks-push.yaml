@@ -4,18 +4,17 @@ metadata:
   annotations:
     build.appstudio.openshift.io/repo: https://github.com/jkyros/olm-operator-konflux-sample?rev={{revision}}
     build.appstudio.redhat.com/commit_sha: '{{revision}}'
-    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
     build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    build.appstudio.openshift.io/build-nudge-files: "bundle-hack/update_bundle.sh"
     pipelinesascode.tekton.dev/max-keep-runs: "3"
-    pipelinesascode.tekton.dev/on-cel-expression: event == "pull_request" && target_branch
-      == "cma-konflux"  && "kedacore-keda/*".pathChanged()
-  creationTimestamp: null
+    pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch
+      == "cma-konflux" && ("kedacore-keda/*".pathChanged() || "Dockerfile.keda-webhooks".pathChanged() )
   creationTimestamp: null
   labels:
     appstudio.openshift.io/application: custom-metrics-autoscaler-operator
-    appstudio.openshift.io/component: keda-operator
+    appstudio.openshift.io/component: keda-webhooks
     pipelines.appstudio.openshift.io/type: build
-  name: keda-operator-on-pull-request
+  name: keda-webhooks-on-push
   namespace: cma-podauto-tenant
 spec:
   params:
@@ -24,11 +23,9 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/keda-operator:on-pr-{{revision}}
-  - name: image-expires-after
-    value: 5d
+    value: quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/keda-webhooks:{{revision}}
   - name: dockerfile
-    value: Dockerfile.keda-operator
+    value: Dockerfile.keda-webhooks
   pipelineSpec:
     finally:
     - name: show-sbom
@@ -233,7 +230,7 @@ spec:
         - name: name
           value: buildah-remote-oci-ta
         - name: bundle
-          value: quay.io/konflux-ci/tekton-catalog/task-buildah-remote-oci-ta:0.2@sha256:06c536082a9289718e3011ac81328d4b9444987317ca58343e658c3710191a76
+          value: quay.io/konflux-ci/tekton-catalog/task-buildah-remote-oci-ta:0.2@sha256:50f7af0eafcd38919aa217b32b2bffffc04629b50dc1fe51b5f2215934eb6344
         - name: kind
           value: task
         resolver: bundles
@@ -262,7 +259,7 @@ spec:
         - name: name
           value: build-image-index
         - name: bundle
-          value: quay.io/konflux-ci/tekton-catalog/task-build-image-index:0.1@sha256:18eecec92fcdb96dc346aecbbe88fb5fd95e34ee6ef4ad714dc1303723a8e4ea
+          value: quay.io/konflux-ci/tekton-catalog/task-build-image-index:0.1@sha256:8619eabd7cf3340d1123afadac1f4296dc14472c8db0f774497748c762f46f33
         - name: kind
           value: task
         resolver: bundles
