@@ -15,6 +15,8 @@ export CMA_OPERATOR_PULLSPEC=quay.io/redhat-user-workloads/cma-podauto-tenant/cu
 export KEDA_OPERATOR_PULLSPEC=quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/keda-operator@sha256:9720d10a35249f1aa14a789bbbbf29712f1fe1916d8cbd5028ba81d0970f8b46
 export KEDA_ADAPTER_PULLSPEC=quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/keda-adapter@sha256:cfe290488cfd9ada0461a137a7df0bac31e187de0dfef6fe57388a799cf3f554
 export KEDA_WEBHOOK_PULLSPEC=quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/keda-webhooks@sha256:81c9bff7a41a7c74bc233d0a6ce19cb4d6cc113821369a26748ebb1d9bb9e847
+export KEDA_ADAPTER_PULLSPEC=quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/keda-adapter@sha256:b5b63a976d7e1cacf201cc0d75ab63d43cf7141f874cc447cb29fcfba2b392fe
+export KEDA_WEBHOOK_PULLSPEC=quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/keda-webhooks@sha256:2236ad64f9f0486c569b42e3141ec80886d68e2edd9bdda5ffe06483d28e5257
 
 # Since we moved the versioned manifest to /manifests, we can just use it from there
 export CSV_FILE=/manifests/cma.v${VERSION}.clusterserviceversion.yaml
