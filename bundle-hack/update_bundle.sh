@@ -11,12 +11,10 @@ export CI_SPEC_RELEASE="454"
 
 # TODO(jkyros): So here's how this works -- we put these variables in here, and then Konflux comes through and updates them when the builds get updated, ideally
 # not causing cyclical builds, so we have to exclude this somehow I think 
-export CMA_OPERATOR_PULLSPEC=quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/custom-metrics-autoscaler-operator@sha256:68dece9c56c85db93ce46163f313863bbbc7e997336165189ee4a1f417079bbd
+export CMA_OPERATOR_PULLSPEC=quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/custom-metrics-autoscaler-operator@sha256:2648bdaca3b842bc04f0de81d182101c939ae29c21625d21852f19364d9b6151
 export KEDA_OPERATOR_PULLSPEC=quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/keda-operator@sha256:2b85d1524aa8944713a3f692b7cf7e5a350eaa83aa5a9214bae9156e9690b979
-export KEDA_ADAPTER_PULLSPEC=quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/keda-adapter@sha256:cfe290488cfd9ada0461a137a7df0bac31e187de0dfef6fe57388a799cf3f554
 export KEDA_WEBHOOK_PULLSPEC=quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/keda-webhooks@sha256:81c9bff7a41a7c74bc233d0a6ce19cb4d6cc113821369a26748ebb1d9bb9e847
 export KEDA_ADAPTER_PULLSPEC=quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/keda-adapter@sha256:b5b63a976d7e1cacf201cc0d75ab63d43cf7141f874cc447cb29fcfba2b392fe
-export KEDA_WEBHOOK_PULLSPEC=quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/keda-webhooks@sha256:2236ad64f9f0486c569b42e3141ec80886d68e2edd9bdda5ffe06483d28e5257
 
 # Since we moved the versioned manifest to /manifests, we can just use it from there
 export CSV_FILE=/manifests/cma.v${VERSION}.clusterserviceversion.yaml
@@ -50,10 +48,12 @@ sed -i -e "s#ghcr.io/kedacore/keda-olm-operator:\(main\|[0-9.]*\)#${CMA_OPERATOR
 cat "${CSV_FILE}"
 
 
-export AMD64_BUILT=$(skopeo inspect --raw docker://${GATEKEEPER_OPERATOR_IMAGE_PULLSPEC} | jq -e '.manifests[] | select(.platform.architecture=="amd64")')
-export ARM64_BUILT=$(skopeo inspect --raw docker://${GATEKEEPER_OPERATOR_IMAGE_PULLSPEC} | jq -e '.manifests[] | select(.platform.architecture=="arm64")')
-export PPC64LE_BUILT=$(skopeo inspect --raw docker://${GATEKEEPER_OPERATOR_IMAGE_PULLSPEC} | jq -e '.manifests[] | select(.platform.architecture=="ppc64le")')
-export S390X_BUILT=$(skopeo inspect --raw docker://${GATEKEEPER_OPERATOR_IMAGE_PULLSPEC} | jq -e '.manifests[] | select(.platform.architecture=="s390x")')
+# TODO(jkyros): check all the images probably so we don't have an odd one out that's missing on a platform, e.g. CMA 
+# built for arm, but the webhook only built for x86_64, etc. 
+export AMD64_BUILT=$(skopeo inspect --raw docker://${CMA_OPERATOR_PULLSPEC} | jq -e '.manifests[] | select(.platform.architecture=="amd64")')
+export ARM64_BUILT=$(skopeo inspect --raw docker://${CMA_OPERATOR_PULLSPEC} | jq -e '.manifests[] | select(.platform.architecture=="arm64")')
+export PPC64LE_BUILT=$(skopeo inspect --raw docker://${CMA_OPERATOR_PULLSPEC} | jq -e '.manifests[] | select(.platform.architecture=="ppc64le")')
+export S390X_BUILT=$(skopeo inspect --raw docker://${CMA_OPERATOR_PULLSPEC} | jq -e '.manifests[] | select(.platform.architecture=="s390x")')
 
 export EPOC_TIMESTAMP=$(date +%s)
 # time for some direct modifications to the csv
