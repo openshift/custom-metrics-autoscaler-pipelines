@@ -27,6 +27,8 @@ RUN sed -i 's/\(Namespace *[:=] *\)"keda"/\1"openshift-keda"/' \
     sed -i '/^kind: PodMonitor$/,$ s/\(name: *\)keda-olm-operator$/\1custom-metrics-autoscaler-operator/' \
         resources/keda-olm-operator.yaml
 
+RUN find controllers && find resources
+
 RUN make build
 
 FROM registry.redhat.io/openshift4/ose-cli:latest AS cli
@@ -41,7 +43,7 @@ RUN INSTALL_PKGS=" \
       rsync \
       tar \
       " && \
-    microdnf install -y $INSTALL_PKGS && \
+    microdnf --disablerepo=* --enablerepo=ubi-9-baseos-rpms --enablerepo=ubi-9-appstream-rpms install -y $INSTALL_PKGS && \
     rpm -V $INSTALL_PKGS && \
     microdnf clean all
 
@@ -55,8 +57,11 @@ COPY --from=cli /usr/bin/oc /usr/bin
 RUN ln -s /usr/bin/oc /usr/bin/kubectl
 
 # TODO(jkyros): This seems weird, why do we do this? 
-RUN mkdir -p /src/keda-operator/app && \
-    ln -s /resources /src/keda-operator/app/resources
+RUN mkdir -p /src/cma-operator/app && \
+    ln -s /resources /src/cma-operator/app/resources 
+
+#TODO(jkyros): I've goofed somewhere, it's looking here instead and not finding it, but why
+RUN ln -s /resources /src/resources
 USER nobody
 
 CMD ["/usr/bin/manager"]

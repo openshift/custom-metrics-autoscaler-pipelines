@@ -4,17 +4,17 @@ metadata:
   annotations:
     build.appstudio.openshift.io/repo: https://github.com/jkyros/olm-operator-konflux-sample?rev={{revision}}
     build.appstudio.redhat.com/commit_sha: '{{revision}}'
-    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
     build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    build.appstudio.openshift.io/build-nudge-files: "bundle-hack/update_bundle.sh"
     pipelinesascode.tekton.dev/max-keep-runs: "3"
-    pipelinesascode.tekton.dev/on-cel-expression: event == "pull_request" && target_branch
-      == "cma-konflux" && "custom-metrics-autoscaler-operator/*".pathChanged()
+    pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch
+      == "cma-konflux" && ( "kedacore-keda/*".pathChanged() || "Dockerfile.keda-adapter".pathChanged() )
   creationTimestamp: null
   labels:
     appstudio.openshift.io/application: custom-metrics-autoscaler-operator
-    appstudio.openshift.io/component: custom-metrics-autoscaler-operator
+    appstudio.openshift.io/component: keda-adapter
     pipelines.appstudio.openshift.io/type: build
-  name: custom-metrics-autoscaler-operator-on-pull-request
+  name: keda-adapter-on-push
   namespace: cma-podauto-tenant
 spec:
   params:
@@ -23,11 +23,9 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/custom-metrics-autoscaler-operator:on-pr-{{revision}}
-  - name: image-expires-after
-    value: 5d
+    value: quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/keda-adapter:{{revision}}
   - name: dockerfile
-    value: Dockerfile.cma-operator
+    value: Dockerfile.keda-adapter
   pipelineSpec:
     finally:
     - name: show-sbom
