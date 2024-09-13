@@ -20,13 +20,15 @@ ARG TARGETARCH
 # TODO(jkyros): entirlements are always a clown show for some reason, if you don't do this, you get
 # cert errors because it's looking at rhsm-host and not rhsm and won't find the cert
 RUN rm -rf /etc/rhsm-host && ln -s /etc/rhsm /etc/rhsm-host
-# protobuf-compiler lives in the codeready channels
+
 # TODO(jkyros): pin this to cache when we are able 
+# protobuf-compiler lives in the codeready channel, which is an entitled channel, so we have to enable it, but 
+# the channels do not match the targetarch names, so we have to translate before we entble it 
 RUN ARCH=${TARGETARCH}; \ 
     if [ ${ARCH} == "arm64" ] ; then ARCH="aarch64"; \
     elif [ ${ARCH} == "amd64" ]; then ARCH="x86_64"; \
     fi; \
-    dnf install --enablerepo=codeready-builder-for-rhel-9-${ARCH}-rpms -y protobuf-compiler 
+    dnf install --enablerepo=codeready-builder-for-rhel-9-${ARCH}-rpms -y protobuf-compiler --forcearch ${ARCH}
 
 
 ## Get the sources in here
