@@ -11,13 +11,27 @@ export CI_SPEC_RELEASE="454"
 
 # TODO(jkyros): So here's how this works -- we put these variables in here, and then Konflux comes through and updates them when the builds get updated, ideally
 # not causing cyclical builds, so we have to exclude this somehow I think 
-export CMA_OPERATOR_PULLSPEC=quay.io/repository/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator@sha256:4632bc387e54960ce0bb0fdb4fdda89dbc8c7afc16c2427ff6e517fb47379256
-export KEDA_OPERATOR_PULLSPEC=quay.io/repository/redhat-user-workloads/cma-podauto-tenant/keda-operator@sha256:4632bc387e54960ce0bb0fdb4fdda89dbc8c7afc16c2427ff6e517fb47379256
-export KEDA_ADAPTER_PULLSPEC=quay.io/repository/redhat-user-workloads/cma-podauto-tenant/keda-adapter@sha256:4632bc387e54960ce0bb0fdb4fdda89dbc8c7afc16c2427ff6e517fb47379256
-export KEDA_WEBHOOK_PULLSPEC=quay.io/repository/redhat-user-workloads/cma-podauto-tenant/keda-webhooks@sha256:4632bc387e54960ce0bb0fdb4fdda89dbc8c7afc16c2427ff6e517fb47379256
+export CMA_OPERATOR_PULLSPEC=quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/custom-metrics-autoscaler-operator@sha256:68dece9c56c85db93ce46163f313863bbbc7e997336165189ee4a1f417079bbd
+export KEDA_OPERATOR_PULLSPEC=quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/keda-operator@sha256:9720d10a35249f1aa14a789bbbbf29712f1fe1916d8cbd5028ba81d0970f8b46
+export KEDA_ADAPTER_PULLSPEC=quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/keda-adapter@sha256:cfe290488cfd9ada0461a137a7df0bac31e187de0dfef6fe57388a799cf3f554
+export KEDA_WEBHOOK_PULLSPEC=quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/keda-webhooks@sha256:2236ad64f9f0486c569b42e3141ec80886d68e2edd9bdda5ffe06483d28e5257
 
 # Since we moved the versioned manifest to /manifests, we can just use it from there
 export CSV_FILE=/manifests/cma.v${VERSION}.clusterserviceversion.yaml
+
+
+# CPaaS used to do this for us, but now we have to do it ourselves 
+cat << EOF >> ${CSV_FILE}
+  relatedImages: 
+    - name: keda-operator
+      image: ${KEDA_OPERATOR_PULLSPEC}
+    - name: keda-adapter
+      image: ${KEDA_ADAPTER_PULLSPEC}
+    - name: keda-webhooks
+      image: ${KEDA_WEBHOOK_PULLSPEC}
+    - name: cma-operator
+      image: ${CMA_OPERATOR_PULLSPEC}
+EOF
 
 # Update image references to use brew-built images
 # Put the allowed repositories: OSBS proxy and registry.redhat.io.
