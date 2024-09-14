@@ -2732,7 +2732,7 @@ relatedImages:
   name: "1"
 schema: olm.bundle
 ---
-image: quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/custom-metrics-autoscaler-operator-bundle@sha256:02374adb062347d386c71f75c8f717c8afec3c124f11426d057b2bd13f2ff166
+image: quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/custom-metrics-autoscaler-operator-bundle@sha256:02c8375e390e52717ec8e99eb9d30d57f4f21b7fd9e5ef9d29005df8c7166202
 name: custom-metrics-autoscaler.v2.14.1-454
 package: openshift-custom-metrics-autoscaler-operator
 properties:
@@ -2886,8 +2886,8 @@ properties:
       capabilities: Seamless Upgrades
       categories: Cloud Provider
       certified: "false"
-      containerImage: quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/custom-metrics-autoscaler-operator@sha256:68dece9c56c85db93ce46163f313863bbbc7e997336165189ee4a1f417079bbd
-      createdAt: 22 Aug 2024, 01:06
+      containerImage: quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/custom-metrics-autoscaler-operator@sha256:2648bdaca3b842bc04f0de81d182101c939ae29c21625d21852f19364d9b6151
+      createdAt: 14 Sep 2024, 00:04
       description: Custom Metrics Autoscaler Operator, an event-driven autoscaler
         based upon KEDA
       features.operators.openshift.io/cnf: "false"
@@ -3257,6 +3257,8 @@ properties:
     - scaling
     - event
     labels:
+      operatorframework.io/arch.amd64: supported
+      operatorframework.io/arch.arm64: supported
       operatorframework.io/os.linux: supported
     links:
     - name: Custom Metrics Autoscaler Documentation
@@ -3269,14 +3271,14 @@ properties:
     provider:
       name: Red Hat
 relatedImages:
-- image: quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/custom-metrics-autoscaler-operator-bundle@sha256:02374adb062347d386c71f75c8f717c8afec3c124f11426d057b2bd13f2ff166
+- image: quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/custom-metrics-autoscaler-operator-bundle@sha256:02c8375e390e52717ec8e99eb9d30d57f4f21b7fd9e5ef9d29005df8c7166202
   name: ""
-- image: quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/custom-metrics-autoscaler-operator@sha256:68dece9c56c85db93ce46163f313863bbbc7e997336165189ee4a1f417079bbd
+- image: quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/custom-metrics-autoscaler-operator@sha256:2648bdaca3b842bc04f0de81d182101c939ae29c21625d21852f19364d9b6151
   name: cma-operator
-- image: quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/keda-adapter@sha256:cfe290488cfd9ada0461a137a7df0bac31e187de0dfef6fe57388a799cf3f554
+- image: quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/keda-adapter@sha256:b5b63a976d7e1cacf201cc0d75ab63d43cf7141f874cc447cb29fcfba2b392fe
   name: keda-adapter
-- image: quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/keda-operator@sha256:9720d10a35249f1aa14a789bbbbf29712f1fe1916d8cbd5028ba81d0970f8b46
+- image: quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/keda-operator@sha256:2b85d1524aa8944713a3f692b7cf7e5a350eaa83aa5a9214bae9156e9690b979
   name: keda-operator
-- image: quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/keda-webhooks@sha256:2236ad64f9f0486c569b42e3141ec80886d68e2edd9bdda5ffe06483d28e5257
+- image: quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/keda-webhooks@sha256:81c9bff7a41a7c74bc233d0a6ce19cb4d6cc113821369a26748ebb1d9bb9e847
   name: keda-webhooks
 schema: olm.bundle
