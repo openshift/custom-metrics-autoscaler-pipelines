@@ -10,6 +10,14 @@ ENV GO_COMPLIANCE_DEBUG=0
 # downloading the latest version
 ENV GOTOOLCHAIN=local
 
+# If you don't set this as args, you don't seem to get them
+ARG TARGETOS
+ARG TARGETARCH
+
+# The CMA makefile wants "ARCH", and will default to amd64 if not specified, 
+# so we give it ARCH so we don't accidentally build an amd64 binary in our arm64 container
+ENV ARCH=${TARGETARCH}
+
 # Get the sources in here
 COPY /custom-metrics-autoscaler-operator/ /src/
 
