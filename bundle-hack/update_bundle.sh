@@ -9,12 +9,19 @@ mv /custom-metrics-autoscaler-operator/keda/${VERSION}/metadata/ /metadata/
 
 export CI_SPEC_RELEASE="454"
 
-# TODO(jkyros): So here's how this works -- we put these variables in here, and then Konflux comes through and updates them when the builds get updated, ideally
-# not causing cyclical builds, so we have to exclude this somehow I think 
-export CMA_OPERATOR_PULLSPEC=quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/custom-metrics-autoscaler-operator@sha256:a230a6f5c6aa6bbbbad0175e68f44016933982e00f5f19422e5e8db67b7d4e6d
-export KEDA_OPERATOR_PULLSPEC=quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/keda-operator@sha256:2b85d1524aa8944713a3f692b7cf7e5a350eaa83aa5a9214bae9156e9690b979
-export KEDA_WEBHOOK_PULLSPEC=quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/keda-webhooks@sha256:503f7c9bf76835d48bca4773beedb8b4e0ebd895001529be955f21d5a9d60c43
-export KEDA_ADAPTER_PULLSPEC=quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/keda-adapter@sha256:b5b63a976d7e1cacf201cc0d75ab63d43cf7141f874cc447cb29fcfba2b392fe
+# We used to keep these variables in the script itself, but that caused some weird conflict issues when
+# konflux PRs stacked up, so now we put them each in their own file so they're safe to bump asynchronusly
+export CMA_OPERATOR_PULLSPEC=$(<"imagerefs/custom-metrics-autoscaler-operator.pullspec")
+export KEDA_OPERATOR_PULLSPEC=$(<"imagerefs/keda-operator.pullspec")
+export KEDA_WEBHOOK_PULLSPEC=$(<"imagerefs/keda-webhooks.pullspec")
+export KEDA_ADAPTER_PULLSPEC=$(<"imagerefs/keda-adapter.pullspec")
+
+# This is just so we don't build a bogus bundle with an empty image and then only figure it out when we deploy it :)
+[[ -z "$CMA_OPERATOR_PULLSPEC" ]] && { echo "CMA operator pullspec is empty"; exit 1;}
+[[ -z "$KEDA_OPERATOR_PULLSPEC" ]] && { echo "keda operator pullspec is empty"; exit 1;}
+[[ -z "$KEDA_WEBHOOK_PULLSPEC" ]] && { echo "keda webhook pullspec is empty"; exit 1;}
+[[ -z "$KEDA_ADAPTER_PULLSPEC" ]] && { echo "keda adapter pullspec is empty"; exit 1;}
+
 
 # Since we moved the versioned manifest to /manifests, we can just use it from there
 export CSV_FILE=/manifests/cma.v${VERSION}.clusterserviceversion.yaml
