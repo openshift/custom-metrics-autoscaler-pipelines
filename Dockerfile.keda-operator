@@ -20,6 +20,8 @@ ARG TARGETARCH
 # The KEDA makefiles need this to get the right platform
 ENV ARCH=${TARGETARCH}
 
+# John added this
+
 # TODO(jkyros): entirlements are always a clown show for some reason, if you don't do this, you get
 # cert errors because it's looking at rhsm-host and not rhsm and won't find the cert
 RUN rm -rf /etc/rhsm-host && ln -s /etc/rhsm /etc/rhsm-host
