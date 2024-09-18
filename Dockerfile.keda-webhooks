@@ -17,6 +17,8 @@ ENV GOTOOLCHAIN=local
 ARG TARGETOS
 ARG TARGETARCH
 
+# John Changed this!
+
 # The KEDA makefiles need this to get the right platform
 ENV ARCH=${TARGETARCH}
 
