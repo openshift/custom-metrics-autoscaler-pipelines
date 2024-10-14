@@ -64,13 +64,42 @@ COPY --from=builder /src/must-gather/collection-scripts/* /usr/bin/
 COPY --from=cli /usr/bin/oc /usr/bin
 RUN ln -s /usr/bin/oc /usr/bin/kubectl
 
-# TODO(jkyros): This seems weird, why do we do this? 
+# TODO(jkyros): This seems weird, why do we do this?
 RUN mkdir -p /src/cma-operator/app && \
-    ln -s /resources /src/cma-operator/app/resources 
+    ln -s /resources /src/cma-operator/app/resources
+
+# Need the license to pass enterprise pre-flight
+RUN mkdir /licenses
+COPY --from=builder /src/LICENSE /licenses/
 
 #TODO(jkyros): I've goofed somewhere, it's looking here instead and not finding it, but why
 RUN ln -s /resources /src/resources
 USER nobody
+
+# Need to specify a user to pass enterprise pre-flight
+USER nobody
+
+LABEL io.k8s.display-name="OpenShift Custom Metrics Autoscaler Operator" \
+      io.k8s.description="This is a component of OpenShift which manages Custom Metrics Autoscaler." \
+      com.redhat.component="custom-metrics-autoscaler-operator-container" \
+      name="custom-metrics-autoscaler-operator-rhel-9" \
+      summary="custom-metrics-autoscaler-operator" \
+      io.openshift.expose-services="" \
+      io.openshift.tags="openshift,custom-metrics-autoscaler-operator" \
+      description="custom-metrics-autoscaler-operator-container" \
+      maintainer="AOS node team <aos-node@redhat.com>"
+
+# TODO(jkyros): I don't know what to do about the upstream labels yet, I don't think Konflux gets it for you
+# LABEL upstream-version="${CI_KEDACORE_KEDA_UPSTREAM_VERSION}" \
+#      upstream-vcs-ref="${CI_KEDACORE_KEDA_UPSTREAM_COMMIT}" \
+#      upstream-vcs-type="git" \
+
+# Chore: update this when openshift release changes
+LABEL com.redhat.openshift.versions="v4.17"
+
+# Chore: this will get used in the release policy, so update this when our version we're releasing changes
+LABEL version="2.14.1"
+LABEL release=""
 
 CMD ["/usr/bin/manager"]
 

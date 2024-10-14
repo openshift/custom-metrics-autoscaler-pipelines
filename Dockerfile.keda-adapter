@@ -24,9 +24,9 @@ ENV ARCH=${TARGETARCH}
 # cert errors because it's looking at rhsm-host and not rhsm and won't find the cert
 RUN rm -rf /etc/rhsm-host && ln -s /etc/rhsm /etc/rhsm-host
 
-# TODO(jkyros): pin this to cache when we are able 
-# protobuf-compiler lives in the codeready channel, which is an entitled channel, so we have to enable it, but 
-# the channels do not match the targetarch names, so we have to translate before we entble it 
+# TODO(jkyros): pin this to cache when we are able
+# protobuf-compiler lives in the codeready channel, which is an entitled channel, so we have to enable it, but
+# the channels do not match the targetarch names, so we have to translate before we entble it
 RUN if [ ${ARCH} == "arm64" ] ; then ARCH="aarch64"; \
     elif [ ${ARCH} == "amd64" ]; then ARCH="x86_64"; \
     fi; \
@@ -53,8 +53,8 @@ FROM registry.redhat.io/ubi9/ubi-minimal:latest
 
 WORKDIR /
 # TODO(jkyros): It will try to pull from the RHEL channels because of the entitlement secret, so we have to disable
-# all the repos (the RHEL ones) and then enable the ubi repos. 
-RUN microdnf --disablerepo=* --enablerepo=ubi-9-baseos-rpms --enablerepo=ubi-9-appstream-rpms reinstall -y tzdata 
+# all the repos (the RHEL ones) and then enable the ubi repos.
+RUN microdnf --disablerepo=* --enablerepo=ubi-9-baseos-rpms --enablerepo=ubi-9-appstream-rpms reinstall -y tzdata
 COPY --from=builder /src/bin/keda-adapter /usr/bin/
 RUN ln -s /usr/bin/keda-adapter /keda-adapter
 
@@ -63,5 +63,28 @@ RUN mkdir /licenses
 COPY --from=builder /src/LICENSE /licenses/
 
 USER nobody
+
+LABEL io.k8s.display-name="OpenShift Custom Metrics Autoscaler Adapter" \
+      io.k8s.description="This is a component of OpenShift which provides a custom metrics API endpoint for pod autoscaling." \
+      com.redhat.component="custom-metrics-autoscaler-adapter-container" \
+      name="custom-metrics-autoscaler-adapter-rhel-9" \
+      summary="custom-metrics-autoscaler-adapter" \
+      io.openshift.expose-services="" \
+      io.openshift.tags="openshift,custom-metrics-autoscaler-adapter" \
+      description="custom-metrics-autoscaler-container-adapter" \
+      maintainer="AOS node team <aos-node@redhat.com>"
+
+# TODO(jkyros): I don't know what to do about the upstream labels yet, I don't think Konflux gets it for you
+#LABEL upstream-version="${CI_KEDACORE_KEDA_UPSTREAM_VERSION}" \
+#      upstream-vcs-ref="${CI_KEDACORE_KEDA_UPSTREAM_COMMIT}" \
+#      upstream-vcs-type="git" \
+
+# Chore: update this when openshift release changes
+LABEL com.redhat.openshift.versions="v4.17"
+
+# Chore: this will get used in the release policy, so update this when our version we're releasing changes
+LABEL version="2.14.1"
+LABEL release=""
+
 
 ENTRYPOINT ["/usr/bin/keda-adapter", "--secure-port=6443", "--logtostderr=true", "--v=0"]
