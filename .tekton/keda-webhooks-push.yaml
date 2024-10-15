@@ -74,7 +74,7 @@ spec:
       description: Execute the build with network isolation
       name: hermetic
       type: string
-    - default: '{"type": "gomod", "path": ".","type": "gomod", "path": "kedacore-keda/hack/tooldeps/","type": "rpm","path":"rpm-lockfiles/"}'
+    - default: '{"type": "gomod", "path": ".","type": "gomod", "path": "kedacore-keda/hack/tooldeps/","type": "rpm","path":"rpm-lockfiles/",  "options": { "ssl": { "ssl_verify": 0 } } }'
       description: Build dependencies to be prefetched by Cachi2
       name: prefetch-input
       type: string
