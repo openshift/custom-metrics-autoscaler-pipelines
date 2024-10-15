@@ -1,0 +1,53 @@
+---
+lockfileVersion: 1
+lockfileVendor: redhat
+arches:
+- arch: aarch64
+  packages:
+  - url: https://cdn.redhat.com/content/dist/rhel9/9/aarch64/appstream/os/Packages/p/protobuf-3.14.0-13.el9.aarch64.rpm
+    repoid: rhel-9-for-aarch64-appstream-rpms
+    size: 962919
+    checksum: sha256:7f751e2ba51d9a4b62668f7181c7ca0d7a487a3ba82c2f8881a60e27921af4d9
+    name: protobuf
+    evr: 3.14.0-13.el9
+    sourcerpm: protobuf-3.14.0-13.el9.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel9/9/aarch64/codeready-builder/os/Packages/p/protobuf-compiler-3.14.0-13.el9.aarch64.rpm
+    repoid: codeready-builder-for-rhel-9-aarch64-rpms
+    size: 794569
+    checksum: sha256:cc3c8f5e340761a08a632d70a77a6afd4edc68f4ef92f6ed20dc5084d1cabb9f
+    name: protobuf-compiler
+    evr: 3.14.0-13.el9
+    sourcerpm: protobuf-3.14.0-13.el9.src.rpm
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/x86_64/baseos/os/Packages/r/rsync-3.2.3-19.el9.x86_64.rpm
+    repoid: ubi-9-baseos-rpms
+    size: 411313
+    checksum: sha256:ee29f2138b7f732ba3e552281c4bdf56c71112a17c19dd941135aa56c22cb2c8
+    name: rsync
+    evr: 3.2.3-19.el9
+    sourcerpm: rsync-3.2.3-19.el9.src.rpm
+- arch: x86_64
+  packages:
+  - url: https://cdn.redhat.com/content/dist/rhel9/9/x86_64/appstream/os/Packages/p/protobuf-3.14.0-13.el9.x86_64.rpm
+    repoid: rhel-9-for-x86_64-appstream-rpms
+    size: 1060262
+    checksum: sha256:671f257fce903bd5c3dfb7316daa2efc7d8f5aa7de5c9dafc5a8883e246afc7e
+    name: protobuf
+    evr: 3.14.0-13.el9
+    sourcerpm: protobuf-3.14.0-13.el9.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel9/9/x86_64/codeready-builder/os/Packages/p/protobuf-compiler-3.14.0-13.el9.x86_64.rpm
+    repoid: codeready-builder-for-rhel-9-x86_64-rpms
+    size: 886661
+    checksum: sha256:5c3347d5fda16a001477b4b378c88f895488f6f0ff00432ebd302dd92f46193c
+    name: protobuf-compiler
+    evr: 3.14.0-13.el9
+    sourcerpm: protobuf-3.14.0-13.el9.src.rpm
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/x86_64/baseos/os/Packages/r/rsync-3.2.3-19.el9.x86_64.rpm
+    repoid: ubi-9-baseos-rpms
+    size: 411313
+    checksum: sha256:ee29f2138b7f732ba3e552281c4bdf56c71112a17c19dd941135aa56c22cb2c8
+    name: rsync
+    evr: 3.2.3-19.el9
+    sourcerpm: rsync-3.2.3-19.el9.src.rpm
+  source: []
+  module_metadata: []
+
