@@ -8,7 +8,7 @@ metadata:
     build.appstudio.openshift.io/build-nudge-files: "bundle-hack/imagerefs/keda-webhooks.pullspec"
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch
-      == "cma-konflux" && ( "kedacore-keda".pathChanged() || "Dockerfile.keda-webhooks".pathChanged() )
+      == "cma-konflux" && ( "kedacore-keda".pathChanged() || "Dockerfile.keda-webhooks".pathChanged() || ".tekton/keda-webhooks-push.yaml".pathChanged() )
   creationTimestamp: null
   labels:
     appstudio.openshift.io/application: custom-metrics-autoscaler-operator
@@ -70,11 +70,11 @@ spec:
       description: Skip checks against built image
       name: skip-checks
       type: string
-    - default: "true"
+    - default: "false"
       description: Execute the build with network isolation
       name: hermetic
       type: string
-    - default: '{"type": "gomod", "path": ".","type": "gomod", "path": "kedacore-keda/hack/tooldeps/","type": "rpm","path":"rpm-lockfiles/"}'
+    - default: ""
       description: Build dependencies to be prefetched by Cachi2
       name: prefetch-input
       type: string

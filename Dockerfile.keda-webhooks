@@ -27,13 +27,21 @@ RUN rm -rf /etc/rhsm-host && ln -s /etc/rhsm /etc/rhsm-host
 # TODO(jkyros): pin this to cache when we are able
 # protobuf-compiler lives in the codeready channel, which is an entitled channel, so we have to enable it, but
 # the channels do not match the targetarch names, so we have to translate before we entble it
+# TODO(jkyros): cachito env will favor activation keys if one is present, you can either use the activation
+# key or etc-pki-entitlement secret, but not both, so that's why I'm using activation keys here, because we have one
 RUN if [ ${ARCH} == "arm64" ] ; then ARCH="aarch64"; \
     elif [ ${ARCH} == "amd64" ]; then ARCH="x86_64"; \
+    elif [ ${ARCH} == "s390x" ]; then ARCH="s390x"; \
+    elif [ ${ARCH} == "ppc64le" ]; then ARCH="ppc64le"; \
     fi; \
-    dnf install --enablerepo=codeready-builder-for-rhel-9-${ARCH}-rpms -y protobuf-compiler --forcearch ${ARCH}
+    export SMDEV_CONTAINER_OFF=1 && \
+    subscription-manager register --org $(cat "/activation-key/orgid") --activationkey $(cat "/activation-key/activationkey") && \
+    subscription-manager repos --enable codeready-builder-for-rhel-9-${ARCH}-rpms && \
+    dnf install -y protobuf-compiler && \
+    subscription-manager unregister
 
 
-## Get the sources in here
+# Get the sources in here
 COPY /kedacore-keda/ /src/
 
 # And the tools, but separately
@@ -86,8 +94,9 @@ LABEL com.redhat.openshift.versions="v4.17"
 
 # Chore: this will get used in the release policy, so update this when our version we're releasing changes
 LABEL version="2.14.1"
-LABEL release=""
-
+# I don't know that we can auto-increment this without an additional pipeline stage or something, but if we omit it,
+# we fail the metadata requirements, so we have to put _something_ here
+LABEL release="1"
 
 ENTRYPOINT ["/usr/bin/keda-admission-webhooks", "--zap-log-level=info", "--zap-encoder=console"]
 

@@ -22,6 +22,11 @@ export KEDA_ADAPTER_PULLSPEC=$(<"imagerefs/keda-adapter.pullspec")
 [[ -z "$KEDA_WEBHOOK_PULLSPEC" ]] && { echo "keda webhook pullspec is empty"; exit 1;}
 [[ -z "$KEDA_ADAPTER_PULLSPEC" ]] && { echo "keda adapter pullspec is empty"; exit 1;}
 
+# TODO(jkyros): we probably need multiple dockerfiles with different targets that feed an arg into this script, e.g. "push to stage", "push to prod", "push to quay"
+CMA_OPERATOR_PULLSPEC=$( echo $CMA_OPERATOR_PULLSPEC | sed -e "s#quay.io/redhat-user-workloads/cma-podauto-tenant/#registry.stage.redhat.io/#" )
+KEDA_OPERATOR_PULLSPEC=$( echo $KEDA_OPERATOR_PULLSPEC | sed -e "s#quay.io/redhat-user-workloads/cma-podauto-tenant/#registry.stage.redhat.io/#" )
+KEDA_WEBHOOK_PULLSPEC=$( echo $KEDA_WEBHOOK_PULLSPEC | sed -e "s#quay.io/redhat-user-workloads/cma-podauto-tenant/#registry.stage.redhat.io/#" )
+KEDA_ADAPTER_PULLSPEC=$( echo $KEDA_ADAPTER_PULLSPEC | sed -e "s#quay.io/redhat-user-workloads/cma-podauto-tenant/#registry.stage.redhat.io/#" )
 
 # Since we moved the versioned manifest to /manifests, we can just use it from there
 export CSV_FILE=/manifests/cma.v${VERSION}.clusterserviceversion.yaml

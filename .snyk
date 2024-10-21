@@ -1,0 +1,6 @@
+# TODO(jkyros): I think it's reading the nested .snyk files from the modules, otherwise it would have
+# flagged all our tests. Some of our tools are written in c/c++ and are a mess, but we don't ship them, we
+# just build with them, so exclude them for now. 
+exclude:
+  global:
+    - "tools/**"

@@ -14,6 +14,7 @@ COPY bundle-hack .
 
 # We're going to copy all the keda bundles in
 COPY custom-metrics-autoscaler-operator/keda /custom-metrics-autoscaler-operator/keda
+COPY custom-metrics-autoscaler-operator/LICENSE /custom-metrics-autoscaler-operator/LICENSE
 
 # This is going to sort out the most recent one and put it in /manifests/ and /metadata/ so
 # the next stage can use it from there
@@ -63,4 +64,12 @@ LABEL com.redhat.openshift.versions="v4.17"
 
 # Chore: this will get used in the release policy, so update this when our version we're releasing changes
 LABEL version="2.14.1"
-LABEL release=""
+# I don't know that we can auto-increment this without an additional pipeline stage or something, but if we omit it,
+# we fail the metadata requirements, so we have to put _something_ here
+LABEL release="1"
+
+# Need the license to pass enterprise pre-flight
+RUN mkdir /licenses
+COPY --from=builder /custom-metrics-autoscaler-operator/LICENSE /licenses/
+
+USER nobody
