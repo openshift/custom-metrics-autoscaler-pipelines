@@ -23,18 +23,20 @@ export KEDA_ADAPTER_PULLSPEC=$(<"imagerefs/keda-adapter.pullspec")
 [[ -z "$KEDA_ADAPTER_PULLSPEC" ]] && { echo "keda adapter pullspec is empty"; exit 1;}
 
 # TODO(jkyros): we probably need multiple dockerfiles with different targets that feed an arg into this script, e.g. "push to stage", "push to prod", "push to quay"
-CMA_OPERATOR_PULLSPEC=$( echo $CMA_OPERATOR_PULLSPEC | sed -e "s#quay.io/redhat-user-workloads/cma-podauto-tenant/#registry.stage.redhat.io/#" )
-KEDA_OPERATOR_PULLSPEC=$( echo $KEDA_OPERATOR_PULLSPEC | sed -e "s#quay.io/redhat-user-workloads/cma-podauto-tenant/#registry.stage.redhat.io/#" )
-KEDA_WEBHOOK_PULLSPEC=$( echo $KEDA_WEBHOOK_PULLSPEC | sed -e "s#quay.io/redhat-user-workloads/cma-podauto-tenant/#registry.stage.redhat.io/#" )
-KEDA_ADAPTER_PULLSPEC=$( echo $KEDA_ADAPTER_PULLSPEC | sed -e "s#quay.io/redhat-user-workloads/cma-podauto-tenant/#registry.stage.redhat.io/#" )
+# TODO(jkyros): oh, also, for fun, apparently the stage policy forces you to use registry.redhat.io also, and the intent is that you use like an ICSP to
+# re-map the images, and NOTHING TELLS YOU THAT ANYWHERE
+CMA_OPERATOR_PULLSPEC=$( echo $CMA_OPERATOR_PULLSPEC | sed -e "s#quay.io/redhat-user-workloads/cma-podauto-tenant/#registry.redhat.io/#" )
+KEDA_OPERATOR_PULLSPEC=$( echo $KEDA_OPERATOR_PULLSPEC | sed -e "s#quay.io/redhat-user-workloads/cma-podauto-tenant/#registry.redhat.io/#" )
+KEDA_WEBHOOK_PULLSPEC=$( echo $KEDA_WEBHOOK_PULLSPEC | sed -e "s#quay.io/redhat-user-workloads/cma-podauto-tenant/#registry.redhat.io/#" )
+KEDA_ADAPTER_PULLSPEC=$( echo $KEDA_ADAPTER_PULLSPEC | sed -e "s#quay.io/redhat-user-workloads/cma-podauto-tenant/#registry.redhat.io/#" )
 
 # Since we moved the versioned manifest to /manifests, we can just use it from there
 export CSV_FILE=/manifests/cma.v${VERSION}.clusterserviceversion.yaml
 
 
-# CPaaS used to do this for us, but now we have to do it ourselves 
+# CPaaS used to do this for us, but now we have to do it ourselves
 cat << EOF >> ${CSV_FILE}
-  relatedImages: 
+  relatedImages:
     - name: keda-operator
       image: ${KEDA_OPERATOR_PULLSPEC}
     - name: keda-adapter
@@ -48,7 +50,7 @@ EOF
 # Update image references to use brew-built images
 # Put the allowed repositories: OSBS proxy and registry.redhat.io.
 # The pinning to SHA1 will happen after thanks to the config in container.yaml.
-# TODO(jkyros): I think the FBC will take care of the replaces, etc based on the catalog so we don't have to do it 
+# TODO(jkyros): I think the FBC will take care of the replaces, etc based on the catalog so we don't have to do it
 sed -i -e "s#ghcr.io/kedacore/keda-olm-operator:\(main\|[0-9.]*\)#${CMA_OPERATOR_PULLSPEC}#g" \
        -e "s#CMA_OPERAND_PLACEHOLDER_1\$#${KEDA_OPERATOR_PULLSPEC}#g" \
        -e "s#CMA_OPERAND_PLACEHOLDER_2\$#${KEDA_ADAPTER_PULLSPEC}#g" \
@@ -60,8 +62,8 @@ sed -i -e "s#ghcr.io/kedacore/keda-olm-operator:\(main\|[0-9.]*\)#${CMA_OPERATOR
 cat "${CSV_FILE}"
 
 
-# TODO(jkyros): check all the images probably so we don't have an odd one out that's missing on a platform, e.g. CMA 
-# built for arm, but the webhook only built for x86_64, etc. 
+# TODO(jkyros): check all the images probably so we don't have an odd one out that's missing on a platform, e.g. CMA
+# built for arm, but the webhook only built for x86_64, etc.
 export AMD64_BUILT=$(skopeo inspect --raw docker://${CMA_OPERATOR_PULLSPEC} | jq -e '.manifests[] | select(.platform.architecture=="amd64")')
 export ARM64_BUILT=$(skopeo inspect --raw docker://${CMA_OPERATOR_PULLSPEC} | jq -e '.manifests[] | select(.platform.architecture=="arm64")')
 export PPC64LE_BUILT=$(skopeo inspect --raw docker://${CMA_OPERATOR_PULLSPEC} | jq -e '.manifests[] | select(.platform.architecture=="ppc64le")')
