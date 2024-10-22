@@ -55,6 +55,7 @@ LABEL com.redhat.component="custom-metrics-autoscaler-operator-bundle-container"
       io.openshift.expose-services="" \
       io.openshift.tags="openshift,custom-metrics-autoscaler-operator" \
       io.k8s.display-name="openshift-custom-metrics-autoscaler-operator" \
+      io.k8s.description="Custom Metrics Autoscaler for OpenShift bundle image" \
       maintainer="AOS workloads team, <aos-workloads@redhat.com>" \
       description="Custom Metrics Autoscaler for OpenShift bundle image" \
       com.redhat.delivery.operator.bundle=true
