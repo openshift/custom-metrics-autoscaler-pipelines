@@ -60,8 +60,10 @@ COPY --from=builder /src/resources/*.yaml /resources/
 COPY --from=builder /src/bin/manager /usr/bin/
 RUN ln -s /usr/bin/manager /manager
 
+# This is also part of the gather script requirements
 COPY --from=builder /src/must-gather/collection-scripts/* /usr/bin/
-COPY --from=cli /usr/bin/oc /usr/bin
+# TODO(jkyros): for Konflux testing I'm removing this because it has a ton of critical CVEs right now, but I'll put it back
+# COPY --from=cli /usr/bin/oc /usr/bin
 RUN ln -s /usr/bin/oc /usr/bin/kubectl
 
 # TODO(jkyros): This seems weird, why do we do this?
