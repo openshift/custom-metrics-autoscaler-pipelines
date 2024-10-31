@@ -3279,6 +3279,6 @@ relatedImages:
   name: keda-adapter
 - image: registry.stage.redhat.io/custom-metrics-autoscaler/keda-operator-rhel9@sha256:e86947e20b26dc109f97010db0a076452c3f083b67b372404e79a9874febae0c
   name: keda-operator
-- image: registry.stage.redhat.io/custom-metrics-autoscaler/keda-webhook-rhel9@sha256:1ffcbbce3d4f1abb1ba9fe5ba8805f612cabbec0f10ebd0eea6b74f0d97cedcf
+- image: registry.stage.redhat.io/custom-metrics-autoscaler/keda-webhooks-rhel9@sha256:1ffcbbce3d4f1abb1ba9fe5ba8805f612cabbec0f10ebd0eea6b74f0d97cedcf
   name: keda-webhooks
 schema: olm.bundle

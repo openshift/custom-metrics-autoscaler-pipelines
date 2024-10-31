@@ -2732,7 +2732,7 @@ relatedImages:
   name: "1"
 schema: olm.bundle
 ---
-image: registry.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler-konflux-operator-bundle@sha256:dff35bd3753b102868bd897a3b71807defeb3d4caa17bbe17309518712990593
+image: quay.io/jkyros/custom-metrics-autoscaler-konflux-operator-bundle@sha256:dff35bd3753b102868bd897a3b71807defeb3d4caa17bbe17309518712990593
 name: custom-metrics-autoscaler.v2.14.1-454
 package: openshift-custom-metrics-autoscaler-operator
 properties:
@@ -2886,7 +2886,7 @@ properties:
       capabilities: Seamless Upgrades
       categories: Cloud Provider
       certified: "false"
-      containerImage: registry.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler-operator-rhel9@sha256:a230a6f5c6aa6bbbbad0175e68f44016933982e00f5f19422e5e8db67b7d4e6d
+      containerImage: quay.io/jkyros/custom-metrics-autoscaler-operator-rhel9@sha256:a230a6f5c6aa6bbbbad0175e68f44016933982e00f5f19422e5e8db67b7d4e6d
       createdAt: 17 Sep 2024, 02:50
       description: Custom Metrics Autoscaler Operator, an event-driven autoscaler
         based upon KEDA
@@ -3271,14 +3271,14 @@ properties:
     provider:
       name: Red Hat
 relatedImages:
-- image: registry.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler-konflux-operator-bundle@sha256:dff35bd3753b102868bd897a3b71807defeb3d4caa17bbe17309518712990593
+- image: quay.io/jkyros/custom-metrics-autoscaler-konflux-operator-bundle@sha256:dff35bd3753b102868bd897a3b71807defeb3d4caa17bbe17309518712990593
   name: ""
-- image: registry.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler-operator-rhel9@sha256:a230a6f5c6aa6bbbbad0175e68f44016933982e00f5f19422e5e8db67b7d4e6d
+- image: quay.io/jkyros/custom-metrics-autoscaler-operator-rhel9@sha256:a230a6f5c6aa6bbbbad0175e68f44016933982e00f5f19422e5e8db67b7d4e6d
   name: cma-operator
-- image: registry.redhat.io/custom-metrics-autoscaler/keda-adapter-rhel9@sha256:f1497d74b45f79701446896b2830429e6110aeedd69ceec74546e5e0a043bb0a
+- image: quay.io/jkyros/keda-adapter-rhel9@sha256:f1497d74b45f79701446896b2830429e6110aeedd69ceec74546e5e0a043bb0a
   name: keda-adapter
-- image: registry.redhat.io/custom-metrics-autoscaler/keda-operator-rhel9@sha256:e86947e20b26dc109f97010db0a076452c3f083b67b372404e79a9874febae0c
+- image: quay.io/jkyros/keda-operator-rhel9@sha256:e86947e20b26dc109f97010db0a076452c3f083b67b372404e79a9874febae0c
   name: keda-operator
-- image: registry.redhat.io/custom-metrics-autoscaler/keda-webhooks-rhel9@sha256:1ffcbbce3d4f1abb1ba9fe5ba8805f612cabbec0f10ebd0eea6b74f0d97cedcf
+- image: quay.io/jkyros/keda-webhooks-rhel9@sha256:1ffcbbce3d4f1abb1ba9fe5ba8805f612cabbec0f10ebd0eea6b74f0d97cedcf
   name: keda-webhooks
 schema: olm.bundle
