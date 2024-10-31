@@ -22,17 +22,28 @@ for CATALOG_VERSION in catalogs/*; do
         echo "rewriting prod images for $CATALOG_VERSION"
         sed -i "s|$APP_PREFIX/keda-adapter|$PROD_PREFIX/keda-adapter-$OSVER|g" $CATALOG_OUTPUT
         sed -i "s|$APP_PREFIX/keda-operator|$PROD_PREFIX/keda-operator-$OSVER|g" $CATALOG_OUTPUT
-        sed -i "s|$APP_PREFIX/keda-webhooks|$PROD_PREFIX/keda-webhook-$OSVER|g" $CATALOG_OUTPUT
+        sed -i "s|$APP_PREFIX/keda-webhooks|$PROD_PREFIX/keda-webhooks-$OSVER|g" $CATALOG_OUTPUT
         sed -i "s|$APP_PREFIX/custom-metrics-autoscaler-operator-bundle|$PROD_PREFIX/custom-metrics-autoscaler-konflux-operator-bundle|g" $CATALOG_OUTPUT
         sed -i "s|$APP_PREFIX/custom-metrics-autoscaler-operator|$PROD_PREFIX/custom-metrics-autoscaler-operator-$OSVER|g" $CATALOG_OUTPUT
     elif [ "$CATALOG_VERSION" == "catalogs/fbc-stage" ]; then
         echo "rewriting stage images for $CATALOG_VERSION"
         sed -i "s|$APP_PREFIX/keda-adapter|$STAGE_PREFIX/keda-adapter-$OSVER|g" $CATALOG_OUTPUT
         sed -i "s|$APP_PREFIX/keda-operator|$STAGE_PREFIX/keda-operator-$OSVER|g" $CATALOG_OUTPUT
-        sed -i "s|$APP_PREFIX/keda-webhooks|$STAGE_PREFIX/keda-webhook-$OSVER|g" $CATALOG_OUTPUT
+        sed -i "s|$APP_PREFIX/keda-webhooks|$STAGE_PREFIX/keda-webhooks-$OSVER|g" $CATALOG_OUTPUT
         sed -i "s|$APP_PREFIX/custom-metrics-autoscaler-operator-bundle|$STAGE_PREFIX/custom-metrics-autoscaler-konflux-operator-bundle|g" $CATALOG_OUTPUT
         sed -i "s|$APP_PREFIX/custom-metrics-autoscaler-operator|$STAGE_PREFIX/custom-metrics-autoscaler-operator-$OSVER|g" $CATALOG_OUTPUT
+    # TODO(jkyros): I cut a special release for a customer by pushing the pipeline to my personal quay. I really don't like these copy-paste blocks
+    # but I don't have time right now to cook something good, and this is at least very straightforward, so this is what we get :)
+    elif [ "$CATALOG_VERSION" == "catalogs/fbc-jkyros-quay" ]; then
+      JKYROS_PREFIX="quay.io/jkyros"
+      echo "rewriting quay images for $CATALOG_VERSION"
+        sed -i "s|$APP_PREFIX/keda-adapter|$JKYROS_PREFIX/keda-adapter-$OSVER|g" $CATALOG_OUTPUT
+        sed -i "s|$APP_PREFIX/keda-operator|$JKYROS_PREFIX/keda-operator-$OSVER|g" $CATALOG_OUTPUT
+        sed -i "s|$APP_PREFIX/keda-webhooks|$JKYROS_PREFIX/keda-webhooks-$OSVER|g" $CATALOG_OUTPUT
+        sed -i "s|$APP_PREFIX/custom-metrics-autoscaler-operator-bundle|$JKYROS_PREFIX/custom-metrics-autoscaler-konflux-operator-bundle|g" $CATALOG_OUTPUT
+        sed -i "s|$APP_PREFIX/custom-metrics-autoscaler-operator|$JKYROS_PREFIX/custom-metrics-autoscaler-operator-$OSVER|g" $CATALOG_OUTPUT
     fi
+
 
     # This is for all the old brew builds if we keep them in our catalog:
     sed -i 's|brew.registry.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler|registry.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler|g' $CATALOG_OUTPUT
