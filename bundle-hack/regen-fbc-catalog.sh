@@ -40,7 +40,9 @@ for CATALOG_VERSION in catalogs/*; do
         sed -i "s|$APP_PREFIX/keda-adapter|$JKYROS_PREFIX/keda-adapter-$OSVER|g" $CATALOG_OUTPUT
         sed -i "s|$APP_PREFIX/keda-operator|$JKYROS_PREFIX/keda-operator-$OSVER|g" $CATALOG_OUTPUT
         sed -i "s|$APP_PREFIX/keda-webhooks|$JKYROS_PREFIX/keda-webhooks-$OSVER|g" $CATALOG_OUTPUT
-        sed -i "s|$APP_PREFIX/custom-metrics-autoscaler-operator-bundle|$JKYROS_PREFIX/custom-metrics-autoscaler-konflux-operator-bundle|g" $CATALOG_OUTPUT
+        # TODO(jkyros): This one is different because we need to build a different bundle image for a different target, and apparently the new
+        # imagerepositories created with new components aren't nested under the application name anymore, so the path for this new bundle is different
+        sed -i "s|quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator-bundle-jkyros-quay|$JKYROS_PREFIX/custom-metrics-autoscaler-konflux-operator-bundle|g" $CATALOG_OUTPUT
         sed -i "s|$APP_PREFIX/custom-metrics-autoscaler-operator|$JKYROS_PREFIX/custom-metrics-autoscaler-operator-$OSVER|g" $CATALOG_OUTPUT
     fi
 
