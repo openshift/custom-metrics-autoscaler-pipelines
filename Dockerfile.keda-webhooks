@@ -100,4 +100,3 @@ LABEL release="1"
 
 ENTRYPOINT ["/usr/bin/keda-admission-webhooks", "--zap-log-level=info", "--zap-encoder=console"]
 
-gi
