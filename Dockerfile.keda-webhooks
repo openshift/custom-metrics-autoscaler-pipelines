@@ -62,7 +62,7 @@ FROM registry.redhat.io/ubi9/ubi-minimal:latest
 WORKDIR /
 # TODO(jkyros): It will try to pull from the RHEL channels because of the entitlement secret, so we have to disable
 # all the repos (the RHEL ones) and then enable the ubi repos.
-RUN microdnf --disablerepo=* --enablerepo=ubi-9-baseos-rpms --enablerepo=ubi-9-appstream-rpms reinstall -y tzdata
+RUN microdnf --disablerepo=* --enablerepo=ubi-9-baseos-rpms --enablerepo=ubi-9-appstream-rpms install -y tzdata
 COPY --from=builder /src/bin/keda-admission-webhooks /usr/bin/
 RUN ln -s /usr/bin/keda-admission-webhooks /keda-admission-webhooks
 
