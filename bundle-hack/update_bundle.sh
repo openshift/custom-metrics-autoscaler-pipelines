@@ -27,7 +27,7 @@ export KEDA_ADAPTER_PULLSPEC=$(<"imagerefs/keda-adapter.pullspec")
    # TODO(jkyros): oh, also, for fun, apparently the stage policy forces you to use registry.redhat.io also, and the intent is that you use like an ICSP to
    # re-map the images, and NOTHING TELLS YOU THAT ANYWHERE
    echo "REWRITE REPOS IS $REWRITE_REPOS"
-if [ ! -n "$REWERITE_REPOS" ]; then
+if [ -n "$REWRITE_REPOS" ]; then
    CMA_OPERATOR_PULLSPEC=$( echo $CMA_OPERATOR_PULLSPEC | sed -e "s#quay.io/redhat-user-workloads/cma-podauto-tenant/#$REWRITE_REPOS/#" )
    KEDA_OPERATOR_PULLSPEC=$( echo $KEDA_OPERATOR_PULLSPEC | sed -e "s#quay.io/redhat-user-workloads/cma-podauto-tenant/#$REWRITE_REPOS/#" )
    KEDA_WEBHOOK_PULLSPEC=$( echo $KEDA_WEBHOOK_PULLSPEC | sed -e "s#quay.io/redhat-user-workloads/cma-podauto-tenant/#$REWRITE_REPOS/#" )
