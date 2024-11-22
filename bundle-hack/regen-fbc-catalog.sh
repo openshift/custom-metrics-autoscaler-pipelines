@@ -1,4 +1,5 @@
 #!/bin/bash
+set -eo pipefail
 # TODO(jkyros): I used a template to generate the actual catalog, this script needs to be better/different but
 # opm interrogates all the bundles in the template, snarfs out their details, and then renders a final catalog based on
 # those details, so we can't the catalog generation itself as part of a hermetic build (it uses the network to look up the images)
@@ -16,6 +17,7 @@ for CATALOG_VERSION in catalogs/*; do
     APP_PREFIX="quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator"
     PROD_PREFIX="registry.redhat.io/custom-metrics-autoscaler"
     STAGE_PREFIX="registry.stage.redhat.io/custom-metrics-autoscaler"
+
     if [ "$CATALOG_VERSION" == "catalogs/fbc" ]; then
         echo "rewriting prod images for $CATALOG_VERSION"
         sed -i "s|$APP_PREFIX/keda-adapter|$PROD_PREFIX/keda-adapter-$OSVER|g" $CATALOG_OUTPUT

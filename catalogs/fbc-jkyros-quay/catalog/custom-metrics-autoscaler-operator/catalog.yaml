@@ -7,15 +7,14 @@ name: openshift-custom-metrics-autoscaler-operator
 schema: olm.package
 ---
 entries:
-- name: custom-metrics-autoscaler.v2.14.1-500
-  replaces: custom-metrics-autoscaler.v2.13.1-427
-  skipRange: '>=2.7.1 <2.14.1-500'
+- name: custom-metrics-autoscaler.v2.15.1-1
+  skipRange: '>=2.7.1 <2.15.1-1'
 name: stable
 package: openshift-custom-metrics-autoscaler-operator
 schema: olm.channel
 ---
-image: quay.io/jkyros/custom-metrics-autoscaler-konflux-operator-bundle@sha256:ef63547fd38c30f8d27ef884d92e2325caf8b52b0afb157f0ddd02434aea72dc
-name: custom-metrics-autoscaler.v2.14.1-454
+image: quay.io/jkyros/custom-metrics-autoscaler-operator-rhel9-bundle@sha256:5c33be9a536577427041362aa68c402f71becfdf16a429caa61250c4c2f658b8
+name: custom-metrics-autoscaler.v2.15.1-1
 package: openshift-custom-metrics-autoscaler-operator
 properties:
 - type: olm.gvk
@@ -51,12 +50,34 @@ properties:
 - type: olm.package
   value:
     packageName: openshift-custom-metrics-autoscaler-operator
-    version: 2.14.1-454
+    version: 2.15.1-1
 - type: olm.csv.metadata
   value:
     annotations:
       alm-examples: |-
         [
+          {
+            "apiVersion": "eventing.keda.sh/v1alpha1",
+            "kind": "CloudEventSource",
+            "metadata": {
+              "labels": {
+                "app.kubernetes.io/created-by": "keda",
+                "app.kubernetes.io/instance": "cloudeventsource-sample",
+                "app.kubernetes.io/managed-by": "kustomize",
+                "app.kubernetes.io/name": "cloudeventsource",
+                "app.kubernetes.io/part-of": "keda"
+              },
+              "name": "cloudeventsource-sample"
+            },
+            "spec": {
+              "clusterName": "cluster-sample",
+              "destination": {
+                "http": {
+                  "uri": "http://foo.bar"
+                }
+              }
+            }
+          },
           {
             "apiVersion": "keda.sh/v1alpha1",
             "kind": "ClusterTriggerAuthentication",
@@ -68,7 +89,7 @@ properties:
                 {
                   "key": "example-role-key",
                   "name": "example-secret-name",
-                  "parameter": "exmaple-secret-parameter"
+                  "parameter": "example-secret-parameter"
                 }
               ]
             }
@@ -159,7 +180,7 @@ properties:
                 {
                   "key": "example-role-key",
                   "name": "example-secret-name",
-                  "parameter": "exmaple-secret-parameter"
+                  "parameter": "example-secret-parameter"
                 }
               ]
             }
@@ -168,8 +189,9 @@ properties:
       capabilities: Seamless Upgrades
       categories: Cloud Provider
       certified: "false"
-      containerImage: quay.io/jkyros/custom-metrics-autoscaler-operator/custom-metrics-autoscaler-operator@sha256:117b3405fe047ca5866102bcd87c3205744e6fc86a9e39773a5e7cf527cbc1dc
-      createdAt: 31 Oct 2024, 02:11
+      console.openshift.io/operator-monitoring-default: "true"
+      containerImage: registry.redhat.io/custom-metrics-autoscaler-operator/custom-metrics-autoscaler-operator@sha256:260204f0b83d40126b2b2f6cafad826e34312a5c2bbeec10882c5971b6411c30
+      createdAt: 22 Nov 2024, 22:28
       description: Custom Metrics Autoscaler Operator, an event-driven autoscaler
         based upon KEDA
       features.operators.openshift.io/cnf: "false"
@@ -182,7 +204,7 @@ properties:
       features.operators.openshift.io/token-auth-aws: "false"
       features.operators.openshift.io/token-auth-azure: "false"
       features.operators.openshift.io/token-auth-gcp: "false"
-      olm.skipRange: '>=2.7.1 <2.14.1-454'
+      olm.skipRange: '>=2.7.1 <2.15.1-1'
       operatorframework.io/cluster-monitoring: "true"
       operatorframework.io/suggested-namespace: openshift-keda
       operators.openshift.io/valid-subscription: '["OpenShift Kubernetes Engine",
@@ -551,14 +573,14 @@ properties:
     provider:
       name: Red Hat
 relatedImages:
-- image: quay.io/jkyros/custom-metrics-autoscaler-operator/custom-metrics-autoscaler-operator@sha256:117b3405fe047ca5866102bcd87c3205744e6fc86a9e39773a5e7cf527cbc1dc
-  name: cma-operator
-- image: quay.io/jkyros/custom-metrics-autoscaler-operator/keda-adapter@sha256:1ec605b4cd7e6c4410602b7a3869c4371a55823aebf351cb655e615099c35a20
-  name: keda-adapter
-- image: quay.io/jkyros/custom-metrics-autoscaler-operator/keda-operator@sha256:874e06b20425ee6666f6447d548ecd00e89218751d95d0ab5ce02eeddacfb909
-  name: keda-operator
-- image: quay.io/jkyros/custom-metrics-autoscaler-operator/keda-webhooks@sha256:684b584ae3c5136bc34645a115986e70f0d48b54f20b70800735d255a5e74360
-  name: keda-webhooks
-- image: quay.io/jkyros/custom-metrics-autoscaler-konflux-operator-bundle@sha256:ef63547fd38c30f8d27ef884d92e2325caf8b52b0afb157f0ddd02434aea72dc
+- image: quay.io/jkyros/custom-metrics-autoscaler-operator-rhel9-bundle@sha256:5c33be9a536577427041362aa68c402f71becfdf16a429caa61250c4c2f658b8
   name: ""
+- image: registry.redhat.io/custom-metrics-autoscaler-operator/custom-metrics-autoscaler-operator@sha256:260204f0b83d40126b2b2f6cafad826e34312a5c2bbeec10882c5971b6411c30
+  name: cma-operator
+- image: registry.redhat.io/custom-metrics-autoscaler-operator/keda-adapter@sha256:cde534466f3db47fa3ead8e280939e4889e009dc2f85f3cfbbf23924ab68f73c
+  name: keda-adapter
+- image: registry.redhat.io/custom-metrics-autoscaler-operator/keda-operator@sha256:9257aba24283207378e1b526a4df27a12538b8e757e49a6d1bbe00a677d14d7b
+  name: keda-operator
+- image: registry.redhat.io/custom-metrics-autoscaler-operator/keda-webhooks@sha256:344f8e7aeabc44df6bc66db4f1870aa43a9ce87db3d5172fbf7620f2ae67fdfc
+  name: keda-webhooks
 schema: olm.bundle
