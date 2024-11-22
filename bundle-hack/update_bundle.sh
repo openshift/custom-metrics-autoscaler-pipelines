@@ -8,6 +8,7 @@ mv /custom-metrics-autoscaler-operator/keda/${VERSION}/metadata/ /metadata/
 
 # TODO(jkyros): I really want to find a way to increment this automatically
 export CI_SPEC_RELEASE=$(cat /releaseNum)
+echo "CI SPEC RELEASE IS $CI_SPEC_RELEASE"
 
 # We used to keep these variables in the script itself, but that caused some weird conflict issues when
 # konflux PRs stacked up, so now we put them each in their own file so they're safe to bump asynchronusly

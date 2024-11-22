@@ -16,6 +16,11 @@ COPY bundle-hack .
 COPY custom-metrics-autoscaler-operator/keda /custom-metrics-autoscaler-operator/keda
 COPY custom-metrics-autoscaler-operator/LICENSE /custom-metrics-autoscaler-operator/LICENSE
 
+# TODO(jkyros): someday when we get an auto-increment release number we can take this out, but
+# for now I'm putting it in a centrally located file so all the scripts that care can read it
+# This is what gets appended to the version in the CSV, so for 2.14.1-467, this is the 467
+COPY releaseNum /releaseNum
+
 # This is going to sort out the most recent one and put it in /manifests/ and /metadata/ so
 # the next stage can use it from there
 RUN ./update_bundle.sh
