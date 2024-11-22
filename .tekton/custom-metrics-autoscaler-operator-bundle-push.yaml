@@ -409,7 +409,7 @@ spec:
         operator: in
         values: ["false"]
       runAfter:
-      - build-image-index
+      - build-container
       taskRef:
         params:
         - name: name
@@ -421,9 +421,9 @@ spec:
         resolver: bundles
       params:
       - name: image-url
-        value: $(tasks.build-image-index.results.IMAGE_URL)
+        value: $(tasks.build-container.results.IMAGE_URL)
       - name: image-digest
-        value: $(tasks.build-image-index.results.IMAGE_DIGEST)
+        value: $(tasks.build-container.results.IMAGE_DIGEST)
     - name: push-dockerfile
       params:
       - name: IMAGE
