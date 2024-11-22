@@ -7,13 +7,12 @@ entries:
   name: openshift-custom-metrics-autoscaler-operator
   schema: olm.package
 - entries:
-  - name: custom-metrics-autoscaler.v2.14.1-500
-    replaces: custom-metrics-autoscaler.v2.13.1-427
-    skipRange: '>=2.7.1 <2.14.1-500'
+  - name: custom-metrics-autoscaler.v2.15.1-1
+    skipRange: '>=2.7.1 <2.15.1-1'
   name: stable
   package: openshift-custom-metrics-autoscaler-operator
   schema: olm.channel
-- image: quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator-bundle-jkyros-quay@sha256:ef63547fd38c30f8d27ef884d92e2325caf8b52b0afb157f0ddd02434aea72dc
+- image: quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/custom-metrics-autoscaler-operator-bundle@sha256:5c33be9a536577427041362aa68c402f71becfdf16a429caa61250c4c2f658b8
   schema: olm.bundle
 schema: olm.template.basic
 
