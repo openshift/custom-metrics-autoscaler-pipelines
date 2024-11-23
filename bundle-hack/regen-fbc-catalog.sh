@@ -16,7 +16,9 @@ for CATALOG_VERSION in catalogs/*; do
     OSVER="rhel9"
     APP_PREFIX="quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator"
     PROD_PREFIX="registry.redhat.io/custom-metrics-autoscaler"
-    STAGE_PREFIX="registry.stage.redhat.io/custom-metrics-autoscaler"
+    # TODO(jkyros): originally I was referencing these straight out of stage, but
+    #STAGE_PREFIX="registry.stage.redhat.io/custom-metrics-autoscaler"
+    STAGE_PREFIX=$PROD_PREFIX
 
     if [ "$CATALOG_VERSION" == "catalogs/fbc" ]; then
         echo "rewriting prod images for $CATALOG_VERSION"

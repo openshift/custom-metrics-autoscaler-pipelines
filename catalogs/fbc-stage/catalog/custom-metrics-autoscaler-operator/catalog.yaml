@@ -3836,7 +3836,7 @@ relatedImages:
   name: "1"
 schema: olm.bundle
 ---
-image: registry.stage.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler-konflux-operator-bundle@sha256:5c33be9a536577427041362aa68c402f71becfdf16a429caa61250c4c2f658b8
+image: registry.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler-konflux-operator-bundle@sha256:5c33be9a536577427041362aa68c402f71becfdf16a429caa61250c4c2f658b8
 name: custom-metrics-autoscaler.v2.15.1-1
 package: openshift-custom-metrics-autoscaler-operator
 properties:
@@ -4396,7 +4396,7 @@ properties:
     provider:
       name: Red Hat
 relatedImages:
-- image: registry.stage.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler-konflux-operator-bundle@sha256:5c33be9a536577427041362aa68c402f71becfdf16a429caa61250c4c2f658b8
+- image: registry.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler-konflux-operator-bundle@sha256:5c33be9a536577427041362aa68c402f71becfdf16a429caa61250c4c2f658b8
   name: ""
 - image: registry.redhat.io/custom-metrics-autoscaler-operator/custom-metrics-autoscaler-operator@sha256:260204f0b83d40126b2b2f6cafad826e34312a5c2bbeec10882c5971b6411c30
   name: cma-operator
