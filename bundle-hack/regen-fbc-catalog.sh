@@ -23,33 +23,19 @@ for CATALOG_VERSION in catalogs/*; do
 
     if [ "$CATALOG_VERSION" == "catalogs/fbc" ]; then
         echo "rewriting prod images for $CATALOG_VERSION"
-        sed -i "s|$APP_PREFIX/keda-adapter|$PROD_PREFIX/keda-adapter-$OSVER|g" $CATALOG_OUTPUT
-        sed -i "s|$APP_PREFIX/keda-operator|$PROD_PREFIX/keda-operator-$OSVER|g" $CATALOG_OUTPUT
-        sed -i "s|$APP_PREFIX/keda-webhooks|$PROD_PREFIX/keda-webhooks-$OSVER|g" $CATALOG_OUTPUT
         sed -i "s|$APP_PREFIX/custom-metrics-autoscaler-operator-bundle|$PROD_PREFIX/custom-metrics-autoscaler-operator-bundle|g" $CATALOG_OUTPUT
-        sed -i "s|$APP_PREFIX/custom-metrics-autoscaler-operator|$PROD_PREFIX/custom-metrics-autoscaler-operator-$OSVER|g" $CATALOG_OUTPUT
     elif [ "$CATALOG_VERSION" == "catalogs/fbc-stage" ]; then
         echo "rewriting stage images for $CATALOG_VERSION"
-        sed -i "s|$APP_PREFIX/keda-adapter|$STAGE_PREFIX/keda-adapter-$OSVER|g" $CATALOG_OUTPUT
-        sed -i "s|$APP_PREFIX/keda-operator|$STAGE_PREFIX/keda-operator-$OSVER|g" $CATALOG_OUTPUT
-        sed -i "s|$APP_PREFIX/keda-webhooks|$STAGE_PREFIX/keda-webhooks-$OSVER|g" $CATALOG_OUTPUT
         sed -i "s|$APP_PREFIX/custom-metrics-autoscaler-operator-bundle|$STAGE_PREFIX/custom-metrics-autoscaler-operator-bundle|g" $CATALOG_OUTPUT
-        sed -i "s|$APP_PREFIX/custom-metrics-autoscaler-operator|$STAGE_PREFIX/custom-metrics-autoscaler-operator-$OSVER|g" $CATALOG_OUTPUT
-    # TODO(jkyros): I cut a special release for a customer by pushing the pipeline to my personal quay. I really don't like these copy-paste blocks
-    # but I don't have time right now to cook something good, and this is at least very straightforward, so this is what we get :)
+    # TODO(jkyros): I cut a special release for a customer by pushing the pipeline to my personal quay, we should think about how we want to do pre-release
+    # stuff for the future
     elif [ "$CATALOG_VERSION" == "catalogs/fbc-jkyros-quay" ]; then
       JKYROS_PREFIX="quay.io/jkyros"
       echo "rewriting quay images for $CATALOG_VERSION"
-        sed -i "s|$APP_PREFIX/keda-adapter|$JKYROS_PREFIX/keda-adapter-$OSVER|g" $CATALOG_OUTPUT
-        sed -i "s|$APP_PREFIX/keda-operator|$JKYROS_PREFIX/keda-operator-$OSVER|g" $CATALOG_OUTPUT
-        sed -i "s|$APP_PREFIX/keda-webhooks|$JKYROS_PREFIX/keda-webhooks-$OSVER|g" $CATALOG_OUTPUT
         # TODO(jkyros): This one is different because we need to build a different bundle image for a different target, and apparently the new
         # imagerepositories created with new components aren't nested under the application name anymore, so the path for this new bundle is different
         sed -i "s|quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator-bundle-jkyros-quay|$JKYROS_PREFIX/custom-metrics-autoscaler-konflux-operator-bundle|g" $CATALOG_OUTPUT
-        sed -i "s|$APP_PREFIX/custom-metrics-autoscaler-operator|$JKYROS_PREFIX/custom-metrics-autoscaler-operator-$OSVER|g" $CATALOG_OUTPUT
     fi
-
-
     # This is for all the old brew builds if we keep them in our catalog:
     sed -i 's|brew.registry.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler|registry.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler|g' $CATALOG_OUTPUT
 done
