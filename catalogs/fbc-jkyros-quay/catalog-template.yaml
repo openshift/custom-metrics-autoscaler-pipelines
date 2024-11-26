@@ -12,7 +12,7 @@ entries:
   name: stable
   package: openshift-custom-metrics-autoscaler-operator
   schema: olm.channel
-- image: quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/custom-metrics-autoscaler-operator-bundle@sha256:5c33be9a536577427041362aa68c402f71becfdf16a429caa61250c4c2f658b8
+- image: quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator-bundle-jkyros-quay@sha256:41c41f56885a45df1a58705099dd80b5cfb7f967ce6d75c8719fb2606f45f77b
   schema: olm.bundle
 schema: olm.template.basic
 
