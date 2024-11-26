@@ -23,7 +23,7 @@ COPY releaseNum /releaseNum
 
 # This is going to sort out the most recent one and put it in /manifests/ and /metadata/ so
 # the next stage can use it from there
-RUN ./update_bundle.sh
+RUN STAGE_REPOS=true ./update_bundle.sh
 
 RUN rm /manifests/keda.*.clusterserviceversion.yaml
 
