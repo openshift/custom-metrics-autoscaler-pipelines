@@ -43,7 +43,7 @@ if [ -n "$REWRITE_REPOS" ]; then
    KEDA_WEBHOOK_PULLSPEC=$( echo $KEDA_WEBHOOK_PULLSPEC | sed -e "s#quay.io/redhat-user-workloads/cma-podauto-tenant/#$REWRITE_REPOS/#" )
    KEDA_ADAPTER_PULLSPEC=$( echo $KEDA_ADAPTER_PULLSPEC | sed -e "s#quay.io/redhat-user-workloads/cma-podauto-tenant/#$REWRITE_REPOS/#" )
 else
-   CMA_OPERATOR_PULLSPEC=$( echo $CMA_OPERATOR_PULLSPEC | sed -e "s#$APP_PREFIX/custom-metrics-autoscaler-operator#$REWRITE_PREFIX/custom-metrics-autoscaler-operator-$OSVER#" )
+   CMA_OPERATOR_PULLSPEC=$( echo $CMA_OPERATOR_PULLSPEC | sed -e "s#$APP_PREFIX/custom-metrics-autoscaler-operator#$REWRITE_PREFIX/custom-metrics-autoscaler-$OSVER-operator#" )
    KEDA_OPERATOR_PULLSPEC=$( echo $KEDA_OPERATOR_PULLSPEC | sed -e "s#$APP_PREFIX/keda-operator#$REWRITE_PREFIX/keda-operator-$OSVER#" )
    KEDA_WEBHOOK_PULLSPEC=$( echo $KEDA_WEBHOOK_PULLSPEC | sed -e "s#$APP_PREFIX/keda-webhooks#$REWRITE_PREFIX/keda-webhooks-$OSVER#" )
    KEDA_ADAPTER_PULLSPEC=$( echo $KEDA_ADAPTER_PULLSPEC | sed -e "s#$APP_PREFIX/keda-adapter#$REWRITE_PREFIX/keda-adapter-$OSVER#" )
