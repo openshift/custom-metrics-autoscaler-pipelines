@@ -24,20 +24,29 @@ export KEDA_ADAPTER_PULLSPEC=$(<"imagerefs/keda-adapter.pullspec")
 [[ -z "$KEDA_ADAPTER_PULLSPEC" ]] && { echo "keda adapter pullspec is empty"; exit 1;}
 
 
-   # TODO(jkyros): we probably need multiple dockerfiles with different targets that feed an arg into this script, e.g. "push to stage", "push to prod", "push to quay"
-   # TODO(jkyros): oh, also, for fun, apparently the stage policy forces you to use registry.redhat.io also, and the intent is that you use like an ICSP to
-   # re-map the images, and NOTHING TELLS YOU THAT ANYWHERE
-   echo "REWRITE REPOS IS $REWRITE_REPOS"
+# TODO(jkyros): we probably need multiple dockerfiles with different targets that feed an arg into this script, e.g. "push to stage", "push to prod", "push to quay"
+# TODO(jkyros): oh, also, for fun, apparently the stage policy wants you to use registry.redhat.io also, and the intent is that you use like an ICSP to
+# re-map the images, and NOTHING TELLS YOU THAT ANYWHERE.
+echo "REWRITE REPOS IS $REWRITE_REPOS"
+APP_PREFIX="quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator"
+PROD_PREFIX="registry.redhat.io/custom-metrics-autoscaler"
+STAGE_PREFIX="registry.stage.redhat.io/custom-metrics-autoscaler"
+REWRITE_PREFIX=$PROD_PREFIX
+OSVER="rhel9"
+if [ -n "$STAGE_REPOS" ]; then
+   REWRITE_PREFIX=$STAGE_PREFIX
+fi
+
 if [ -n "$REWRITE_REPOS" ]; then
    CMA_OPERATOR_PULLSPEC=$( echo $CMA_OPERATOR_PULLSPEC | sed -e "s#quay.io/redhat-user-workloads/cma-podauto-tenant/#$REWRITE_REPOS/#" )
    KEDA_OPERATOR_PULLSPEC=$( echo $KEDA_OPERATOR_PULLSPEC | sed -e "s#quay.io/redhat-user-workloads/cma-podauto-tenant/#$REWRITE_REPOS/#" )
    KEDA_WEBHOOK_PULLSPEC=$( echo $KEDA_WEBHOOK_PULLSPEC | sed -e "s#quay.io/redhat-user-workloads/cma-podauto-tenant/#$REWRITE_REPOS/#" )
    KEDA_ADAPTER_PULLSPEC=$( echo $KEDA_ADAPTER_PULLSPEC | sed -e "s#quay.io/redhat-user-workloads/cma-podauto-tenant/#$REWRITE_REPOS/#" )
 else
-   CMA_OPERATOR_PULLSPEC=$( echo $CMA_OPERATOR_PULLSPEC | sed -e "s#quay.io/redhat-user-workloads/cma-podauto-tenant/#registry.redhat.io/#" )
-   KEDA_OPERATOR_PULLSPEC=$( echo $KEDA_OPERATOR_PULLSPEC | sed -e "s#quay.io/redhat-user-workloads/cma-podauto-tenant/#registry.redhat.io/#" )
-   KEDA_WEBHOOK_PULLSPEC=$( echo $KEDA_WEBHOOK_PULLSPEC | sed -e "s#quay.io/redhat-user-workloads/cma-podauto-tenant/#registry.redhat.io/#" )
-   KEDA_ADAPTER_PULLSPEC=$( echo $KEDA_ADAPTER_PULLSPEC | sed -e "s#quay.io/redhat-user-workloads/cma-podauto-tenant/#registry.redhat.io/#" )
+   CMA_OPERATOR_PULLSPEC=$( echo $CMA_OPERATOR_PULLSPEC | sed -e "s#$APP_PREFIX/custom-metrics-autoscaler-operator#$REWRITE_PREFIX/custom-metrics-autoscaler-operator-$OSVER#" )
+   KEDA_OPERATOR_PULLSPEC=$( echo $KEDA_OPERATOR_PULLSPEC | sed -e "s#$APP_PREFIX/keda-operator#$REWRITE_PREFIX/keda-operator-$OSVER#" )
+   KEDA_WEBHOOK_PULLSPEC=$( echo $KEDA_WEBHOOK_PULLSPEC | sed -e "s#$APP_PREFIX/keda-webhooks#$REWRITE_PREFIX/keda-webhooks-$OSVER#" )
+   KEDA_ADAPTER_PULLSPEC=$( echo $KEDA_ADAPTER_PULLSPEC | sed -e "s#$APP_PREFIX/keda-adapter#$REWRITE_PREFIX/keda-adapter-$OSVER#" )
 fi
 
 
