@@ -33,9 +33,6 @@ PROD_PREFIX="registry.redhat.io/custom-metrics-autoscaler"
 STAGE_PREFIX="registry.stage.redhat.io/custom-metrics-autoscaler"
 REWRITE_PREFIX=$PROD_PREFIX
 OSVER="rhel9"
-if [ -n "$STAGE_REPOS" ]; then
-   REWRITE_PREFIX=$STAGE_PREFIX
-fi
 
 if [ -n "$REWRITE_REPOS" ]; then
    CMA_OPERATOR_PULLSPEC=$( echo $CMA_OPERATOR_PULLSPEC | sed -e "s#quay.io/redhat-user-workloads/cma-podauto-tenant/#$REWRITE_REPOS/#" )
@@ -44,7 +41,7 @@ if [ -n "$REWRITE_REPOS" ]; then
    KEDA_ADAPTER_PULLSPEC=$( echo $KEDA_ADAPTER_PULLSPEC | sed -e "s#quay.io/redhat-user-workloads/cma-podauto-tenant/#$REWRITE_REPOS/#" )
 else
    CMA_OPERATOR_PULLSPEC=$( echo $CMA_OPERATOR_PULLSPEC | sed -e "s#$APP_PREFIX/custom-metrics-autoscaler-operator#$REWRITE_PREFIX/custom-metrics-autoscaler-$OSVER-operator#" )
-   KEDA_OPERATOR_PULLSPEC=$( echo $KEDA_OPERATOR_PULLSPEC | sed -e "s#$APP_PREFIX/keda-operator#$REWRITE_PREFIX/custom-metrics-autoscaler/custom-metrics-autoscaler-$OSVER#" )
+   KEDA_OPERATOR_PULLSPEC=$( echo $KEDA_OPERATOR_PULLSPEC | sed -e "s#$APP_PREFIX/keda-operator#$REWRITE_PREFIX/custom-metrics-autoscaler-$OSVER#" )
    KEDA_WEBHOOK_PULLSPEC=$( echo $KEDA_WEBHOOK_PULLSPEC | sed -e "s#$APP_PREFIX/keda-webhooks#$REWRITE_PREFIX/custom-metrics-autoscaler-admission-webhooks-$OSVER#" )
    KEDA_ADAPTER_PULLSPEC=$( echo $KEDA_ADAPTER_PULLSPEC | sed -e "s#$APP_PREFIX/keda-adapter#$REWRITE_PREFIX/custom-metrics-autoscaler-adapter-$OSVER#" )
 fi
