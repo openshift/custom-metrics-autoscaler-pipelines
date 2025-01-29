@@ -72,8 +72,8 @@ sed -i -e "s#ghcr.io/kedacore/keda-olm-operator:\(main\|[0-9.]*\)#${CMA_OPERATOR
        -e "s#CMA_OPERAND_PLACEHOLDER_2\$#${KEDA_ADAPTER_PULLSPEC}#g" \
        -e "s#CMA_OPERAND_PLACEHOLDER_3\$#${KEDA_WEBHOOK_PULLSPEC}#g" \
        -e "s/^\(  *\)olm.skipRange: '>=2.7.1 <[0-9.-]*'/\1olm.skipRange: '>=2.7.1 <${VERSION}-${CI_SPEC_RELEASE}'/" \
-       -e '/^metadata:$/,/^spec:$/ s/^\(  name: custom-metrics-autoscaler\.v\)[0-9.]*$/\1'"${VERSION}-${CI_SPEC_RELEASE}"'/' \
-       -e '/^spec:$/,$ s/^\(  version: \)[0-9.]*$/\1'"${VERSION}-${CI_SPEC_RELEASE}"'/' \
+       -e '/^metadata:$/,/^spec:$/ s/^\(  name: custom-metrics-autoscaler\.v\)[0-9.-]*$/\1'"${VERSION}-${CI_SPEC_RELEASE}"'/' \
+       -e '/^spec:$/,$ s/^\(  version: \)[0-9.-]*$/\1'"${VERSION}-${CI_SPEC_RELEASE}"'/' \
        "${CSV_FILE}"
 cat "${CSV_FILE}"
 
