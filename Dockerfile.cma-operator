@@ -39,8 +39,7 @@ RUN find controllers && find resources
 
 RUN make build
 
-FROM registry.redhat.io/openshift4/ose-cli:latest AS cli
-
+FROM registry.redhat.io/openshift4/ose-cli-rhel9 AS cli
 
 FROM registry.access.redhat.com/ubi9/ubi-minimal:latest
 LABEL stage=operator
