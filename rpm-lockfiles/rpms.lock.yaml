@@ -81,13 +81,6 @@ arches:
     name: python-unversioned-command
     evr: 3.9.21-1.el9_5
     sourcerpm: python3.9-3.9.21-1.el9_5.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel9/9/aarch64/appstream/os/Packages/p/python3-ruamel-yaml-0.16.6-7.el9.1.aarch64.rpm
-    repoid: rhel-9-for-aarch64-appstream-rpms
-    size: 218591
-    checksum: sha256:23ad7563cf713a87aaefedc105c32ca72843801cad1024fb91af4db826a41425
-    name: python3-ruamel-yaml
-    evr: 0.16.6-7.el9.1
-    sourcerpm: python-ruamel-yaml-0.16.6-7.el9.1.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel9/9/aarch64/appstream/os/Packages/p/python3-ruamel-yaml-clib-0.2.7-3.el9.aarch64.rpm
     repoid: rhel-9-for-aarch64-appstream-rpms
     size: 143199
@@ -165,6 +158,20 @@ arches:
     name: oniguruma
     evr: 6.9.6-1.el9.6
     sourcerpm: oniguruma-6.9.6-1.el9.6.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel9/9/aarch64/baseos/os/Packages/o/openssl-3.2.2-6.el9_5.1.aarch64.rpm
+    repoid: rhel-9-for-aarch64-baseos-rpms
+    size: 1398689
+    checksum: sha256:f914250a9ef52968e27af0f0e2520745df4443dc354367bec54dd06b4a2da60b
+    name: openssl
+    evr: 1:3.2.2-6.el9_5.1
+    sourcerpm: openssl-3.2.2-6.el9_5.1.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel9/9/aarch64/baseos/os/Packages/o/openssl-libs-3.2.2-6.el9_5.1.aarch64.rpm
+    repoid: rhel-9-for-aarch64-baseos-rpms
+    size: 2085943
+    checksum: sha256:fb9062e4635959a929f278002c5ff1bf35323987538c71fa86442c980eab4a44
+    name: openssl-libs
+    evr: 1:3.2.2-6.el9_5.1
+    sourcerpm: openssl-3.2.2-6.el9_5.1.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel9/9/aarch64/baseos/os/Packages/p/protobuf-c-1.3.3-13.el9.aarch64.rpm
     repoid: rhel-9-for-aarch64-baseos-rpms
     size: 38582
@@ -235,6 +242,13 @@ arches:
     name: protobuf-compiler
     evr: 3.14.0-13.el9
     sourcerpm: protobuf-3.14.0-13.el9.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel9/9/aarch64/codeready-builder/os/Packages/p/python3-ruamel-yaml-0.16.6-7.el9.1.aarch64.rpm
+    repoid: codeready-builder-for-rhel-9-aarch64-rpms
+    size: 218591
+    checksum: sha256:23ad7563cf713a87aaefedc105c32ca72843801cad1024fb91af4db826a41425
+    name: python3-ruamel-yaml
+    evr: 0.16.6-7.el9.1
+    sourcerpm: python-ruamel-yaml-0.16.6-7.el9.1.src.rpm
   source:
   - url: https://cdn.redhat.com/content/dist/layered/rhel9/aarch64/rhocp/4.17/source/SRPMS/Packages/c/containers-common-1-86.rhaos4.17.el9.src.rpm
     repoid: rhocp-4.17-for-rhel-9-aarch64-source-rpms
@@ -350,6 +364,12 @@ arches:
     checksum: sha256:9c864465c92115ad613c822f457af3f1f9d6e545321746cceb8b4c0f461a2fc4
     name: oniguruma
     evr: 6.9.6-1.el9.6
+  - url: https://cdn.redhat.com/content/dist/rhel9/9/aarch64/baseos/source/SRPMS/Packages/o/openssl-3.2.2-6.el9_5.1.src.rpm
+    repoid: rhel-9-for-aarch64-baseos-source-rpms
+    size: 17985138
+    checksum: sha256:56c0b951be3e5ad6a1da594f9d4f09b8b752e2fb3d6827bcc03892f22f622b22
+    name: openssl
+    evr: 1:3.2.2-6.el9_5.1
   - url: https://cdn.redhat.com/content/dist/rhel9/9/aarch64/baseos/source/SRPMS/Packages/p/protobuf-c-1.3.3-13.el9.src.rpm
     repoid: rhel-9-for-aarch64-baseos-source-rpms
     size: 513224
@@ -479,13 +499,6 @@ arches:
     name: python-unversioned-command
     evr: 3.9.21-1.el9_5
     sourcerpm: python3.9-3.9.21-1.el9_5.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel9/9/x86_64/appstream/os/Packages/p/python3-ruamel-yaml-0.16.6-7.el9.1.x86_64.rpm
-    repoid: rhel-9-for-x86_64-appstream-rpms
-    size: 218621
-    checksum: sha256:edfa4be465a7ce774309cf67c85bd1a2f42fb9b5fe2508ccf681605c2ff21ee9
-    name: python3-ruamel-yaml
-    evr: 0.16.6-7.el9.1
-    sourcerpm: python-ruamel-yaml-0.16.6-7.el9.1.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel9/9/x86_64/appstream/os/Packages/p/python3-ruamel-yaml-clib-0.2.7-3.el9.x86_64.rpm
     repoid: rhel-9-for-x86_64-appstream-rpms
     size: 151468
@@ -563,6 +576,20 @@ arches:
     name: oniguruma
     evr: 6.9.6-1.el9.6
     sourcerpm: oniguruma-6.9.6-1.el9.6.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel9/9/x86_64/baseos/os/Packages/o/openssl-3.2.2-6.el9_5.1.x86_64.rpm
+    repoid: rhel-9-for-x86_64-baseos-rpms
+    size: 1420999
+    checksum: sha256:f379686df99db814e30568a896b417278775fc96864ac6d2660bf48ef94309e3
+    name: openssl
+    evr: 1:3.2.2-6.el9_5.1
+    sourcerpm: openssl-3.2.2-6.el9_5.1.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel9/9/x86_64/baseos/os/Packages/o/openssl-libs-3.2.2-6.el9_5.1.x86_64.rpm
+    repoid: rhel-9-for-x86_64-baseos-rpms
+    size: 2218318
+    checksum: sha256:287d11706d44a53455ed8ac62faab4c4a0b8c0fa5e367adf122c7a76c6ddbbb8
+    name: openssl-libs
+    evr: 1:3.2.2-6.el9_5.1
+    sourcerpm: openssl-3.2.2-6.el9_5.1.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel9/9/x86_64/baseos/os/Packages/p/protobuf-c-1.3.3-13.el9.x86_64.rpm
     repoid: rhel-9-for-x86_64-baseos-rpms
     size: 38224
@@ -633,6 +660,13 @@ arches:
     name: protobuf-compiler
     evr: 3.14.0-13.el9
     sourcerpm: protobuf-3.14.0-13.el9.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel9/9/x86_64/codeready-builder/os/Packages/p/python3-ruamel-yaml-0.16.6-7.el9.1.x86_64.rpm
+    repoid: codeready-builder-for-rhel-9-x86_64-rpms
+    size: 218621
+    checksum: sha256:edfa4be465a7ce774309cf67c85bd1a2f42fb9b5fe2508ccf681605c2ff21ee9
+    name: python3-ruamel-yaml
+    evr: 0.16.6-7.el9.1
+    sourcerpm: python-ruamel-yaml-0.16.6-7.el9.1.src.rpm
   source:
   - url: https://cdn.redhat.com/content/dist/layered/rhel9/x86_64/rhocp/4.17/source/SRPMS/Packages/c/containers-common-1-86.rhaos4.17.el9.src.rpm
     repoid: rhocp-4.17-for-rhel-9-x86_64-source-rpms
@@ -754,6 +788,12 @@ arches:
     checksum: sha256:9c864465c92115ad613c822f457af3f1f9d6e545321746cceb8b4c0f461a2fc4
     name: oniguruma
     evr: 6.9.6-1.el9.6
+  - url: https://cdn.redhat.com/content/dist/rhel9/9/x86_64/baseos/source/SRPMS/Packages/o/openssl-3.2.2-6.el9_5.1.src.rpm
+    repoid: rhel-9-for-x86_64-baseos-source-rpms
+    size: 17985138
+    checksum: sha256:56c0b951be3e5ad6a1da594f9d4f09b8b752e2fb3d6827bcc03892f22f622b22
+    name: openssl
+    evr: 1:3.2.2-6.el9_5.1
   - url: https://cdn.redhat.com/content/dist/rhel9/9/x86_64/baseos/source/SRPMS/Packages/p/protobuf-c-1.3.3-13.el9.src.rpm
     repoid: rhel-9-for-x86_64-baseos-source-rpms
     size: 513224

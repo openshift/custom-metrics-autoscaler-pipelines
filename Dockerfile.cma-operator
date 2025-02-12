@@ -44,6 +44,8 @@ FROM registry.redhat.io/openshift4/ose-cli-rhel9 AS cli
 FROM registry.access.redhat.com/ubi9/ubi-minimal:latest
 LABEL stage=operator
 
+# CVE-2024-12797 - remove once base image has the fix
+RUN microdnf install -y openssl-libs-1:3.2.2-6.el9_5.1
 
 # install required tools for must-gather collection script
 RUN INSTALL_PKGS=" \
