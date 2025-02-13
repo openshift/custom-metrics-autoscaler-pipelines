@@ -8,7 +8,7 @@ metadata:
     build.appstudio.openshift.io/build-nudge-files: "bundle-hack/imagerefs/custom-metrics-autoscaler-operator-bundle.pullspec"
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch
-      == "cma-konflux" && ( "bundle-hack/update_bundle.sh".pathChanged()  || "Dockerfile.cma-operator-bundle".pathChanged() || "bundle-hack/imagerefs/keda-operator.pullspec".pathChanged() || "bundle-hack/imagerefs/keda-webhooks.pullspec".pathChanged() || "bundle-hack/imagerefs/keda-adapter.pullspec".pathChanged() || "bundle-hack/imagerefs/custom-metrics-autoscaler-operator.pullspec".pathChanged() || ".tekton/custom-metrics-autoscaler-operator-bundle-push.yaml".pathChanged() )
+      == "cma-konflux" && ( "bundle-hack/update_bundle.sh".pathChanged()  || "Dockerfile.cma-operator-bundle".pathChanged() || "bundle-hack/imagerefs/keda-operator.pullspec".pathChanged() || "bundle-hack/imagerefs/keda-webhooks.pullspec".pathChanged() || "bundle-hack/imagerefs/keda-adapter.pullspec".pathChanged() || "bundle-hack/imagerefs/custom-metrics-autoscaler-operator.pullspec".pathChanged() || ".tekton/custom-metrics-autoscaler-operator-bundle-push.yaml".pathChanged() || "rpm-lockfiles/rpms.lock.yaml".pathChanged() )
   creationTimestamp: null
   labels:
     appstudio.openshift.io/application: custom-metrics-autoscaler-operator
