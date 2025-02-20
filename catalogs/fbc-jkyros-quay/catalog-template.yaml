@@ -7,8 +7,8 @@ entries:
   name: openshift-custom-metrics-autoscaler-operator
   schema: olm.package
 - entries:
-  - name: custom-metrics-autoscaler.v2.15.1-1
-    skipRange: '>=2.7.1 <2.15.1-1'
+  - name: custom-metrics-autoscaler.v2.15.1-2
+    skipRange: '>=2.7.1 <2.15.1-2'
   name: stable
   package: openshift-custom-metrics-autoscaler-operator
   schema: olm.channel

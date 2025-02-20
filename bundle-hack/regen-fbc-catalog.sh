@@ -16,7 +16,7 @@ for CATALOG_VERSION in catalogs/*; do
     # This is basically "generate the catalog, and then rewrite the pullspecs to match their final resting place". You can't do it beforehand in the
     # template because render-template pulls all those images to check them to include them in the catalog (and the new ones won't be there yet because they
     # haven't shipped)
-    opm alpha render-template basic ${CATALOG_VERSION}/catalog-template.yaml -o yaml > $CATALOG_OUTPUT
+    opm alpha render-template basic --migrate-level bundle-object-to-csv-metadata ${CATALOG_VERSION}/catalog-template.yaml -o yaml > $CATALOG_OUTPUT
     #  --- Comet Mangling ---
     # Version of RHEL we ship on top of, corresponds to comet repository names which have os version suffixes.
     # We have to do this here because the pipeline is signed and sealed, so we can't change anything after it's built.
