@@ -7,9 +7,9 @@ metadata:
     build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
     build.appstudio.redhat.com/target_branch: '{{target_branch}}'
     pipelinesascode.tekton.dev/max-keep-runs: "3"
-    pipelinesascode.tekton.dev/on-cel-expression: event == "pull_request" && target_branch
-      == "cma-konflux" && ( "catalogs/fbc/***".pathChanged() || ".tekton/custom-metrics-autoscaler-operator-fbc-4-16-pull-request.yaml".pathChanged()
-      || "catalogs/fbc/Containerfile.catalog-4-16".pathChanged() )
+    pipelinesascode.tekton.dev/on-cel-expression: event == "pull_request" && target_branch == "cma-konflux"
+      && ( "catalogs/fbc/catalog/***".pathChanged() || ".tekton/custom-metrics-autoscaler-operator-fbc-4-16-pull-request.yaml".pathChanged()
+           || "catalogs/fbc/Containerfile.catalog-4-16".pathChanged() )
   creationTimestamp: null
   labels:
     appstudio.openshift.io/application: cma-fbc
