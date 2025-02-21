@@ -5,17 +5,16 @@ metadata:
     build.appstudio.openshift.io/repo: https://github.com/jkyros/olm-operator-konflux-sample?rev={{revision}}
     build.appstudio.redhat.com/commit_sha: '{{revision}}'
     build.appstudio.redhat.com/target_branch: '{{target_branch}}'
-    pipelinesascode.tekton.dev/cancel-in-progress: "true"
-    build.appstudio.openshift.io/build-nudge-files: "bundle-hack/imagerefs/custom-metrics-autoscaler-operator-fbc.pullspec"
+    build.appstudio.openshift.io/build-nudge-files: "bundle-hack/imagerefs/cma-fbc-stage-4-18.pullspec"
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch
       == "cma-konflux"
   creationTimestamp: null
   labels:
-    appstudio.openshift.io/application: cma-fbc
-    appstudio.openshift.io/component: custom-metrics-autoscaler-operator-fbc
+    appstudio.openshift.io/application: cma-fbc-stage
+    appstudio.openshift.io/component: cma-fbc-stage-4-18
     pipelines.appstudio.openshift.io/type: build
-  name: custom-metrics-autoscaler-operator-fbc-on-push
+  name: cma-fbc-stage-4-18-on-push
   namespace: cma-podauto-tenant
 spec:
   params:
@@ -24,11 +23,11 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator-fbc:{{revision}}
+    value: quay.io/redhat-user-workloads/cma-podauto-tenant/cma-fbc-stage-4-18:{{revision}}
   - name: dockerfile
-    value: catalogs/fbc/Containerfile.catalog
+    value: catalogs/fbc-stage/Containerfile.catalog-4-18
   - name: path-context
-    value: catalogs/fbc
+    value: catalogs/fbc-stage
   - name: build-platforms
     value:
       - linux/x86_64
@@ -101,14 +100,6 @@ spec:
     - default: "true"
       description: Add built image into an OCI image index
       name: build-image-index
-      type: string
-    - default: []
-      description: Array of --build-arg values ("arg=value" strings) for buildah
-      name: build-args
-      type: array
-    - default: ""
-      description: Path to a file with build arguments for buildah, see https://www.mankier.com/1/buildah-build#--build-arg-file
-      name: build-args-file
       type: string
     - default:
       - linux/x86_64
@@ -220,21 +211,12 @@ spec:
         value: $(params.path-context)
       - name: HERMETIC
         value: $(params.hermetic)
-      - name: PREFETCH_INPUT
-        value: $(params.prefetch-input)
       - name: IMAGE_EXPIRES_AFTER
         value: $(params.image-expires-after)
       - name: COMMIT_SHA
         value: $(tasks.clone-repository.results.commit)
-      - name: BUILD_ARGS
-        value:
-        - $(params.build-args[*])
-      - name: BUILD_ARGS_FILE
-        value: $(params.build-args-file)
       - name: SOURCE_ARTIFACT
-        value: $(tasks.prefetch-dependencies.results.SOURCE_ARTIFACT)
-      - name: CACHI2_ARTIFACT
-        value: $(tasks.prefetch-dependencies.results.CACHI2_ARTIFACT)
+        value: $(tasks.clone-repository.results.SOURCE_ARTIFACT)
       - name: IMAGE_APPEND_PLATFORM
         value: "true"
       runAfter:
@@ -253,9 +235,6 @@ spec:
         operator: in
         values:
         - "true"
-      workspaces:
-      - name: source
-        workspace: workspace
     - name: build-image-index
       params:
       - name: IMAGE
@@ -359,33 +338,7 @@ spec:
         - name: name
           value: validate-fbc
         - name: bundle
-          value: quay.io/konflux-ci/tekton-catalog/task-validate-fbc:0.1@sha256:e088585f64d347f441f617b7b59b823b4412d2529d9ce53aa0eae50a92d5db6a
-        - name: kind
-          value: task
-        resolver: bundles
-      when:
-      - input: $(params.skip-checks)
-        operator: in
-        values:
-        - "false"
-    - name: fbc-target-index-pruning-check
-      params:
-      - name: IMAGE_URL
-        value: $(tasks.build-image-index.results.IMAGE_URL)
-      - name: IMAGE_DIGEST
-        value: $(tasks.build-image-index.results.IMAGE_DIGEST)
-      - name: TARGET_INDEX
-        value: registry.redhat.io/redhat/redhat-operator-index
-      - name: RENDERED_CATALOG_DIGEST
-        value: $(tasks.validate-fbc.results.RENDERED_CATALOG_DIGEST)
-      runAfter:
-      - validate-fbc
-      taskRef:
-        params:
-        - name: name
-          value: fbc-target-index-pruning-check
-        - name: bundle
-          value: quay.io/konflux-ci/tekton-catalog/task-fbc-target-index-pruning-check:0.1@sha256:299c44a5d6930f7a2c878f20853c705f155231cae36d9f37add4cdb7e75e2e12
+          value: quay.io/konflux-ci/tekton-catalog/task-validate-fbc:0.1
         - name: kind
           value: task
         resolver: bundles
@@ -395,12 +348,24 @@ spec:
         values:
         - "false"
     workspaces:
+    - name: workspace
     - name: git-auth
       optional: true
     - name: netrc
       optional: true
   taskRunTemplate: {}
   workspaces:
+  - name: workspace
+    volumeClaimTemplate:
+      metadata:
+        creationTimestamp: null
+      spec:
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
+      status: {}
   - name: git-auth
     secret:
       secretName: '{{ git_auth_secret }}'
