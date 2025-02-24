@@ -12,7 +12,7 @@ metadata:
            || "catalogs/fbc-stage/Containerfile.catalog-4-19".pathChanged() )
   creationTimestamp: null
   labels:
-    appstudio.openshift.io/application: cma-fbc-stage
+    appstudio.openshift.io/application: cma-fbc-stage-4-19
     appstudio.openshift.io/component: cma-fbc-stage-4-19
     pipelines.appstudio.openshift.io/type: build
   name: cma-fbc-stage-4-19-on-pull-request

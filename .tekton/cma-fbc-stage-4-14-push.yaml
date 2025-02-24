@@ -5,13 +5,14 @@ metadata:
     build.appstudio.openshift.io/repo: https://github.com/jkyros/olm-operator-konflux-sample?rev={{revision}}
     build.appstudio.redhat.com/commit_sha: '{{revision}}'
     build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
     build.appstudio.openshift.io/build-nudge-files: "bundle-hack/imagerefs/cma-fbc-stage-4-14.pullspec"
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch
       == "cma-konflux"
   creationTimestamp: null
   labels:
-    appstudio.openshift.io/application: cma-fbc-stage
+    appstudio.openshift.io/application: cma-fbc-stage-4-14
     appstudio.openshift.io/component: cma-fbc-stage-4-14
     pipelines.appstudio.openshift.io/type: build
   name: cma-fbc-stage-4-14-on-push

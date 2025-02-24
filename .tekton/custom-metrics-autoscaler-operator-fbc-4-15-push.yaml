@@ -12,7 +12,7 @@ metadata:
       == "cma-konflux"
   creationTimestamp: null
   labels:
-    appstudio.openshift.io/application: cma-fbc
+    appstudio.openshift.io/application: cma-fbc-4-15
     appstudio.openshift.io/component: custom-metrics-autoscaler-operator-fbc-4-15
     pipelines.appstudio.openshift.io/type: build
   name: custom-metrics-autoscaler-operator-fbc-4-15-on-push
