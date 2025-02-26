@@ -36,7 +36,7 @@ RUN cd /tools/protobuf/ && cd src/google && for f in $(find protobuf/ -name '*.p
 
 # this breaks controller-gen if it's there because it thinks it's "inconsistent vendoring" because it's just a random go.mod file hanging out
 RUN rm -rf /src/hack/tooldeps
-RUN LOCALBIN=/src/bin make webhooks
+RUN LOCALBIN=/src/bin GOFLAGS='-tags=strictfipsruntime' make CGO=1 webhooks
 
 FROM registry.redhat.io/ubi9/ubi-minimal:latest
 

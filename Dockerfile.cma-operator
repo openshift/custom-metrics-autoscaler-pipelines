@@ -37,7 +37,7 @@ RUN sed -i 's/\(Namespace *[:=] *\)"keda"/\1"openshift-keda"/' \
 
 RUN find controllers && find resources
 
-RUN make build
+RUN GOFLAGS='-tags=strictfipsruntime' make CGO=1 build
 
 FROM registry.access.redhat.com/ubi9/ubi-minimal:latest
 LABEL stage=operator
