@@ -4,7 +4,8 @@ FROM brew.registry.redhat.io/rh-osbs/openshift-ose-operator-registry-rhel9:v4.17
 ENTRYPOINT ["/bin/opm"]
 CMD ["serve", "/configs", "--cache-dir=/tmp/cache"]
 
-COPY catalog/ /configs
+# For OpenShift versions >= 4.17, we ony want the yaml FBC
+COPY catalog/openshift-custom-metrics-autoscaler-operator/catalog.yaml /configs/openshift-custom-metrics-autoscaler-operator/
 
 RUN ["/bin/opm", "serve", "/configs", "--cache-dir=/tmp/cache", "--cache-only"]
 
