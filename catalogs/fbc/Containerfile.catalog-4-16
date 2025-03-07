@@ -4,7 +4,8 @@ FROM brew.registry.redhat.io/rh-osbs/openshift-ose-operator-registry-rhel9:v4.16
 ENTRYPOINT ["/bin/opm"]
 CMD ["serve", "/configs", "--cache-dir=/tmp/cache"]
 
-COPY catalog/ /configs
+# For OpenShift versions <= 4.16, we ony want the json catalog with olm.bundle.object bundle metadata
+COPY catalog/openshift-custom-metrics-autoscaler-operator/catalog.json /configs/openshift-custom-metrics-autoscaler-operator/
 
 RUN ["/bin/opm", "serve", "/configs", "--cache-dir=/tmp/cache", "--cache-only"]
 
