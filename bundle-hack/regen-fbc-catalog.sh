@@ -5,6 +5,8 @@ set -eo pipefail
 # those details, so we can't do the catalog generation itself as part of a hermetic build (it uses the network to look up the images)
 for CATALOG_VERSION in catalogs/*; do
     echo "found catalog $CATALOG_VERSION"
+    # It's easier to work with yaml than JSON so we'll create an intermediate file then convert it to catalog.json at the end.
+    # Preserve the intermediate file by setting the REGEN_FBC_CATALOG_DEBUG environment variable
     CATALOG_OUTPUT=${CATALOG_VERSION}/catalog/openshift-custom-metrics-autoscaler-operator/catalog.yaml
 
     # TODO(jkyros): right now I just have a dummy pullspec in the template that I swap with the real one, but this should probably be better. Konflux
@@ -45,4 +47,6 @@ for CATALOG_VERSION in catalogs/*; do
     fi
     # This is for all the old brew builds if we keep them in our catalog:
     sed -i 's|brew.registry.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler|registry.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler|g' $CATALOG_OUTPUT
+    yq -o json < $CATALOG_OUTPUT > ${CATALOG_OUTPUT%.yaml}.json
+    [ -z "$REGEN_FBC_CATALOG_DEBUG" ] && rm -f $CATALOG_OUTPUT
 done
