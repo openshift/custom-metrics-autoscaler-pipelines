@@ -1,6 +1,6 @@
 #TODO(jkyros): There is something wrong with repo cert trust between the published RPM repos and the builder
 # It's a builder though, so I dunno if I really care 
-FROM brew.registry.redhat.io/rh-osbs/openshift-golang-builder:rhel_9_1.22 as builder
+FROM brew.registry.redhat.io/rh-osbs/openshift-golang-builder:rhel_9_1.23 as builder
 
 #FROM registry.redhat.io/ubi9/go-toolset as builder
 
