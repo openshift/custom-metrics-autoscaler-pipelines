@@ -23,6 +23,13 @@ export KEDA_ADAPTER_PULLSPEC=$(<"imagerefs/keda-adapter.pullspec")
 [[ -z "$KEDA_WEBHOOK_PULLSPEC" ]] && { echo "keda webhook pullspec is empty"; exit 1;}
 [[ -z "$KEDA_ADAPTER_PULLSPEC" ]] && { echo "keda adapter pullspec is empty"; exit 1;}
 
+# We used to set these by inspecting the images but we can't pull the images during the build
+# But that is impossible in hermetic builds, so we'll set them by hand here
+export AMD64_BUILT=true
+export ARM64_BUILT=true
+#export PPC64LE_BUILT=true
+#export S390X_BUILT=true
+
 
 # TODO(jkyros): we probably need multiple dockerfiles with different targets that feed an arg into this script, e.g. "push to stage", "push to prod", "push to quay"
 # TODO(jkyros): oh, also, for fun, apparently the stage policy wants you to use registry.redhat.io also, and the intent is that you use like an ICSP to
@@ -76,14 +83,6 @@ sed -i -e "s#ghcr.io/kedacore/keda-olm-operator:\(main\|[0-9.]*\)#${CMA_OPERATOR
        -e '/^spec:$/,$ s/^\(  version: \)[0-9.-]*$/\1'"${VERSION}-${CI_SPEC_RELEASE}"'/' \
        "${CSV_FILE}"
 cat "${CSV_FILE}"
-
-
-# TODO(jkyros): check all the images probably so we don't have an odd one out that's missing on a platform, e.g. CMA
-# built for arm, but the webhook only built for x86_64, etc.
-export AMD64_BUILT=$(skopeo inspect --raw docker://${CMA_OPERATOR_PULLSPEC} | jq -e '.manifests[] | select(.platform.architecture=="amd64")')
-export ARM64_BUILT=$(skopeo inspect --raw docker://${CMA_OPERATOR_PULLSPEC} | jq -e '.manifests[] | select(.platform.architecture=="arm64")')
-export PPC64LE_BUILT=$(skopeo inspect --raw docker://${CMA_OPERATOR_PULLSPEC} | jq -e '.manifests[] | select(.platform.architecture=="ppc64le")')
-export S390X_BUILT=$(skopeo inspect --raw docker://${CMA_OPERATOR_PULLSPEC} | jq -e '.manifests[] | select(.platform.architecture=="s390x")')
 
 export EPOC_TIMESTAMP=$(date +%s)
 # time for some direct modifications to the csv
