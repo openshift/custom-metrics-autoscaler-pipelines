@@ -23,18 +23,6 @@ COPY /custom-metrics-autoscaler-operator/ /src/
 
 WORKDIR /src/
 
-# use openshift-keda namespace instead of keda & update the OLM operator name
-RUN sed -i 's/\(Namespace *[:=] *\)"keda"/\1"openshift-keda"/' \
-        controllers/keda/configmap_controller.go \
-        controllers/keda/kedacontroller_controller.go \
-        controllers/keda/secret_controller.go \
-        controllers/keda/util/util.go && \
-    sed -i '/^kind: Namespace$/,/^---/ s/\(name: *\)keda/\1openshift-keda/; s/\(namespace: *\)keda/\1openshift-keda/' \
-        resources/keda-olm-operator.yaml \
-        resources/keda.yaml && \
-    sed -i '/^kind: PodMonitor$/,$ s/\(name: *\)keda-olm-operator$/\1custom-metrics-autoscaler-operator/' \
-        resources/keda-olm-operator.yaml
-
 RUN find controllers && find resources
 
 RUN GOFLAGS='-tags=strictfipsruntime' make CGO=1 build
@@ -100,7 +88,7 @@ LABEL com.redhat.openshift.versions="v4.17"
 LABEL version="2.15.1"
 # I don't know that we can auto-increment this without an additional pipeline stage or something, but if we omit it,
 # we fail the metadata requirements, so we have to put _something_ here
-LABEL release="3"
+LABEL release="4"
 
 CMD ["/usr/bin/manager"]
 

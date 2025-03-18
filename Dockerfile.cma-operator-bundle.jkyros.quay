@@ -67,7 +67,7 @@ LABEL com.redhat.openshift.versions="v4.17"
 LABEL version="2.15.1"
 # I don't know that we can auto-increment this without an additional pipeline stage or something, but if we omit it,
 # we fail the metadata requirements, so we have to put _something_ here
-LABEL release="3"
+LABEL release="4"
 
 # Need the license to pass enterprise pre-flight
 RUN mkdir /licenses
