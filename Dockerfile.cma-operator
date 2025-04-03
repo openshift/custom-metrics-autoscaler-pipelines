@@ -82,13 +82,13 @@ LABEL io.k8s.display-name="OpenShift Custom Metrics Autoscaler Operator" \
 #      upstream-vcs-type="git" \
 
 # Chore: update this when openshift release changes
-LABEL com.redhat.openshift.versions="v4.17"
+LABEL com.redhat.openshift.versions="v4.18"
 
 # Chore: this will get used in the release policy, so update this when our version we're releasing changes
 LABEL version="2.15.1"
 # I don't know that we can auto-increment this without an additional pipeline stage or something, but if we omit it,
 # we fail the metadata requirements, so we have to put _something_ here
-LABEL release="4"
+LABEL release="5"
 
 CMD ["/usr/bin/manager"]
 
