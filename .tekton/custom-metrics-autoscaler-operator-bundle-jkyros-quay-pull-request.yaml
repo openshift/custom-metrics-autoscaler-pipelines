@@ -8,7 +8,10 @@ metadata:
     build.appstudio.redhat.com/target_branch: '{{target_branch}}'
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-cel-expression: event == "pull_request" && target_branch
-        == "cma-konflux" && ( "bundle-hack/update_bundle.sh".pathChanged()  || "Dockerfile.cma-operator-bundle.jkyros.quay".pathChanged() || "bundle-hack/imagerefs/keda-operator.pullspec".pathChanged() || "bundle-hack/imagerefs/keda-webhooks.pullspec".pathChanged() || "bundle-hack/imagerefs/keda-adapter.pullspec".pathChanged() || ".tekton/custom-metrics-autoscaler-operator-bundle-jkyros-quay-pull-request.yaml".pathChanged() || "rpm-lockfiles/rpms.lock.yaml".pathChanged() )
+      == "cma-konflux" && ( "bundle-hack/update_bundle.sh".pathChanged()  || "Dockerfile.cma-operator-bundle.jkyros.quay".pathChanged()
+      || "bundle-hack/imagerefs/keda-operator.pullspec".pathChanged() || "bundle-hack/imagerefs/keda-webhooks.pullspec".pathChanged()
+      || "bundle-hack/imagerefs/keda-adapter.pullspec".pathChanged() || ".tekton/custom-metrics-autoscaler-operator-bundle-jkyros-quay-pull-request.yaml".pathChanged()
+      || "rpm-lockfiles/rpms.lock.yaml".pathChanged() )
   creationTimestamp: null
   labels:
     appstudio.openshift.io/application: custom-metrics-autoscaler-operator
@@ -333,28 +336,6 @@ spec:
         operator: in
         values:
         - "false"
-#    It was configured to be skipped, which caused us to fail our EC checks. People on Slack said to disable/remove it for now
-#    https://redhat-internal.slack.com/archives/C04PZ7H0VA8/p1739212062777609
-#    - name: ecosystem-cert-preflight-checks
-#      params:
-#      - name: image-url
-#        value: $(tasks.build-image-index.results.IMAGE_URL)
-#      runAfter:
-#      - build-image-index
-#      taskRef:
-#        params:
-#        - name: name
-#          value: ecosystem-cert-preflight-checks
-#        - name: bundle
-#          value: quay.io/konflux-ci/tekton-catalog/task-ecosystem-cert-preflight-checks:0.2@sha256:2ad615f9b8141ed2e0b060ebda366ce43cf55a9dd7c98e2d93970ff328dca8b2
-#        - name: kind
-#          value: task
-#        resolver: bundles
-#      when:
-#      - input: $(params.skip-checks)
-#        operator: in
-#        values:
-#        - "false"
     - name: sast-snyk-check
       params:
       - name: image-digest
@@ -518,7 +499,8 @@ spec:
       optional: true
     - name: netrc
       optional: true
-  taskRunTemplate: {}
+  taskRunTemplate:
+    serviceAccountName: build-pipeline-custom-metrics-autoscaler-operator-bundle-jkyros-quay
   workspaces:
   - name: git-auth
     secret:
