@@ -2,13 +2,14 @@ apiVersion: tekton.dev/v1
 kind: PipelineRun
 metadata:
   annotations:
+    build.appstudio.openshift.io/build-nudge-files: bundle-hack/imagerefs/custom-metrics-autoscaler-operator-fbc-4-14.pullspec
     build.appstudio.openshift.io/repo: https://github.com/jkyros/olm-operator-konflux-sample?rev={{revision}}
     build.appstudio.redhat.com/commit_sha: '{{revision}}'
     build.appstudio.redhat.com/target_branch: '{{target_branch}}'
     pipelinesascode.tekton.dev/cancel-in-progress: "false"
-    build.appstudio.openshift.io/build-nudge-files: "bundle-hack/imagerefs/custom-metrics-autoscaler-operator-fbc-4-14.pullspec"
     pipelinesascode.tekton.dev/max-keep-runs: "3"
-    pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch == "cma-konflux"
+    pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch
+      == "cma-konflux"
   creationTimestamp: null
   labels:
     appstudio.openshift.io/application: cma-fbc-4-14
@@ -30,8 +31,8 @@ spec:
     value: catalogs/fbc
   - name: build-platforms
     value:
-      - linux/x86_64
-      - linux/arm64
+    - linux/x86_64
+    - linux/arm64
   pipelineSpec:
     description: |
       This pipeline is ideal for building and verifying [file-based catalogs](https://konflux-ci.dev/docs/advanced-how-tos/building-olm.adoc#building-the-file-based-catalog).
@@ -393,7 +394,8 @@ spec:
       optional: true
     - name: netrc
       optional: true
-  taskRunTemplate: {}
+  taskRunTemplate:
+    serviceAccountName: build-pipeline-custom-metrics-autoscaler-operator-fbc-4-14
   workspaces:
   - name: git-auth
     secret:
