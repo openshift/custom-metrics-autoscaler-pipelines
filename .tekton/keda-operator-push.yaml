@@ -2,13 +2,15 @@ apiVersion: tekton.dev/v1
 kind: PipelineRun
 metadata:
   annotations:
+    build.appstudio.openshift.io/build-nudge-files: bundle-hack/imagerefs/keda-operator.pullspec
     build.appstudio.openshift.io/repo: https://github.com/jkyros/olm-operator-konflux-sample?rev={{revision}}
     build.appstudio.redhat.com/commit_sha: '{{revision}}'
     build.appstudio.redhat.com/target_branch: '{{target_branch}}'
-    build.appstudio.openshift.io/build-nudge-files: "bundle-hack/imagerefs/keda-operator.pullspec"
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch
-      == "cma-konflux" && ( "kedacore-keda".pathChanged()  || "Dockerfile.keda-operator".pathChanged() || ".tekton/keda-operator-push.yaml".pathChanged()  || "rpm-lockfiles/rpms.lock.yaml".pathChanged() )
+      == "cma-konflux" && ( "kedacore-keda".pathChanged()  || "Dockerfile.keda-operator".pathChanged()
+      || ".tekton/keda-operator-push.yaml".pathChanged()  || "rpm-lockfiles/rpms.lock.yaml".pathChanged()
+      )
   creationTimestamp: null
   labels:
     appstudio.openshift.io/application: custom-metrics-autoscaler-operator
@@ -74,7 +76,9 @@ spec:
       description: Execute the build with network isolation
       name: hermetic
       type: string
-    - default: '[{"type": "gomod", "path": "kedacore-keda/"},{"type": "gomod", "path": "kedacore-keda/hack/tooldeps/"},{"type": "gomod", "path": "tools/mock/"},{"type": "gomod", "path": "tools/controller-tools/"},{"type": "rpm","path":"rpm-lockfiles/"}]'
+    - default: '[{"type": "gomod", "path": "kedacore-keda/"},{"type": "gomod", "path":
+        "kedacore-keda/hack/tooldeps/"},{"type": "gomod", "path": "tools/mock/"},{"type":
+        "gomod", "path": "tools/controller-tools/"},{"type": "rpm","path":"rpm-lockfiles/"}]'
       description: Build dependencies to be prefetched by Cachi2
       name: prefetch-input
       type: string
@@ -478,10 +482,11 @@ spec:
           value: task
         resolver: bundles
     - name: rpms-signature-scan
-      when:
-      - input: $(params.skip-checks)
-        operator: in
-        values: ["false"]
+      params:
+      - name: image-url
+        value: $(tasks.build-image-index.results.IMAGE_URL)
+      - name: image-digest
+        value: $(tasks.build-image-index.results.IMAGE_DIGEST)
       runAfter:
       - build-image-index
       taskRef:
@@ -493,11 +498,11 @@ spec:
         - name: kind
           value: task
         resolver: bundles
-      params:
-      - name: image-url
-        value: $(tasks.build-image-index.results.IMAGE_URL)
-      - name: image-digest
-        value: $(tasks.build-image-index.results.IMAGE_DIGEST)
+      when:
+      - input: $(params.skip-checks)
+        operator: in
+        values:
+        - "false"
     - name: push-dockerfile
       params:
       - name: IMAGE
@@ -526,7 +531,8 @@ spec:
       optional: true
     - name: netrc
       optional: true
-  taskRunTemplate: {}
+  taskRunTemplate:
+    serviceAccountName: build-pipeline-keda-operator
   workspaces:
   - name: git-auth
     secret:
