@@ -328,7 +328,8 @@ spec:
       optional: true
     - name: netrc
       optional: true
-  taskRunTemplate: {}
+  taskRunTemplate:
+    serviceAccountName: build-pipeline-cma-fbc-jkyros-quay
   workspaces:
   - name: workspace
     volumeClaimTemplate:
