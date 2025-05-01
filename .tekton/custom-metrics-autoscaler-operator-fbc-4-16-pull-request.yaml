@@ -8,9 +8,8 @@ metadata:
     build.appstudio.redhat.com/target_branch: '{{target_branch}}'
     pipelinesascode.tekton.dev/cancel-in-progress: "true"
     pipelinesascode.tekton.dev/max-keep-runs: "3"
-    pipelinesascode.tekton.dev/on-cel-expression: >-
-      event == "pull_request" && target_branch == "cma-konflux" &&
-      ( "catalogs/fbc/catalog/***".pathChanged() || ".tekton/custom-metrics-autoscaler-operator-fbc-4-16-pull-request.yaml".pathChanged() ||
+    pipelinesascode.tekton.dev/on-cel-expression: |-
+      event == "pull_request" && target_branch == "cma-konflux" && ( "catalogs/fbc/catalog/***".pathChanged() || ".tekton/custom-metrics-autoscaler-operator-fbc-4-16-pull-request.yaml".pathChanged() ||
         "catalogs/fbc/Containerfile.catalog-4-16".pathChanged() )
   creationTimestamp: null
   labels:
@@ -35,8 +34,8 @@ spec:
     value: catalogs/fbc
   - name: build-platforms
     value:
-      - linux/x86_64
-      - linux/arm64
+    - linux/x86_64
+    - linux/arm64
   pipelineSpec:
     description: |
       This pipeline is ideal for building and verifying [file-based catalogs](https://konflux-ci.dev/docs/advanced-how-tos/building-olm.adoc#building-the-file-based-catalog).
@@ -398,7 +397,8 @@ spec:
       optional: true
     - name: netrc
       optional: true
-  taskRunTemplate: {}
+  taskRunTemplate:
+    serviceAccountName: build-pipeline-custom-metrics-autoscaler-operator-fbc-4-16
   workspaces:
   - name: git-auth
     secret:
