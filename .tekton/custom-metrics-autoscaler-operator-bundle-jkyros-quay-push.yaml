@@ -12,7 +12,7 @@ metadata:
       || "bundle-hack/imagerefs/keda-operator.pullspec".pathChanged() || "bundle-hack/imagerefs/keda-webhooks.pullspec".pathChanged()
       || "bundle-hack/imagerefs/keda-adapter.pullspec".pathChanged() || "bundle-hack/imagerefs/custom-metrics-autoscaler-operator.pullspec".pathChanged()
       || ".tekton/custom-metrics-autoscaler-operator-bundle-jkyros-quay-push.yaml".pathChanged()
-      || "rpm-lockfiles/rpms.lock.yaml".pathChanged() )
+      || "rpms.lock.yaml".pathChanged() )
   creationTimestamp: null
   labels:
     appstudio.openshift.io/application: custom-metrics-autoscaler-operator
