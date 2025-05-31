@@ -9,7 +9,7 @@ metadata:
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch
       == "cma-konflux" && ( "kedacore-keda".pathChanged()  || "Dockerfile.keda-operator".pathChanged()
-      || ".tekton/keda-operator-push.yaml".pathChanged()  || "rpm-lockfiles/rpms.lock.yaml".pathChanged()
+      || ".tekton/keda-operator-push.yaml".pathChanged()  || "rpms.lock.yaml".pathChanged()
       )
   creationTimestamp: null
   labels:
@@ -78,7 +78,7 @@ spec:
       type: string
     - default: '[{"type": "gomod", "path": "kedacore-keda/"},{"type": "gomod", "path":
         "kedacore-keda/hack/tooldeps/"},{"type": "gomod", "path": "tools/mock/"},{"type":
-        "gomod", "path": "tools/controller-tools/"},{"type": "rpm","path":"rpm-lockfiles/"}]'
+        "gomod", "path": "tools/controller-tools/"},{"type": "rpm","path":"."}]'
       description: Build dependencies to be prefetched by Cachi2
       name: prefetch-input
       type: string
@@ -423,7 +423,7 @@ spec:
       - name: image-digest
         value: $(tasks.build-image-index.results.IMAGE_DIGEST)
       - name: image-url
-        value: $(tasks.build-container.results.IMAGE_URL)
+        value: $(tasks.build-image-index.results.IMAGE_URL)
       - name: SOURCE_ARTIFACT
         value: $(tasks.prefetch-dependencies.results.SOURCE_ARTIFACT)
       - name: CACHI2_ARTIFACT

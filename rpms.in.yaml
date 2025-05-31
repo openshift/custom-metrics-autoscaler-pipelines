@@ -1,0 +1,18 @@
+reinstallPackages:
+  - tzdata
+packages:
+  - protobuf-compiler
+  - python3-pip
+  - python3-ruamel-yaml
+  - rsync
+  - skopeo
+  - tar
+  - jq
+contentOrigin:
+  repofiles:
+    - ./merged.repo
+arches:
+  - aarch64
+  - x86_64
+  - s390x
+  - ppc64le
