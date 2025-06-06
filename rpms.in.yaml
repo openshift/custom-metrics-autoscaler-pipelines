@@ -10,7 +10,7 @@ packages:
   - jq
 contentOrigin:
   repofiles:
-    - ./merged.repo
+    - .repos/merged.repo
 arches:
   - aarch64
   - x86_64
