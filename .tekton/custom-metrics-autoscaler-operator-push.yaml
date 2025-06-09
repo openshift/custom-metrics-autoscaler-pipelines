@@ -8,7 +8,7 @@ metadata:
     build.appstudio.redhat.com/target_branch: '{{target_branch}}'
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch
-      == "cma-konflux" && ( "custom-metrics-autoscaler-operator".pathChanged()  ||
+      == "main" && ( "custom-metrics-autoscaler-operator".pathChanged()  ||
       "Dockerfile.cma-operator".pathChanged() || ".tekton/custom-metrics-autoscaler-operator-push.yaml".pathChanged()
       || "rpms.lock.yaml".pathChanged() )
   creationTimestamp: null
