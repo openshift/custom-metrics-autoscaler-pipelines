@@ -27,11 +27,15 @@ RUN find controllers && find resources
 
 RUN GOFLAGS='-tags=strictfipsruntime' make CGO=1 build
 
-FROM registry.access.redhat.com/ubi9/ubi-minimal:latest
+# MintMaker is not smart enough to figure out which "latest" you shipped, 
+# so we need to keep the hash here and let MintMaker security update it. No, I don't like it either.
+# See: https://konflux.pages.redhat.com/docs/users/mintmaker/user.html#enable-container-image-tag-versioning
+# FROM registry.access.redhat.com/ubi9/ubi-minimal:latest
+FROM registry.access.redhat.com/ubi9/ubi-minimal:latest@sha256:e12131db2e2b6572613589a94b7f615d4ac89d94f859dad05908aeb478fb090f
 LABEL stage=operator
 
 # CVE-2024-12797 - remove once base image has the fix
-RUN microdnf install -y openssl-libs-1:3.2.2-6.el9_5.1
+# RUN microdnf install -y openssl-libs-1:3.2.2-6.el9_5.1
 
 # install required tools for must-gather collection script
 RUN INSTALL_PKGS=" \
