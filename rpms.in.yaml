@@ -1,6 +1,7 @@
 reinstallPackages:
   - tzdata
 packages:
+  - python3
   - protobuf-compiler
   - python3-pip
   - python3-ruamel-yaml
@@ -10,7 +11,8 @@ packages:
   - jq
 contentOrigin:
   repofiles:
-    - .repos/merged.repo
+    - repos/renovate_ubi.repo
+    - repos/renovate_redhat.repo
 arches:
   - aarch64
   - x86_64
