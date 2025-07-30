@@ -23,8 +23,6 @@ COPY /custom-metrics-autoscaler-operator/ /src/
 
 WORKDIR /src/
 
-RUN find controllers && find resources
-
 RUN GOFLAGS='-tags=strictfipsruntime' make CGO=1 build
 
 # MintMaker is not smart enough to figure out which "latest" you shipped, 
