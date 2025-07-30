@@ -6,7 +6,7 @@
 # 4. generate the fbc catalog from it
 # 5. The build will handle the rest of it 
 #     -- we might be able to do 3/4 in the build itself but I'm worried about the pull secret because it needs to retireve stuff  
-NEWVERSION=2.15.1
+NEWVERSION=2.17.2
 NEW_BUNDLE_IMAGE=quay.io/stuff
 # Get the last version we released 
 FIRSTVERSION=2.7.1
