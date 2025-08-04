@@ -1,7 +1,7 @@
 # TODO(jkyros): It might be more proper to generate this with opm, e.g opm alpha bundle generate --directory ./custom-metrics-autoscaler-operator/keda/2.14.1/manifests/ \ 
 # --package openshift-custom-metrics-autoscaler-operator --channels stable --default stable
 
-FROM registry.access.redhat.com/ubi9/ubi-minimal:latest@sha256:67fee1a132e8e326434214b3c7ce90b2500b2ad02c9790cc61581feb58d281d5 as builder-runner
+FROM registry.access.redhat.com/ubi9/ubi-minimal:latest@sha256:0d7cfb0704f6d389942150a01a20cb182dc8ca872004ebf19010e2b622818926 as builder-runner
 RUN microdnf install -y skopeo jq python3 python3-ruamel-yaml
 
 # Use a new stage to enable caching of the package installations for local development
@@ -34,7 +34,7 @@ RUN sed -i -e 's#operators.operatorframework.io.bundle.package.v1:.*#operators.o
 # FROM registry.access.redhat.com/ubi9/ubi:latest
 
 # TODO(jkyros): This should probably be scratch, but then you won't have a shell to debug it
-FROM registry.access.redhat.com/ubi9/ubi-minimal:latest@sha256:67fee1a132e8e326434214b3c7ce90b2500b2ad02c9790cc61581feb58d281d5
+FROM registry.access.redhat.com/ubi9/ubi-minimal:latest@sha256:0d7cfb0704f6d389942150a01a20cb182dc8ca872004ebf19010e2b622818926
 
 # Labels for testing.
 #LABEL operators.operatorframework.io.test.mediatype.v1=scorecard+v1
