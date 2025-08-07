@@ -20,6 +20,12 @@ ARG TARGETARCH
 # The KEDA makefiles need this to get the right platform
 ENV ARCH=${TARGETARCH}
 
+# This needs to be fed into the build, otherwise something in Konflux
+# sets $VERSION to the go version and it looks like we're shipping KEDA 1.23
+# See: https://issues.redhat.com/browse/OCPBUGS-58129
+# Chore: this will get used in the release policy, so update this when our version we're releasing changes
+ENV CMA_VERSION=2.17.2
+
 RUN dnf install -y protobuf-compiler
 
 # Get the sources in here
@@ -36,7 +42,7 @@ RUN cd /tools/protobuf/ && cd src/google && for f in $(find protobuf/ -name '*.p
 
 # this breaks controller-gen if it's there because it thinks it's "inconsistent vendoring" because it's just a random go.mod file hanging out
 RUN rm -rf /src/hack/tooldeps
-RUN LOCALBIN=/src/bin GOFLAGS='-tags=strictfipsruntime' make CGO=1 webhooks
+RUN LOCALBIN=/src/bin GOFLAGS='-tags=strictfipsruntime' make CGO=1 VERSION=${CMA_VERSION} webhooks
 
 # MintMaker is not smart enough to figure out which "latest" you shipped, 
 # so we need to keep the hash here and let MintMaker security update it. No, I don't like it either.
@@ -78,8 +84,7 @@ LABEL io.k8s.display-name="OpenShift Custom Metrics Autoscaler Admission Webhook
 # Chore: update this when openshift release changes
 LABEL com.redhat.openshift.versions="v4.18"
 
-# Chore: this will get used in the release policy, so update this when our version we're releasing changes
-LABEL version="2.17.2"
+LABEL version="${CMA_VERSION}"
 # I don't know that we can auto-increment this without an additional pipeline stage or something, but if we omit it,
 # we fail the metadata requirements, so we have to put _something_ here
 LABEL release="1"
