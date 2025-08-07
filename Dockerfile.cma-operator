@@ -1,3 +1,4 @@
+# test
 # This needs to be fed into the build, otherwise something in Konflux
 # sets $VERSION to the go version and it looks like we're shipping KEDA 1.23
 # See: https://issues.redhat.com/browse/OCPBUGS-58129
