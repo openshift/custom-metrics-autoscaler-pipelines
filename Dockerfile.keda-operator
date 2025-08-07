@@ -1,6 +1,12 @@
+# This needs to be fed into the build, otherwise something in Konflux
+# sets $VERSION to the go version and it looks like we're shipping KEDA 1.23
+# See: https://issues.redhat.com/browse/OCPBUGS-58129
+# Chore: this will get used in the release policy, so update this when our version we're releasing changes
+ARG CMA_VERSION=2.17.2
 #TODO(jkyros): There is something wrong with repo cert trust between the published RPM repos and the builder
 # It's a builder though, so I dunno if I really care 
 FROM brew.registry.redhat.io/rh-osbs/openshift-golang-builder:rhel_9_1.23 as builder
+ARG CMA_VERSION 
 
 #FROM registry.redhat.io/ubi9/go-toolset as builder
 
@@ -19,12 +25,6 @@ ARG TARGETARCH
 
 # The KEDA makefiles need this to get the right platform
 ENV ARCH=${TARGETARCH}
-
-# This needs to be fed into the build, otherwise something in Konflux
-# sets $VERSION to the go version and it looks like we're shipping KEDA 1.23
-# See: https://issues.redhat.com/browse/OCPBUGS-58129
-# Chore: this will get used in the release policy, so update this when our version we're releasing changes
-ENV CMA_VERSION=2.17.2
 
 RUN dnf install -y protobuf-compiler
 
@@ -49,6 +49,7 @@ RUN LOCALBIN=/src/bin GOFLAGS='-tags=strictfipsruntime' make CGO=1 VERSION=${CMA
 # See: https://konflux.pages.redhat.com/docs/users/mintmaker/user.html#enable-container-image-tag-versioning
 # FROM registry.access.redhat.com/ubi9/ubi-minimal:latest
 FROM registry.access.redhat.com/ubi9/ubi-minimal:latest@sha256:e6b39b0a2cd88c0d904552eee0dca461bc74fe86fda3648ca4f8150913c79d0f
+ARG CMA_VERSION
 
 # CVE-2024-12797 - remove once base image has the fix
 # RUN microdnf install -y openssl-libs-1:3.2.2-6.el9_5.1

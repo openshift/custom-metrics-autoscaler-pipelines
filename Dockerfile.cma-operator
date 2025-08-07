@@ -1,4 +1,11 @@
+# This needs to be fed into the build, otherwise something in Konflux
+# sets $VERSION to the go version and it looks like we're shipping KEDA 1.23
+# See: https://issues.redhat.com/browse/OCPBUGS-58129
+# Chore: this will get used in the release policy, so update this when our version we're releasing changes
+ARG CMA_VERSION=2.17.2
+
 FROM brew.registry.redhat.io/rh-osbs/openshift-golang-builder:rhel_9_1.23 as builder
+ARG CMA_VERSION
 
 LABEL stage=build
 
@@ -18,12 +25,6 @@ ARG TARGETARCH
 # so we give it ARCH so we don't accidentally build an amd64 binary in our arm64 container
 ENV ARCH=${TARGETARCH}
 
-# This needs to be fed into the build, otherwise something in Konflux
-# sets $VERSION to the go version and it looks like we're shipping KEDA 1.23
-# See: https://issues.redhat.com/browse/OCPBUGS-58129
-# Chore: this will get used in the release policy, so update this when our version we're releasing changes
-ENV CMA_VERSION=2.17.2
-
 # Get the sources in here
 COPY /custom-metrics-autoscaler-operator/ /src/
 
@@ -36,6 +37,7 @@ RUN GOFLAGS='-tags=strictfipsruntime' make CGO=1 VERSION=${CMA_VERSION} build
 # See: https://konflux.pages.redhat.com/docs/users/mintmaker/user.html#enable-container-image-tag-versioning
 # FROM registry.access.redhat.com/ubi9/ubi-minimal:latest
 FROM registry.access.redhat.com/ubi9/ubi-minimal:latest@sha256:e6b39b0a2cd88c0d904552eee0dca461bc74fe86fda3648ca4f8150913c79d0f
+ARG CMA_VERSION
 LABEL stage=operator
 
 # CVE-2024-12797 - remove once base image has the fix
