@@ -20,6 +20,11 @@ ARG TARGETARCH
 # The KEDA makefiles need this to get the right platform
 ENV ARCH=${TARGETARCH}
 
+# This needs to be fed into the build, otherwise something in Konflux
+# sets $VERSION to the go version and it looks like we're shipping KEDA 1.23
+# See: https://issues.redhat.com/browse/OCPBUGS-58129
+ENV CMA_VERSION=2.17.2
+
 RUN dnf install -y protobuf-compiler
 
 # Get the sources in here
@@ -36,7 +41,7 @@ RUN cd /tools/protobuf/ && cd src/google && for f in $(find protobuf/ -name '*.p
 
 # this breaks controller-gen if it's there because it thinks it's "inconsistent vendoring" because it's just a random go.mod file hanging out
 RUN rm -rf /src/hack/tooldeps
-RUN LOCALBIN=/src/bin GOFLAGS='-tags=strictfipsruntime' make CGO=1 adapter
+RUN LOCALBIN=/src/bin GOFLAGS='-tags=strictfipsruntime' make CGO=1 VERSION=${CMA_VERSION} adapter
 
 
 # MintMaker is not smart enough to figure out which "latest" you shipped, 
