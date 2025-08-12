@@ -1,0 +1,3 @@
+# any update to ths file will trigger all non-catalog component builds
+# this is necessary because sometines Konflux just decides to ignore a merge -- the webhook misses it or something
+bumps: 1 

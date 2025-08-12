@@ -7,7 +7,7 @@ metadata:
     build.appstudio.redhat.com/commit_sha: '{{revision}}'
     build.appstudio.redhat.com/target_branch: '{{target_branch}}'
     pipelinesascode.tekton.dev/max-keep-runs: '3'
-    pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch == "main" && ( "custom-metrics-autoscaler-operator".pathChanged()  || "Dockerfile.cma-operator".pathChanged() || ".tekton/custom-metrics-autoscaler-operator-push.yaml".pathChanged() || "rpms.lock.yaml".pathChanged() )
+    pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch == "main" && ( "build-bump".pathChanged() || "custom-metrics-autoscaler-operator".pathChanged()  || "Dockerfile.cma-operator".pathChanged() || ".tekton/custom-metrics-autoscaler-operator-push.yaml".pathChanged() || "rpms.lock.yaml".pathChanged() )
   creationTimestamp:
   labels:
     appstudio.openshift.io/application: custom-metrics-autoscaler-operator
