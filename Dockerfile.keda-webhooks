@@ -83,7 +83,7 @@ LABEL io.k8s.display-name="OpenShift Custom Metrics Autoscaler Admission Webhook
 #      upstream-vcs-type="git" \
 
 # Chore: update this when openshift release changes
-LABEL com.redhat.openshift.versions="v4.18"
+LABEL com.redhat.openshift.versions="v4.20"
 
 LABEL version="${CMA_VERSION}"
 # I don't know that we can auto-increment this without an additional pipeline stage or something, but if we omit it,
