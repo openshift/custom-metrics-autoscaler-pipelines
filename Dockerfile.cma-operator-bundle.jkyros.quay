@@ -61,7 +61,7 @@ LABEL com.redhat.component="custom-metrics-autoscaler-operator-bundle-container"
       com.redhat.delivery.operator.bundle=true
 
 # Chore: update this when openshift release changes
-LABEL com.redhat.openshift.versions="v4.18"
+LABEL com.redhat.openshift.versions="v4.20"
 
 # Chore: this will get used in the release policy, so update this when our version we're releasing changes
 LABEL version="2.17.2"
