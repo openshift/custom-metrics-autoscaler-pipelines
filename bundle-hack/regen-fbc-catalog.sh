@@ -13,7 +13,6 @@ for CATALOG_VERSION in catalogs/*; do
     # won't want it to touch it after that, so until we figure out how we want to do that, this is what we get
     CURRENT_BUNDLE=$(cat bundle-hack/imagerefs/custom-metrics-autoscaler-operator-bundle.pullspec)
     sed -i "s|quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/custom-metrics-autoscaler-operator-bundle@sha256.*|$CURRENT_BUNDLE|g" ${CATALOG_VERSION}/catalog-template.yaml
-
     # This is basically "generate the catalog, and then rewrite the pullspecs to match their final resting place". You can't do it beforehand in the
     # template because render-template pulls all those images to check them to include them in the catalog (and the new ones won't be there yet because they
     # haven't shipped)
@@ -23,7 +22,7 @@ for CATALOG_VERSION in catalogs/*; do
     # Version of RHEL we ship on top of, corresponds to comet repository names which have os version suffixes.
     # We have to do this here because the pipeline is signed and sealed, so we can't change anything after it's built.
     OSVER="rhel9"
-    APP_PREFIX="quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator"
+    APP_PREFIX="quay.io/redhat-user-workloads/cma-podauto-tenant"
     PROD_PREFIX="registry.redhat.io/custom-metrics-autoscaler"
     # TODO(jkyros): originally I was referencing these straight out of stage, but the "proper" way now is to
     # is an ICSP to redirect to stage rather than reference stage directly
@@ -32,10 +31,12 @@ for CATALOG_VERSION in catalogs/*; do
 
     if [ "$CATALOG_VERSION" == "catalogs/fbc" ]; then
         echo "rewriting prod images for $CATALOG_VERSION"
-        sed -i "s|$APP_PREFIX/custom-metrics-autoscaler-operator-bundle|$PROD_PREFIX/custom-metrics-autoscaler-operator-bundle|g" ${CATALOG_OUTPUT%.yaml}.*
+        # TODO(jkyros): The names for imagerepos now don't include the app, so if you regenerate a component, you won't have 
+        # the app name in the path, so this will try to match both/either
+        sed -Ei "s|$APP_PREFIX/(custom-metrics-autoscaler-operator/)?custom-metrics-autoscaler-operator-bundle|$PROD_PREFIX/custom-metrics-autoscaler-operator-bundle|g" ${CATALOG_OUTPUT%.yaml}.*
     elif [ "$CATALOG_VERSION" == "catalogs/fbc-stage" ]; then
         echo "rewriting stage images for $CATALOG_VERSION"
-        sed -i "s|$APP_PREFIX/custom-metrics-autoscaler-operator-bundle|$STAGE_PREFIX/custom-metrics-autoscaler-operator-bundle|g" ${CATALOG_OUTPUT%.yaml}.*
+        sed -Ei "s|$APP_PREFIX/(custom-metrics-autoscaler-operator/)?custom-metrics-autoscaler-operator-bundle|$STAGE_PREFIX/custom-metrics-autoscaler-operator-bundle|g" ${CATALOG_OUTPUT%.yaml}.*
     # TODO(jkyros): I cut a special release for a customer by pushing the pipeline to my personal quay, we should think about how we want to do pre-release
     # stuff for the future
     elif [ "$CATALOG_VERSION" == "catalogs/fbc-jkyros-quay" ]; then
