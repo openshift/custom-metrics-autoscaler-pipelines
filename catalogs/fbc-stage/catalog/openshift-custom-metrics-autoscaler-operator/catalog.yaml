@@ -4990,7 +4990,7 @@ relatedImages:
   name: keda-operator
 schema: olm.bundle
 ---
-image: registry.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler-operator-bundle@sha256:fd01b287c3ddb4699c776b7cadeb095b7fa693649feb77b8675bebee2c667a5c
+image: registry.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler-operator-bundle@sha256:aeae57b2fc706b782a3e3905e5c1825fe831f96f5b1c9478e1f2b217307a892b
 name: custom-metrics-autoscaler.v2.17.2-1
 package: openshift-custom-metrics-autoscaler-operator
 properties:
@@ -5194,8 +5194,8 @@ properties:
       categories: Cloud Provider
       certified: "false"
       console.openshift.io/operator-monitoring-default: "true"
-      containerImage: registry.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler-rhel9-operator@sha256:2cd89cb2f7578bbe433efcbddbdef997e3427ffb75a91832feec0618451ef6c6
-      createdAt: 13 Aug 2025, 01:56
+      containerImage: registry.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler-rhel9-operator@sha256:9a359ae6612d2f22fe983653418143873cb9939f83dca6f008ec3cb8f3d53990
+      createdAt: 20 Aug 2025, 21:31
       description: Custom Metrics Autoscaler Operator, an event-driven autoscaler
         based upon KEDA
       features.operators.openshift.io/cnf: "false"
@@ -5582,14 +5582,14 @@ properties:
     provider:
       name: Red Hat
 relatedImages:
-- image: registry.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler-operator-bundle@sha256:fd01b287c3ddb4699c776b7cadeb095b7fa693649feb77b8675bebee2c667a5c
+- image: registry.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler-operator-bundle@sha256:aeae57b2fc706b782a3e3905e5c1825fe831f96f5b1c9478e1f2b217307a892b
   name: ""
-- image: registry.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler-adapter-rhel9@sha256:5efb928872d9ed79f3e3a2be620f0e8970651c4f2802f3bb21249eee82ebf5ad
+- image: registry.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler-adapter-rhel9@sha256:0c8ae9323f927346e168ba829f6c7679af6b2dd359c8d0a020dd0ae3954481ce
   name: keda-adapter
-- image: registry.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler-admission-webhooks-rhel9@sha256:8774eed4687f36dad5b7f3394b896d52db955da516870300b6c83ec102157d43
+- image: registry.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler-admission-webhooks-rhel9@sha256:75631a21de057844e9ae45ae2496a22e16f3a32a6fd5f6cb5f90e173e3be2180
   name: keda-webhooks
-- image: registry.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler-rhel9-operator@sha256:2cd89cb2f7578bbe433efcbddbdef997e3427ffb75a91832feec0618451ef6c6
+- image: registry.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler-rhel9-operator@sha256:9a359ae6612d2f22fe983653418143873cb9939f83dca6f008ec3cb8f3d53990
   name: cma-operator
-- image: registry.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler-rhel9@sha256:461d9a75d9ed286ea3bb1bb717eb23afa111530da123c9cde6f4379a36b7f7cb
+- image: registry.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler-rhel9@sha256:ace9358fbd2d81a6e16bfa049c763ca16acf6cc2a59cdc0b6282e5e0dfc902cc
   name: keda-operator
 schema: olm.bundle

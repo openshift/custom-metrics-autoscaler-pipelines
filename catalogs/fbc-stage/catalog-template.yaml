@@ -57,7 +57,7 @@ entries:
   schema: olm.bundle
 - image: registry.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler-operator-bundle@sha256:623280ae8997a354e5fb3275afaf0d2bb5d260b5bae0c7f56b858b7dc33a1e48
   schema: olm.bundle
-- image: quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator-bundle@sha256:fd01b287c3ddb4699c776b7cadeb095b7fa693649feb77b8675bebee2c667a5c
+- image: quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator-bundle@sha256:aeae57b2fc706b782a3e3905e5c1825fe831f96f5b1c9478e1f2b217307a892b
   schema: olm.bundle
 schema: olm.template.basic
 

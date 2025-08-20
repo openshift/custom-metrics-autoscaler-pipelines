@@ -12,7 +12,7 @@ for CATALOG_VERSION in catalogs/*; do
     # could be told to rewrite this as part of a nudge but there will come a point where we want to "archive" a pullspec and keep it in the bundle and we
     # won't want it to touch it after that, so until we figure out how we want to do that, this is what we get
     CURRENT_BUNDLE=$(cat bundle-hack/imagerefs/custom-metrics-autoscaler-operator-bundle.pullspec)
-    sed -i "s|quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator/custom-metrics-autoscaler-operator-bundle@sha256.*|$CURRENT_BUNDLE|g" ${CATALOG_VERSION}/catalog-template.yaml
+    sed -Ei "s|quay.io/redhat-user-workloads/cma-podauto-tenant/(custom-metrics-autoscaler-operator/)?custom-metrics-autoscaler-operator-bundle@sha256.*|$CURRENT_BUNDLE|g" ${CATALOG_VERSION}/catalog-template.yaml
     # This is basically "generate the catalog, and then rewrite the pullspecs to match their final resting place". You can't do it beforehand in the
     # template because render-template pulls all those images to check them to include them in the catalog (and the new ones won't be there yet because they
     # haven't shipped)
