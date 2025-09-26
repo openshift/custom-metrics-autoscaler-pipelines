@@ -5,7 +5,7 @@
 ARG CMA_VERSION=2.17.2
 #TODO(jkyros): There is something wrong with repo cert trust between the published RPM repos and the builder
 # It's a builder though, so I dunno if I really care 
-FROM brew.registry.redhat.io/rh-osbs/openshift-golang-builder:rhel_9_1.23 as builder
+FROM brew.registry.redhat.io/rh-osbs/openshift-golang-builder:rhel_9_1.24 as builder
 ARG CMA_VERSION
 
 #FROM registry.redhat.io/ubi9/go-toolset as builder
@@ -90,7 +90,7 @@ LABEL com.redhat.openshift.versions="v4.20"
 LABEL version="${CMA_VERSION}"
 # I don't know that we can auto-increment this without an additional pipeline stage or something, but if we omit it,
 # we fail the metadata requirements, so we have to put _something_ here
-LABEL release="1"
+LABEL release="2"
 
 
 ENTRYPOINT ["/usr/bin/keda-adapter", "--secure-port=6443", "--logtostderr=true", "--v=0"]
