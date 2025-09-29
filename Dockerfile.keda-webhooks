@@ -70,7 +70,8 @@ USER nobody
 LABEL io.k8s.display-name="OpenShift Custom Metrics Autoscaler Admission Webhooks" \
       io.k8s.description="This is a component of OpenShift which validates KEDA objects." \
       com.redhat.component="custom-metrics-autoscaler-admission-webhooks-container" \
-      name="custom-metrics-autoscaler-admission-webhooks-rhel-9" \
+      name="custom-metrics-autoscaler/custom-metrics-autoscaler-admission-webhooks-rhel9" \
+      cpe="cpe:/a:redhat:openshift_custom_metrics_autoscaler:2.15::el9" \
       summary="custom-metrics-autoscaler-admission-webhooks" \
       io.openshift.expose-services="" \
       io.openshift.tags="openshift,custom-metrics-autoscaler-admission-webhooks" \
