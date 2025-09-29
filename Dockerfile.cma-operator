@@ -69,7 +69,8 @@ USER nobody
 LABEL io.k8s.display-name="OpenShift Custom Metrics Autoscaler Operator" \
       io.k8s.description="This is a component of OpenShift which manages Custom Metrics Autoscaler." \
       com.redhat.component="custom-metrics-autoscaler-operator-container" \
-      name="custom-metrics-autoscaler-operator-rhel-9" \
+      name="custom-metrics-autoscaler/custom-metrics-autoscaler-rhel9-operator" \
+      cpe="cpe:/a:redhat:openshift_custom_metrics_autoscaler:2.15::el9" \
       summary="custom-metrics-autoscaler-operator" \
       io.openshift.expose-services="" \
       io.openshift.tags="openshift,custom-metrics-autoscaler-operator" \
