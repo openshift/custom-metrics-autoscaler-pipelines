@@ -47,11 +47,27 @@ LABEL stage=operator
 RUN INSTALL_PKGS=" \
       rsync \
       tar \
-      openshift-clients \
+      gzip \
       " && \
     microdnf install -y $INSTALL_PKGS && \
     rpm -V $INSTALL_PKGS && \
     microdnf clean all
+
+# Map TARGETARCH to the architecture naming used in artifacts.lock.yaml
+# TODO(jkyros): It's very inconsistent whether openshift-clients are present
+# in the rhocp channels for all arches. The mirror seems to be where everyone 
+# really gets them from, so that's what we're going to do for now. 
+ARG TARGETARCH
+RUN case "${TARGETARCH}" in \
+      amd64) FETCH_ARCH=x86_64 ;; \
+      arm64) FETCH_ARCH=aarch64 ;; \
+      s390x) FETCH_ARCH=s390x ;; \
+      ppc64le) FETCH_ARCH=ppc64le ;; \
+      *) echo "Unsupported architecture: ${TARGETARCH}" && exit 1 ;; \
+    esac && \
+    echo "Extracting openshift-client for architecture: ${FETCH_ARCH}" && \
+    tar -xzf /cachi2/output/deps/generic/openshift-client-linux-${FETCH_ARCH}.tar.gz -C /usr/bin/ oc kubectl && \
+    chmod +x /usr/bin/oc /usr/bin/kubectl
 
 WORKDIR /
 COPY --from=builder /src/resources/*.yaml /resources/
