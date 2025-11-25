@@ -7,7 +7,7 @@ metadata:
     build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
     build.appstudio.redhat.com/target_branch: '{{target_branch}}'
     pipelinesascode.tekton.dev/max-keep-runs: '3'
-    pipelinesascode.tekton.dev/on-cel-expression: event == "pull_request" && target_branch == "main" && ( "build-bump".pathChanged() || "custom-metrics-autoscaler-operator".pathChanged()  || "Dockerfile.cma-operator".pathChanged() || ".tekton/custom-metrics-autoscaler-operator-pull-request.yaml".pathChanged() || "rpms.lock.yaml".pathChanged() )
+    pipelinesascode.tekton.dev/on-cel-expression: event == "pull_request" && target_branch == "main" && ( "build-bump".pathChanged() || "custom-metrics-autoscaler-operator".pathChanged()  || "Dockerfile.cma-operator".pathChanged() || ".tekton/custom-metrics-autoscaler-operator-pull-request.yaml".pathChanged() || "rpms.lock.yaml".pathChanged() || "artifacts.lock.yaml".pathChanged() )
   creationTimestamp:
   labels:
     appstudio.openshift.io/application: custom-metrics-autoscaler-operator
@@ -73,7 +73,7 @@ spec:
       description: Execute the build with network isolation
       name: hermetic
       type: string
-    - default: '[{"type": "gomod","path": "custom-metrics-autoscaler-operator/"},{"type": "gomod", "path": "kedacore-keda/"},{"type": "gomod", "path": "kedacore-keda/hack/tooldeps/"},{"type": "gomod", "path": "tools/mock/"},{"type": "gomod", "path": "tools/controller-tools/"},{"type": "rpm","path":"."}]'
+    - default: '[{"type": "gomod","path": "custom-metrics-autoscaler-operator/"},{"type": "gomod", "path": "kedacore-keda/"},{"type": "gomod", "path": "kedacore-keda/hack/tooldeps/"},{"type": "gomod", "path": "tools/mock/"},{"type": "gomod", "path": "tools/controller-tools/"},{"type": "rpm","path":"."},{"type": "generic","path": "."}]'
       description: Build dependencies to be prefetched by Cachi2
       name: prefetch-input
       type: string
