@@ -1,15 +1,27 @@
 metadata:
   version: '1.0'
 artifacts:
-  - download_url: https://mirror.openshift.com/pub/openshift-v4/clients/ocp/4.20.4/openshift-client-linux-amd64-rhel9-4.20.4.tar.gz
-    checksum: 'sha256:670caf979c2e90d5a9998c74df111ac739efed263ce668a9df6c2d5dac58ae70'
+  - download_url: https://mirror.openshift.com/pub/openshift-v4/clients/ocp/4.20.8/openshift-client-linux-amd64-rhel9-4.20.8.tar.gz
+    checksum: 'sha256:2914d587853f62ad427b308b7ed9730294bd357800a31e68d8c64ecf33ae5a94'
     filename: openshift-client-linux-x86_64.tar.gz
-  - download_url: https://mirror.openshift.com/pub/openshift-v4/clients/ocp/4.20.4/openshift-client-linux-arm64-rhel9-4.20.4.tar.gz
-    checksum: 'sha256:f9f3bc8fee5ac6d78bb6af2596a8f1bf8f8ee0c0ce2837ae8b1931946c858405'
+  - download_url: https://mirror.openshift.com/pub/openshift-v4/clients/ocp/4.20.8/openshift-client-linux-arm64-rhel9-4.20.8.tar.gz
+    checksum: 'sha256:67ccae00f1fef6cad9608cfe59abd3d7dbb15fe0bee763b0500e4cfa90a0e090'
     filename: openshift-client-linux-aarch64.tar.gz
-  - download_url: https://mirror.openshift.com/pub/openshift-v4/clients/ocp/4.20.4/openshift-client-linux-s390x-rhel9-4.20.4.tar.gz
-    checksum: 'sha256:96e680462e0852628eae494c812c0837d457c77ae0fa23f17477b6ecee32c7c7'
+  - download_url: https://mirror.openshift.com/pub/openshift-v4/clients/ocp/4.20.8/openshift-client-linux-s390x-rhel9-4.20.8.tar.gz
+    checksum: 'sha256:8e42147a06e3757b9b36f1b9e7eeaf955f8ef738797b219a61deee19e2c8a24e'
     filename: openshift-client-linux-s390x.tar.gz
-  - download_url: https://mirror.openshift.com/pub/openshift-v4/clients/ocp/4.20.4/openshift-client-linux-ppc64le-rhel9-4.20.4.tar.gz
-    checksum: 'sha256:effd002856e84f174439fc6b36e407434db2eeffb1b89fa40e67c3947ef68c60'
+  - download_url: https://mirror.openshift.com/pub/openshift-v4/clients/ocp/4.20.8/openshift-client-linux-ppc64le-rhel9-4.20.8.tar.gz
+    checksum: 'sha256:d68870eb16dd82985beda6bf5867e9c532f4bcdf1a205de86a1ec927292e904c'
     filename: openshift-client-linux-ppc64le.tar.gz
+  - download_url: https://github.com/protocolbuffers/protobuf/releases/download/v21.9/protoc-21.9-linux-x86_64.zip
+    checksum: 'sha256:3cd951aff8ce713b94cde55e12378f505f2b89d47bf080508cf77e3934f680b6'
+    filename: protoc-21.9-linux-x86_64.zip
+  - download_url: https://github.com/protocolbuffers/protobuf/releases/download/v21.9/protoc-21.9-linux-aarch_64.zip
+    checksum: 'sha256:a584286dfa8ebb17032ece206ed74d5e9931e2edb9016e427be2a0dab3b21071'
+    filename: protoc-21.9-linux-aarch_64.zip
+  - download_url: https://github.com/protocolbuffers/protobuf/releases/download/v21.9/protoc-21.9-linux-s390_64.zip
+    checksum: 'sha256:462549d7ff6663bbfe3a20406cf42a7cc3972c4e3f728c8c09772bc3ed7b79a2'
+    filename: protoc-21.9-linux-s390_64.zip
+  - download_url: https://github.com/protocolbuffers/protobuf/releases/download/v21.9/protoc-21.9-linux-ppcle_64.zip
+    checksum: 'sha256:4774bc5e55a2544ce03fea0e18246625164345c1a606441f0eac6e1b5b2e3521'
+    filename: protoc-21.9-linux-ppcle_64.zip
