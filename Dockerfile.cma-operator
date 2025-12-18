@@ -2,7 +2,7 @@
 # sets $VERSION to the go version and it looks like we're shipping KEDA 1.23
 # See: https://issues.redhat.com/browse/OCPBUGS-58129
 # Chore: this will get used in the release policy, so update this when our version we're releasing changes
-ARG CMA_VERSION=2.17.2
+ARG CMA_VERSION=2.18.1
 
 FROM brew.registry.redhat.io/rh-osbs/openshift-golang-builder:rhel_9_1.24 as builder
 ARG CMA_VERSION
@@ -114,7 +114,7 @@ LABEL com.redhat.openshift.versions="v4.20"
 LABEL version="${CMA_VERSION}"
 # I don't know that we can auto-increment this without an additional pipeline stage or something, but if we omit it,
 # we fail the metadata requirements, so we have to put _something_ here
-LABEL release="2"
+LABEL release="1"
 
 CMD ["/usr/bin/manager"]
 
