@@ -26,19 +26,21 @@ ARG TARGETARCH
 # The KEDA makefiles need this to get the right platform
 ENV ARCH=${TARGETARCH}
 
+RUN dnf install -y protobuf-compiler
+
 # Install unzip (needed to extract protoc) and extract protoc from artifacts
 # Using v21.9 instead of RHEL's 3.14.0 to get built-in support for proto3 optional fields
-RUN dnf install -y unzip && \
-    case "${TARGETARCH}" in \
-      amd64) PROTOC_ARCH=x86_64 ;; \
-      arm64) PROTOC_ARCH=aarch_64 ;; \
-      s390x) PROTOC_ARCH=s390_64 ;; \
-      ppc64le) PROTOC_ARCH=ppcle_64 ;; \
-      *) echo "Unsupported architecture: ${TARGETARCH}" && exit 1 ;; \
-    esac && \
-    echo "Installing protoc v21.9 for architecture: ${PROTOC_ARCH}" && \
-    unzip -q /cachi2/output/deps/generic/protoc-21.9-linux-${PROTOC_ARCH}.zip -d /usr/local && \
-    chmod +x /usr/local/bin/protoc
+# RUN dnf install -y unzip && \
+#    case "${TARGETARCH}" in \
+#      amd64) PROTOC_ARCH=x86_64 ;; \
+#      arm64) PROTOC_ARCH=aarch_64 ;; \
+#      s390x) PROTOC_ARCH=s390_64 ;; \
+#      ppc64le) PROTOC_ARCH=ppcle_64 ;; \
+#      *) echo "Unsupported architecture: ${TARGETARCH}" && exit 1 ;; \
+#    esac && \
+#    echo "Installing protoc v21.9 for architecture: ${PROTOC_ARCH}" && \
+#    unzip -q /cachi2/output/deps/generic/protoc-21.9-linux-${PROTOC_ARCH}.zip -d /usr/local && \
+#    chmod +x /usr/local/bin/protoc
 
 # Get the sources in here
 COPY /kedacore-keda/ /src/
@@ -51,6 +53,10 @@ WORKDIR /src/
 RUN cd /tools/controller-tools/ && GOFLAGS="" go build -o /src/bin/controller-gen ./cmd/controller-gen
 RUN cd /tools/mock/ && GOFLAGS="" go build -o /src/bin/mockgen ./mockgen
 RUN cd /tools/protobuf/ && cd src/google && for f in $(find protobuf/ -name '*.proto'); do mkdir -p /usr/include/google/"$(dirname "$f")"; cp "$f" /usr/include/google/"$f"; done
+
+# TODO(jkyros): we need to build with the proto3 optional option until we can get to 3.15, we don't have it yet
+RUN printf '#!/bin/sh\nexec /usr/bin/protoc --experimental_allow_proto3_optional "$@"\n' > /usr/local/bin/protoc && \
+    chmod +x /usr/local/bin/protoc
 
 # this breaks controller-gen if it's there because it thinks it's "inconsistent vendoring" because it's just a random go.mod file hanging out
 RUN rm -rf /src/hack/tooldeps
