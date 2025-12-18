@@ -2,7 +2,11 @@
 set -euo pipefail
 
 # Script to update artifacts.lock.yaml with latest stable OpenShift client binaries
+# and protoc binaries for all architectures
 # Fetches the most recent z-stream (X.Y.Z) version for all architectures
+
+# Version configuration
+PROTOC_VERSION="${PROTOC_VERSION:-21.9}"  # Can be overridden via environment variable
 
 MIRROR_BASE="https://mirror.openshift.com/pub/openshift-v4/clients/ocp"
 OUTPUT_FILE="artifacts.lock.yaml"
@@ -90,6 +94,49 @@ EOF
 done
 
 echo ""
-echo "Successfully generated $OUTPUT_FILE with OpenShift $LATEST_VERSION clients"
-echo "Artifacts:"
+echo "Processing protoc v${PROTOC_VERSION} artifacts..."
+
+# Protoc architecture mapping (protoc uses different naming)
+declare -A PROTOC_ARCH_MAP=(
+    ["x86_64"]="x86_64"
+    ["aarch64"]="aarch_64"
+    ["s390x"]="s390_64"
+    ["ppc64le"]="ppcle_64"
+)
+
+PROTOC_BASE_URL="https://github.com/protocolbuffers/protobuf/releases/download/v${PROTOC_VERSION}"
+
+for REPO_ARCH in x86_64 aarch64 s390x ppc64le; do
+    PROTOC_ARCH="${PROTOC_ARCH_MAP[$REPO_ARCH]}"
+    PROTOC_ZIP="protoc-${PROTOC_VERSION}-linux-${PROTOC_ARCH}.zip"
+    PROTOC_URL="${PROTOC_BASE_URL}/${PROTOC_ZIP}"
+
+    echo "Downloading $PROTOC_ZIP..."
+    PROTOC_FILE="${TEMP_DIR}/${PROTOC_ZIP}"
+
+    if ! curl -fsSL -o "$PROTOC_FILE" "$PROTOC_URL"; then
+        echo "Error: Failed to download $PROTOC_ZIP"
+        exit 1
+    fi
+
+    # Calculate SHA256
+    CHECKSUM=$(sha256sum "$PROTOC_FILE" | awk '{print $1}')
+
+    echo "  URL: $PROTOC_URL"
+    echo "  SHA256: $CHECKSUM"
+
+    # Append to artifacts.lock.yaml
+    cat >> "$OUTPUT_FILE" <<EOF
+  - download_url: $PROTOC_URL
+    checksum: 'sha256:$CHECKSUM'
+    filename: $PROTOC_ZIP
+EOF
+done
+
+echo ""
+echo "Successfully updated $OUTPUT_FILE with:"
+echo "  - OpenShift clients: $LATEST_VERSION"
+echo "  - Protoc: v$PROTOC_VERSION"
+echo ""
+echo "All artifacts:"
 grep "download_url:" "$OUTPUT_FILE" | sed 's/.*download_url: /  - /'
