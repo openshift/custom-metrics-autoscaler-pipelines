@@ -249,13 +249,20 @@ arches:
     name: shadow-utils-subid
     evr: 2:4.9-15.el9
     sourcerpm: shadow-utils-4.9-15.el9.src.rpm
-  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/aarch64/baseos/os/Packages/t/tar-1.34-7.el9.aarch64.rpm
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/aarch64/baseos/os/Packages/t/tar-1.34-9.el9_7.aarch64.rpm
     repoid: ubi-9-for-aarch64-baseos-rpms
-    size: 900197
-    checksum: sha256:44552dea889d350403c3074a33d7cb274b3f57553e47db998745df13f931b458
+    size: 898317
+    checksum: sha256:2d0bd44116c3f5c229d25fdc6458f6ce24a7ad4fdb463767eea48dcab78c5062
     name: tar
-    evr: 2:1.34-7.el9
-    sourcerpm: tar-1.34-7.el9.src.rpm
+    evr: 2:1.34-9.el9_7
+    sourcerpm: tar-1.34-9.el9_7.src.rpm
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/aarch64/baseos/os/Packages/t/tzdata-2025c-1.el9.noarch.rpm
+    repoid: ubi-9-for-aarch64-baseos-rpms
+    size: 925360
+    checksum: sha256:1de77872c3c896e801dc1e28ab01218026ea812cc03999d65a886a4a0afc5797
+    name: tzdata
+    evr: 2025c-1.el9
+    sourcerpm: tzdata-2025c-1.el9.src.rpm
   - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/aarch64/codeready-builder/os/Packages/p/python3-ruamel-yaml-0.16.6-7.el9.1.aarch64.rpm
     repoid: codeready-builder-for-ubi-9-aarch64-rpms
     size: 218591
@@ -263,13 +270,13 @@ arches:
     name: python3-ruamel-yaml
     evr: 0.16.6-7.el9.1
     sourcerpm: python-ruamel-yaml-0.16.6-7.el9.1.src.rpm
-  - url: https://cdn.redhat.com/content/dist/layered/rhel9/aarch64/rhocp/4.20/os/Packages/o/openshift-clients-4.20.0-202512090918.p2.gdc61926.assembly.stream.el9.aarch64.rpm
+  - url: https://cdn.redhat.com/content/dist/layered/rhel9/aarch64/rhocp/4.20/os/Packages/o/openshift-clients-4.20.0-202601070847.p2.gdc61926.assembly.stream.el9.aarch64.rpm
     repoid: rhocp-4.20-for-rhel-9-aarch64-rpms
-    size: 61705670
-    checksum: sha256:153140d855de625473979dc0b2e9f33d92a465d299a92b1e1a83f022921007c5
+    size: 61730080
+    checksum: sha256:8578a92848da7daa72b3cf193d6a035f1f2c9c4acfbacd1f4319cade7100004e
     name: openshift-clients
-    evr: 4.20.0-202512090918.p2.gdc61926.assembly.stream.el9
-    sourcerpm: openshift-clients-4.20.0-202512090918.p2.gdc61926.assembly.stream.el9.src.rpm
+    evr: 4.20.0-202601070847.p2.gdc61926.assembly.stream.el9
+    sourcerpm: openshift-clients-4.20.0-202601070847.p2.gdc61926.assembly.stream.el9.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel9/9/aarch64/appstream/os/Packages/p/protobuf-3.14.0-16.el9.aarch64.rpm
     repoid: rhel-9-for-aarch64-appstream-rpms
     size: 960397
@@ -284,13 +291,6 @@ arches:
     name: oniguruma
     evr: 6.9.6-1.el9.6
     sourcerpm: oniguruma-6.9.6-1.el9.6.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel9/9/aarch64/baseos/os/Packages/t/tzdata-2025b-2.el9.noarch.rpm
-    repoid: rhel-9-for-aarch64-baseos-rpms
-    size: 922567
-    checksum: sha256:a1f5f4835bbc277c81e5a2bd0f1639bbb522c6d7029ad707955a0ebe66c41fe6
-    name: tzdata
-    evr: 2025b-2.el9
-    sourcerpm: tzdata-2025b-2.el9.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel9/9/aarch64/codeready-builder/os/Packages/p/protobuf-compiler-3.14.0-16.el9.aarch64.rpm
     repoid: codeready-builder-for-rhel-9-aarch64-rpms
     size: 792260
@@ -547,13 +547,20 @@ arches:
     name: shadow-utils-subid
     evr: 2:4.9-15.el9
     sourcerpm: shadow-utils-4.9-15.el9.src.rpm
-  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/ppc64le/baseos/os/Packages/t/tar-1.34-7.el9.ppc64le.rpm
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/ppc64le/baseos/os/Packages/t/tar-1.34-9.el9_7.ppc64le.rpm
     repoid: ubi-9-for-ppc64le-baseos-rpms
-    size: 937724
-    checksum: sha256:f2cc206dfacc9981fad6cf33600ad28bcd1c573f16d8c18523dc9df52ca90660
+    size: 938310
+    checksum: sha256:6b32b0c5b960f836c91fae329c0d2786d932a44b9e44711639646b5e55146c8b
     name: tar
-    evr: 2:1.34-7.el9
-    sourcerpm: tar-1.34-7.el9.src.rpm
+    evr: 2:1.34-9.el9_7
+    sourcerpm: tar-1.34-9.el9_7.src.rpm
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/ppc64le/baseos/os/Packages/t/tzdata-2025c-1.el9.noarch.rpm
+    repoid: ubi-9-for-ppc64le-baseos-rpms
+    size: 925360
+    checksum: sha256:1de77872c3c896e801dc1e28ab01218026ea812cc03999d65a886a4a0afc5797
+    name: tzdata
+    evr: 2025c-1.el9
+    sourcerpm: tzdata-2025c-1.el9.src.rpm
   - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/ppc64le/codeready-builder/os/Packages/p/python3-ruamel-yaml-0.16.6-7.el9.1.ppc64le.rpm
     repoid: codeready-builder-for-ubi-9-ppc64le-rpms
     size: 218599
@@ -561,13 +568,13 @@ arches:
     name: python3-ruamel-yaml
     evr: 0.16.6-7.el9.1
     sourcerpm: python-ruamel-yaml-0.16.6-7.el9.1.src.rpm
-  - url: https://cdn.redhat.com/content/dist/layered/rhel9/ppc64le/rhocp/4.20/os/Packages/o/openshift-clients-4.20.0-202512090918.p2.gdc61926.assembly.stream.el9.ppc64le.rpm
+  - url: https://cdn.redhat.com/content/dist/layered/rhel9/ppc64le/rhocp/4.20/os/Packages/o/openshift-clients-4.20.0-202601070847.p2.gdc61926.assembly.stream.el9.ppc64le.rpm
     repoid: rhocp-4.20-for-rhel-9-ppc64le-rpms
-    size: 58131834
-    checksum: sha256:38f869d276ce2e47f13769a92ad29e3974d3fea12bcbec25e10a3f46ebfcabb8
+    size: 58162956
+    checksum: sha256:ebf3e9902c794b652f4246c0a8dfff2b0eded057a122ce0c8ef93d2648b7a2cd
     name: openshift-clients
-    evr: 4.20.0-202512090918.p2.gdc61926.assembly.stream.el9
-    sourcerpm: openshift-clients-4.20.0-202512090918.p2.gdc61926.assembly.stream.el9.src.rpm
+    evr: 4.20.0-202601070847.p2.gdc61926.assembly.stream.el9
+    sourcerpm: openshift-clients-4.20.0-202601070847.p2.gdc61926.assembly.stream.el9.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel9/9/ppc64le/appstream/os/Packages/p/protobuf-3.14.0-16.el9.ppc64le.rpm
     repoid: rhel-9-for-ppc64le-appstream-rpms
     size: 1058375
@@ -582,13 +589,6 @@ arches:
     name: oniguruma
     evr: 6.9.6-1.el9.6
     sourcerpm: oniguruma-6.9.6-1.el9.6.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel9/9/ppc64le/baseos/os/Packages/t/tzdata-2025b-2.el9.noarch.rpm
-    repoid: rhel-9-for-ppc64le-baseos-rpms
-    size: 922567
-    checksum: sha256:a1f5f4835bbc277c81e5a2bd0f1639bbb522c6d7029ad707955a0ebe66c41fe6
-    name: tzdata
-    evr: 2025b-2.el9
-    sourcerpm: tzdata-2025b-2.el9.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel9/9/ppc64le/codeready-builder/os/Packages/p/protobuf-compiler-3.14.0-16.el9.ppc64le.rpm
     repoid: codeready-builder-for-rhel-9-ppc64le-rpms
     size: 865593
@@ -845,13 +845,20 @@ arches:
     name: shadow-utils-subid
     evr: 2:4.9-15.el9
     sourcerpm: shadow-utils-4.9-15.el9.src.rpm
-  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/s390x/baseos/os/Packages/t/tar-1.34-7.el9.s390x.rpm
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/s390x/baseos/os/Packages/t/tar-1.34-9.el9_7.s390x.rpm
     repoid: ubi-9-for-s390x-baseos-rpms
-    size: 902370
-    checksum: sha256:fa8758bac6a56830de66ad1ab623c87768065bcc6f8242faa42ac4198260d456
+    size: 900131
+    checksum: sha256:ae335ed3e594cdb4123c6732c5dd9d4250050e96117e2593b31f8c4ee4ee2b8f
     name: tar
-    evr: 2:1.34-7.el9
-    sourcerpm: tar-1.34-7.el9.src.rpm
+    evr: 2:1.34-9.el9_7
+    sourcerpm: tar-1.34-9.el9_7.src.rpm
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/s390x/baseos/os/Packages/t/tzdata-2025c-1.el9.noarch.rpm
+    repoid: ubi-9-for-s390x-baseos-rpms
+    size: 925360
+    checksum: sha256:1de77872c3c896e801dc1e28ab01218026ea812cc03999d65a886a4a0afc5797
+    name: tzdata
+    evr: 2025c-1.el9
+    sourcerpm: tzdata-2025c-1.el9.src.rpm
   - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/s390x/codeready-builder/os/Packages/p/python3-ruamel-yaml-0.16.6-7.el9.1.s390x.rpm
     repoid: codeready-builder-for-ubi-9-s390x-rpms
     size: 218557
@@ -859,13 +866,13 @@ arches:
     name: python3-ruamel-yaml
     evr: 0.16.6-7.el9.1
     sourcerpm: python-ruamel-yaml-0.16.6-7.el9.1.src.rpm
-  - url: https://cdn.redhat.com/content/dist/layered/rhel9/s390x/rhocp/4.20/os/Packages/o/openshift-clients-4.20.0-202512090918.p2.gdc61926.assembly.stream.el9.s390x.rpm
+  - url: https://cdn.redhat.com/content/dist/layered/rhel9/s390x/rhocp/4.20/os/Packages/o/openshift-clients-4.20.0-202601070847.p2.gdc61926.assembly.stream.el9.s390x.rpm
     repoid: rhocp-4.20-for-rhel-9-s390x-rpms
-    size: 60333826
-    checksum: sha256:80d11b487970976227ce08ae8cf582210e698f98150be98d189cb4c07e8ec18d
+    size: 60437129
+    checksum: sha256:3e1b032d0f4fad55d6c84d0df5b871616e3c5cd47e1393d83db2b105273cbf6a
     name: openshift-clients
-    evr: 4.20.0-202512090918.p2.gdc61926.assembly.stream.el9
-    sourcerpm: openshift-clients-4.20.0-202512090918.p2.gdc61926.assembly.stream.el9.src.rpm
+    evr: 4.20.0-202601070847.p2.gdc61926.assembly.stream.el9
+    sourcerpm: openshift-clients-4.20.0-202601070847.p2.gdc61926.assembly.stream.el9.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel9/9/s390x/appstream/os/Packages/p/protobuf-3.14.0-16.el9.s390x.rpm
     repoid: rhel-9-for-s390x-appstream-rpms
     size: 988184
@@ -880,13 +887,6 @@ arches:
     name: oniguruma
     evr: 6.9.6-1.el9.6
     sourcerpm: oniguruma-6.9.6-1.el9.6.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel9/9/s390x/baseos/os/Packages/t/tzdata-2025b-2.el9.noarch.rpm
-    repoid: rhel-9-for-s390x-baseos-rpms
-    size: 922567
-    checksum: sha256:a1f5f4835bbc277c81e5a2bd0f1639bbb522c6d7029ad707955a0ebe66c41fe6
-    name: tzdata
-    evr: 2025b-2.el9
-    sourcerpm: tzdata-2025b-2.el9.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel9/9/s390x/codeready-builder/os/Packages/p/protobuf-compiler-3.14.0-16.el9.s390x.rpm
     repoid: codeready-builder-for-rhel-9-s390x-rpms
     size: 842471
@@ -1150,13 +1150,20 @@ arches:
     name: shadow-utils-subid
     evr: 2:4.9-15.el9
     sourcerpm: shadow-utils-4.9-15.el9.src.rpm
-  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/x86_64/baseos/os/Packages/t/tar-1.34-7.el9.x86_64.rpm
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/x86_64/baseos/os/Packages/t/tar-1.34-9.el9_7.x86_64.rpm
     repoid: ubi-9-for-x86_64-baseos-rpms
-    size: 910235
-    checksum: sha256:17f2e592a2c04c050b690afeb9042e02521a0b5ee3288dad837463f4acf542c3
+    size: 906521
+    checksum: sha256:4c0beb933074a5254c297e8968b3f41ec5a02b23056997ddcf526fe7e6166482
     name: tar
-    evr: 2:1.34-7.el9
-    sourcerpm: tar-1.34-7.el9.src.rpm
+    evr: 2:1.34-9.el9_7
+    sourcerpm: tar-1.34-9.el9_7.src.rpm
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/x86_64/baseos/os/Packages/t/tzdata-2025c-1.el9.noarch.rpm
+    repoid: ubi-9-for-x86_64-baseos-rpms
+    size: 925360
+    checksum: sha256:1de77872c3c896e801dc1e28ab01218026ea812cc03999d65a886a4a0afc5797
+    name: tzdata
+    evr: 2025c-1.el9
+    sourcerpm: tzdata-2025c-1.el9.src.rpm
   - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/x86_64/codeready-builder/os/Packages/p/python3-ruamel-yaml-0.16.6-7.el9.1.x86_64.rpm
     repoid: codeready-builder-for-ubi-9-x86_64-rpms
     size: 218621
@@ -1164,13 +1171,13 @@ arches:
     name: python3-ruamel-yaml
     evr: 0.16.6-7.el9.1
     sourcerpm: python-ruamel-yaml-0.16.6-7.el9.1.src.rpm
-  - url: https://cdn.redhat.com/content/dist/layered/rhel9/x86_64/rhocp/4.20/os/Packages/o/openshift-clients-4.20.0-202512090918.p2.gdc61926.assembly.stream.el9.x86_64.rpm
+  - url: https://cdn.redhat.com/content/dist/layered/rhel9/x86_64/rhocp/4.20/os/Packages/o/openshift-clients-4.20.0-202601070847.p2.gdc61926.assembly.stream.el9.x86_64.rpm
     repoid: rhocp-4.20-for-rhel-9-x86_64-rpms
-    size: 62196164
-    checksum: sha256:04a6e185ca605d4783529b6dcbdeb5093516ba633b22aa9a07db2768c9a7711c
+    size: 62266361
+    checksum: sha256:edc235ff7ec06d7c5c3830680e82508f848ed3959eb3fc4e68c2a3b9de7aee2c
     name: openshift-clients
-    evr: 4.20.0-202512090918.p2.gdc61926.assembly.stream.el9
-    sourcerpm: openshift-clients-4.20.0-202512090918.p2.gdc61926.assembly.stream.el9.src.rpm
+    evr: 4.20.0-202601070847.p2.gdc61926.assembly.stream.el9
+    sourcerpm: openshift-clients-4.20.0-202601070847.p2.gdc61926.assembly.stream.el9.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel9/9/x86_64/appstream/os/Packages/p/protobuf-3.14.0-16.el9.x86_64.rpm
     repoid: rhel-9-for-x86_64-appstream-rpms
     size: 1057844
@@ -1185,13 +1192,6 @@ arches:
     name: oniguruma
     evr: 6.9.6-1.el9.6
     sourcerpm: oniguruma-6.9.6-1.el9.6.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel9/9/x86_64/baseos/os/Packages/t/tzdata-2025b-2.el9.noarch.rpm
-    repoid: rhel-9-for-x86_64-baseos-rpms
-    size: 922567
-    checksum: sha256:a1f5f4835bbc277c81e5a2bd0f1639bbb522c6d7029ad707955a0ebe66c41fe6
-    name: tzdata
-    evr: 2025b-2.el9
-    sourcerpm: tzdata-2025b-2.el9.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel9/9/x86_64/codeready-builder/os/Packages/p/protobuf-compiler-3.14.0-16.el9.x86_64.rpm
     repoid: codeready-builder-for-rhel-9-x86_64-rpms
     size: 887388
