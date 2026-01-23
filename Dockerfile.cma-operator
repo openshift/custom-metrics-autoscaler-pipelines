@@ -96,7 +96,7 @@ LABEL io.k8s.display-name="OpenShift Custom Metrics Autoscaler Operator" \
       io.k8s.description="This is a component of OpenShift which manages Custom Metrics Autoscaler." \
       com.redhat.component="custom-metrics-autoscaler-operator-container" \
       name="custom-metrics-autoscaler/custom-metrics-autoscaler-rhel9-operator" \
-      cpe="cpe:/a:redhat:openshift_custom_metrics_autoscaler:2.15::el9" \
+      cpe="cpe:/a:redhat:openshift_custom_metrics_autoscaler:2.18::el9" \
       summary="custom-metrics-autoscaler-operator" \
       io.openshift.expose-services="" \
       io.openshift.tags="openshift,custom-metrics-autoscaler-operator" \
@@ -114,7 +114,7 @@ LABEL com.redhat.openshift.versions="v4.20"
 LABEL version="${CMA_VERSION}"
 # I don't know that we can auto-increment this without an additional pipeline stage or something, but if we omit it,
 # we fail the metadata requirements, so we have to put _something_ here
-LABEL release="1"
+LABEL release="2"
 
 CMD ["/usr/bin/manager"]
 
