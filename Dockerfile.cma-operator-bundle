@@ -57,7 +57,7 @@ LABEL operators.operatorframework.io.metrics.project_layout=go.kubebuilder.io/v3
 
 # These labels are necessary for satisfying the enterprise contract
 LABEL com.redhat.component="custom-metrics-autoscaler-operator-bundle-container" \
-      name="custom-metrics-autoscaler-operator-metadata-rhel-9" \
+      name="custom-metrics-autoscaler/custom-metrics-autoscaler-operator-bundle" \
       summary="Custom Metrics Autoscaler for OpenShift bundle image" \
       io.openshift.expose-services="" \
       io.openshift.tags="openshift,custom-metrics-autoscaler-operator" \
