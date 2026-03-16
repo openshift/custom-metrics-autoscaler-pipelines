@@ -17,10 +17,6 @@ spec:
     params:
     - name: image-url
       value: "$(params.output-image)"
-    - name: rebuild
-      value: "$(params.rebuild)"
-    - name: skip-checks
-      value: "$(params.skip-checks)"
   - name: clone-repository
     taskRef:
       resolver: bundles
@@ -31,11 +27,6 @@ spec:
         value: quay.io/konflux-ci/tekton-catalog/task-git-clone-oci-ta:0.1@sha256:2c388d28651457db60bb90287e7d8c3680303197196e4476878d98d81e8b6dc9
       - name: kind
         value: task
-    when:
-    - input: "$(tasks.init.results.build)"
-      operator: in
-      values:
-      - 'true'
     runAfter:
     - init
     params:
@@ -85,11 +76,6 @@ spec:
         value: task
     runAfter:
     - clone-repository
-    when:
-    - input: "$(tasks.init.results.build)"
-      operator: in
-      values:
-      - 'true'
     params:
     - name: IMAGE
       value: "$(params.output-image)"
@@ -122,10 +108,6 @@ spec:
       - name: kind
         value: task
     when:
-    - input: "$(tasks.init.results.build)"
-      operator: in
-      values:
-      - 'true'
     - input: "$(params.build-source-image)"
       operator: in
       values:

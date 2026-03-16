@@ -17,10 +17,6 @@ spec:
     params:
     - name: image-url
       value: $(params.output-image)
-    - name: rebuild
-      value: $(params.rebuild)
-    - name: skip-checks
-      value: $(params.skip-checks)
   - name: clone-repository
     taskRef:
       resolver: bundles
@@ -31,11 +27,6 @@ spec:
         value: quay.io/konflux-ci/tekton-catalog/task-git-clone-oci-ta:0.1@sha256:2c388d28651457db60bb90287e7d8c3680303197196e4476878d98d81e8b6dc9
       - name: kind
         value: task
-    when:
-    - input: $(tasks.init.results.build)
-      operator: in
-      values:
-      - 'true'
     runAfter:
     - init
     params:
@@ -86,10 +77,6 @@ spec:
     runAfter:
     - prefetch-dependencies
     when:
-    - input: $(tasks.init.results.build)
-      operator: in
-      values:
-      - 'true'
     - input: $(params.enable-amd64-build)
       operator: in
       values:
@@ -130,10 +117,6 @@ spec:
     runAfter:
     - prefetch-dependencies
     when:
-    - input: $(tasks.init.results.build)
-      operator: in
-      values:
-      - 'true'
     - input: $(params.enable-arm64-build)
       operator: in
       values:
@@ -174,10 +157,6 @@ spec:
     runAfter:
     - prefetch-dependencies
     when:
-    - input: $(tasks.init.results.build)
-      operator: in
-      values:
-      - 'true'
     - input: $(params.enable-ppc64le-build)
       operator: in
       values:
@@ -218,10 +197,6 @@ spec:
     runAfter:
     - prefetch-dependencies
     when:
-    - input: $(tasks.init.results.build)
-      operator: in
-      values:
-      - 'true'
     - input: $(params.enable-s390x-build)
       operator: in
       values:
@@ -277,11 +252,6 @@ spec:
       - name: kind
         value: task
       resolver: bundles
-    when:
-    - input: $(tasks.init.results.build)
-      operator: in
-      values:
-      - 'true'
   - name: build-source-image
     taskRef:
       resolver: bundles
@@ -293,10 +263,6 @@ spec:
       - name: kind
         value: task
     when:
-    - input: $(tasks.init.results.build)
-      operator: in
-      values:
-      - 'true'
     - input: $(params.build-source-image)
       operator: in
       values:
