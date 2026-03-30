@@ -27,8 +27,8 @@ export KEDA_ADAPTER_PULLSPEC=$(<"imagerefs/keda-adapter.pullspec")
 # But that is impossible in hermetic builds, so we'll set them by hand here
 export AMD64_BUILT=true
 export ARM64_BUILT=true
-#export PPC64LE_BUILT=true
-#export S390X_BUILT=true
+export PPC64LE_BUILT=true
+export S390X_BUILT=true
 
 
 # TODO(jkyros): we probably need multiple dockerfiles with different targets that feed an arg into this script, e.g. "push to stage", "push to prod", "push to quay"
