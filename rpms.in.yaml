@@ -1,3 +1,5 @@
+context:
+  containerfile: Dockerfile.cma-operator
 reinstallPackages:
   - tzdata
 packages:
