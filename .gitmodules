@@ -13,3 +13,6 @@
 [submodule "kedacore-keda"]
 	path = kedacore-keda
 	url = https://github.com/openshift/kedacore-keda
+[submodule "kedacore-http-add-on"]
+	path = kedacore-http-add-on
+	url = https://github.com/openshift/kedacore-http-add-on
