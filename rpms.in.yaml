@@ -12,6 +12,7 @@ packages:
   - tar
   - jq
   - openshift-clients
+  - gzip
 contentOrigin:
   repofiles:
     - repos/renovate_ubi.repo
