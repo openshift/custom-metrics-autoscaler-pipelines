@@ -11,6 +11,7 @@ packages:
   - skopeo
   - tar
   - jq
+  - openshift-clients
 contentOrigin:
   repofiles:
     - repos/renovate_ubi.repo

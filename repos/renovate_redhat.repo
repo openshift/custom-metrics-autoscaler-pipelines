@@ -12,9 +12,9 @@ sslverifystatus = 1
 metadata_expire = 86400
 enabled_metadata = 0
 
-[rhocp-4.20-for-rhel-9-$basearch-rpms]
-name = Red Hat OpenShift Container Platform 4.20 for RHEL 9 $basearch (RPMs)
-baseurl = https://cdn.redhat.com/content/dist/layered/rhel9/$basearch/rhocp/4.20/os
+[rhocp-4.21-for-rhel-9-$basearch-rpms]
+name = Red Hat OpenShift Container Platform 4.21 for RHEL 9 $basearch (RPMs)
+baseurl = https://cdn.redhat.com/content/dist/layered/rhel9/$basearch/rhocp/4.21/os
 enabled = 1
 gpgcheck = 1
 gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
