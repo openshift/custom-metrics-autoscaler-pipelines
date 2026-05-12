@@ -6,7 +6,7 @@ ARG CMA_VERSION=2.18.1
 # This needs to be updated on rebases, we should be able to get this out of the changelog
 # TODO(jkyros): add some test that verifies this matches the changelog
 ARG HTTP_ADD_ON_VERSION=0.12.1
-FROM brew.registry.redhat.io/rh-osbs/openshift-golang-builder:rhel_9_1.24 as builder
+FROM brew.registry.redhat.io/rh-osbs/openshift-golang-builder:rhel_9_1.25 as builder
 ARG CMA_VERSION
 
 LABEL stage=build
