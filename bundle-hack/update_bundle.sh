@@ -16,12 +16,18 @@ export CMA_OPERATOR_PULLSPEC=$(<"imagerefs/custom-metrics-autoscaler-operator.pu
 export KEDA_OPERATOR_PULLSPEC=$(<"imagerefs/keda-operator.pullspec")
 export KEDA_WEBHOOK_PULLSPEC=$(<"imagerefs/keda-webhooks.pullspec")
 export KEDA_ADAPTER_PULLSPEC=$(<"imagerefs/keda-adapter.pullspec")
+export HTTP_ADDON_INTERCEPTOR_PULLSPEC=$(<"imagerefs/http-addon-interceptor.pullspec")
+export HTTP_ADDON_OPERATOR_PULLSPEC=$(<"imagerefs/http-addon-operator.pullspec")
+export HTTP_ADDON_SCALER_PULLSPEC=$(<"imagerefs/http-addon-scaler.pullspec")
 
 # This is just so we don't build a bogus bundle with an empty image and then only figure it out when we deploy it :)
 [[ -z "$CMA_OPERATOR_PULLSPEC" ]] && { echo "CMA operator pullspec is empty"; exit 1;}
 [[ -z "$KEDA_OPERATOR_PULLSPEC" ]] && { echo "keda operator pullspec is empty"; exit 1;}
 [[ -z "$KEDA_WEBHOOK_PULLSPEC" ]] && { echo "keda webhook pullspec is empty"; exit 1;}
 [[ -z "$KEDA_ADAPTER_PULLSPEC" ]] && { echo "keda adapter pullspec is empty"; exit 1;}
+[[ -z "$HTTP_ADDON_INTERCEPTOR_PULLSPEC" ]] && { echo "http-addon interceptor pullspec is empty"; exit 1;}
+[[ -z "$HTTP_ADDON_OPERATOR_PULLSPEC" ]] && { echo "http-addon operator pullspec is empty"; exit 1;}
+[[ -z "$HTTP_ADDON_SCALER_PULLSPEC" ]] && { echo "http-addon scaler pullspec is empty"; exit 1;}
 
 # We used to set these by inspecting the images but we can't pull the images during the build
 # But that is impossible in hermetic builds, so we'll set them by hand here
@@ -35,22 +41,29 @@ export S390X_BUILT=true
 # TODO(jkyros): oh, also, for fun, apparently the stage policy wants you to use registry.redhat.io also, and the intent is that you use like an ICSP to
 # re-map the images, and NOTHING TELLS YOU THAT ANYWHERE.
 echo "REWRITE REPOS IS $REWRITE_REPOS"
-APP_PREFIX="quay.io/redhat-user-workloads/cma-podauto-tenant/custom-metrics-autoscaler-operator"
+APP_BASE="quay.io/redhat-user-workloads/cma-podauto-tenant"
+APP_PREFIX="${APP_BASE}/custom-metrics-autoscaler-operator"
 PROD_PREFIX="registry.redhat.io/custom-metrics-autoscaler"
 STAGE_PREFIX="registry.stage.redhat.io/custom-metrics-autoscaler"
 REWRITE_PREFIX=$PROD_PREFIX
 OSVER="rhel9"
 
 if [ -n "$REWRITE_REPOS" ]; then
-   CMA_OPERATOR_PULLSPEC=$( echo $CMA_OPERATOR_PULLSPEC | sed -e "s#quay.io/redhat-user-workloads/cma-podauto-tenant/#$REWRITE_REPOS/#" )
-   KEDA_OPERATOR_PULLSPEC=$( echo $KEDA_OPERATOR_PULLSPEC | sed -e "s#quay.io/redhat-user-workloads/cma-podauto-tenant/#$REWRITE_REPOS/#" )
-   KEDA_WEBHOOK_PULLSPEC=$( echo $KEDA_WEBHOOK_PULLSPEC | sed -e "s#quay.io/redhat-user-workloads/cma-podauto-tenant/#$REWRITE_REPOS/#" )
-   KEDA_ADAPTER_PULLSPEC=$( echo $KEDA_ADAPTER_PULLSPEC | sed -e "s#quay.io/redhat-user-workloads/cma-podauto-tenant/#$REWRITE_REPOS/#" )
+   CMA_OPERATOR_PULLSPEC=$( echo $CMA_OPERATOR_PULLSPEC | sed -e "s#$APP_BASE/#$REWRITE_REPOS/#" )
+   KEDA_OPERATOR_PULLSPEC=$( echo $KEDA_OPERATOR_PULLSPEC | sed -e "s#$APP_BASE/#$REWRITE_REPOS/#" )
+   KEDA_WEBHOOK_PULLSPEC=$( echo $KEDA_WEBHOOK_PULLSPEC | sed -e "s#$APP_BASE/#$REWRITE_REPOS/#" )
+   KEDA_ADAPTER_PULLSPEC=$( echo $KEDA_ADAPTER_PULLSPEC | sed -e "s#$APP_BASE/#$REWRITE_REPOS/#" )
+   HTTP_ADDON_INTERCEPTOR_PULLSPEC=$( echo $HTTP_ADDON_INTERCEPTOR_PULLSPEC | sed -e "s#$APP_BASE/#$REWRITE_REPOS/#" )
+   HTTP_ADDON_OPERATOR_PULLSPEC=$( echo $HTTP_ADDON_OPERATOR_PULLSPEC | sed -e "s#$APP_BASE/#$REWRITE_REPOS/#" )
+   HTTP_ADDON_SCALER_PULLSPEC=$( echo $HTTP_ADDON_SCALER_PULLSPEC | sed -e "s#$APP_BASE/#$REWRITE_REPOS/#" )
 else
    CMA_OPERATOR_PULLSPEC=$( echo $CMA_OPERATOR_PULLSPEC | sed -e "s#$APP_PREFIX/custom-metrics-autoscaler-operator#$REWRITE_PREFIX/custom-metrics-autoscaler-$OSVER-operator#" )
    KEDA_OPERATOR_PULLSPEC=$( echo $KEDA_OPERATOR_PULLSPEC | sed -e "s#$APP_PREFIX/keda-operator#$REWRITE_PREFIX/custom-metrics-autoscaler-$OSVER#" )
    KEDA_WEBHOOK_PULLSPEC=$( echo $KEDA_WEBHOOK_PULLSPEC | sed -e "s#$APP_PREFIX/keda-webhooks#$REWRITE_PREFIX/custom-metrics-autoscaler-admission-webhooks-$OSVER#" )
    KEDA_ADAPTER_PULLSPEC=$( echo $KEDA_ADAPTER_PULLSPEC | sed -e "s#$APP_PREFIX/keda-adapter#$REWRITE_PREFIX/custom-metrics-autoscaler-adapter-$OSVER#" )
+   HTTP_ADDON_INTERCEPTOR_PULLSPEC=$( echo $HTTP_ADDON_INTERCEPTOR_PULLSPEC | sed -e "s#$APP_BASE/http-addon-interceptor#$REWRITE_PREFIX/keda-http-add-on-interceptor-$OSVER#" )
+   HTTP_ADDON_OPERATOR_PULLSPEC=$( echo $HTTP_ADDON_OPERATOR_PULLSPEC | sed -e "s#$APP_BASE/http-addon-operator#$REWRITE_PREFIX/keda-http-add-on-operator-$OSVER#" )
+   HTTP_ADDON_SCALER_PULLSPEC=$( echo $HTTP_ADDON_SCALER_PULLSPEC | sed -e "s#$APP_BASE/http-addon-scaler#$REWRITE_PREFIX/keda-http-add-on-scaler-$OSVER#" )
 fi
 
 # Since we moved the versioned manifest to /manifests, we can just use it from there
@@ -68,6 +81,12 @@ cat << EOF >> ${CSV_FILE}
       image: ${KEDA_WEBHOOK_PULLSPEC}
     - name: cma-operator
       image: ${CMA_OPERATOR_PULLSPEC}
+    - name: http-addon-interceptor
+      image: ${HTTP_ADDON_INTERCEPTOR_PULLSPEC}
+    - name: http-addon-operator
+      image: ${HTTP_ADDON_OPERATOR_PULLSPEC}
+    - name: http-addon-scaler
+      image: ${HTTP_ADDON_SCALER_PULLSPEC}
 EOF
 
 # Update image references to use brew-built images
@@ -78,6 +97,12 @@ sed -i -e "s#ghcr.io/kedacore/keda-olm-operator:\(main\|[0-9.]*\)#${CMA_OPERATOR
        -e "s#CMA_OPERAND_PLACEHOLDER_1\$#${KEDA_OPERATOR_PULLSPEC}#g" \
        -e "s#CMA_OPERAND_PLACEHOLDER_2\$#${KEDA_ADAPTER_PULLSPEC}#g" \
        -e "s#CMA_OPERAND_PLACEHOLDER_3\$#${KEDA_WEBHOOK_PULLSPEC}#g" \
+       -e "s#CMA_OPERAND_PLACEHOLDER_4\$#${HTTP_ADDON_INTERCEPTOR_PULLSPEC}#g" \
+       -e "s#CMA_OPERAND_PLACEHOLDER_5\$#${HTTP_ADDON_OPERATOR_PULLSPEC}#g" \
+       -e "s#CMA_OPERAND_PLACEHOLDER_6\$#${HTTP_ADDON_SCALER_PULLSPEC}#g" \
+       -e "s#KEDA_ADMISSION_WEBHOOKS_IMAGE=\\\$RELATED_IMAGE_3; exec /manager#KEDA_ADMISSION_WEBHOOKS_IMAGE=\$RELATED_IMAGE_3; export KEDA_HTTP_ADDON_INTERCEPTOR_IMAGE=\$RELATED_IMAGE_4; export KEDA_HTTP_ADDON_OPERATOR_IMAGE=\$RELATED_IMAGE_5; export KEDA_HTTP_ADDON_SCALER_IMAGE=\$RELATED_IMAGE_6; exec /manager#" \
+       -e "/value: CMA_OPERAND_PLACEHOLDER_3/a\\
+                - name: RELATED_IMAGE_4\n                  value: CMA_OPERAND_PLACEHOLDER_4\n                - name: RELATED_IMAGE_5\n                  value: CMA_OPERAND_PLACEHOLDER_5\n                - name: RELATED_IMAGE_6\n                  value: CMA_OPERAND_PLACEHOLDER_6" \
        -e "s/^\(  *\)olm.skipRange: '>=2.7.1 <[0-9.-]*'/\1olm.skipRange: '>=2.7.1 <${VERSION}-${CI_SPEC_RELEASE}'/" \
        -e '/^metadata:$/,/^spec:$/ s/^\(  name: custom-metrics-autoscaler\.v\)[0-9.-]*$/\1'"${VERSION}-${CI_SPEC_RELEASE}"'/' \
        -e '/^spec:$/,$ s/^\(  version: \)[0-9.-]*$/\1'"${VERSION}-${CI_SPEC_RELEASE}"'/' \
