@@ -100,6 +100,9 @@ sed -i -e "s#ghcr.io/kedacore/keda-olm-operator:\(main\|[0-9.]*\)#${CMA_OPERATOR
        -e "s#CMA_OPERAND_PLACEHOLDER_4\$#${HTTP_ADDON_INTERCEPTOR_PULLSPEC}#g" \
        -e "s#CMA_OPERAND_PLACEHOLDER_5\$#${HTTP_ADDON_OPERATOR_PULLSPEC}#g" \
        -e "s#CMA_OPERAND_PLACEHOLDER_6\$#${HTTP_ADDON_SCALER_PULLSPEC}#g" \
+       -e "s#KEDA_ADMISSION_WEBHOOKS_IMAGE=\\\$RELATED_IMAGE_3; exec /manager#KEDA_ADMISSION_WEBHOOKS_IMAGE=\$RELATED_IMAGE_3; export KEDA_HTTP_ADDON_INTERCEPTOR_IMAGE=\$RELATED_IMAGE_4; export KEDA_HTTP_ADDON_OPERATOR_IMAGE=\$RELATED_IMAGE_5; export KEDA_HTTP_ADDON_SCALER_IMAGE=\$RELATED_IMAGE_6; exec /manager#" \
+       -e "/value: CMA_OPERAND_PLACEHOLDER_3/a\\
+                - name: RELATED_IMAGE_4\n                  value: CMA_OPERAND_PLACEHOLDER_4\n                - name: RELATED_IMAGE_5\n                  value: CMA_OPERAND_PLACEHOLDER_5\n                - name: RELATED_IMAGE_6\n                  value: CMA_OPERAND_PLACEHOLDER_6" \
        -e "s/^\(  *\)olm.skipRange: '>=2.7.1 <[0-9.-]*'/\1olm.skipRange: '>=2.7.1 <${VERSION}-${CI_SPEC_RELEASE}'/" \
        -e '/^metadata:$/,/^spec:$/ s/^\(  name: custom-metrics-autoscaler\.v\)[0-9.-]*$/\1'"${VERSION}-${CI_SPEC_RELEASE}"'/' \
        -e '/^spec:$/,$ s/^\(  version: \)[0-9.-]*$/\1'"${VERSION}-${CI_SPEC_RELEASE}"'/' \
