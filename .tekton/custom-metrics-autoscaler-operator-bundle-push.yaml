@@ -8,7 +8,7 @@ metadata:
     build.appstudio.redhat.com/target_branch: '{{target_branch}}'
     pipelinesascode.tekton.dev/cancel-in-progress: "false"
     pipelinesascode.tekton.dev/max-keep-runs: "3"
-    pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch == "main" && ( "bundle-hack/update_bundle.sh".pathChanged()  || "Dockerfile.cma-operator-bundle".pathChanged() || "bundle-hack/imagerefs/keda-operator.pullspec".pathChanged() || "bundle-hack/imagerefs/keda-webhooks.pullspec".pathChanged() || "bundle-hack/imagerefs/keda-adapter.pullspec".pathChanged() || "bundle-hack/imagerefs/custom-metrics-autoscaler-operator.pullspec".pathChanged() || ".tekton/custom-metrics-autoscaler-operator-bundle-push.yaml".pathChanged() || "rpms.lock.yaml".pathChanged() )
+    pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch == "main" && ( "bundle-hack/update_bundle.sh".pathChanged()  || "Dockerfile.cma-operator-bundle".pathChanged() || "bundle-hack/imagerefs/keda-operator.pullspec".pathChanged() || "bundle-hack/imagerefs/keda-webhooks.pullspec".pathChanged() || "bundle-hack/imagerefs/keda-adapter.pullspec".pathChanged() || "bundle-hack/imagerefs/custom-metrics-autoscaler-operator.pullspec".pathChanged() || "bundle-hack/imagerefs/http-addon-interceptor.pullspec".pathChanged() || "bundle-hack/imagerefs/http-addon-operator.pullspec".pathChanged() || "bundle-hack/imagerefs/http-addon-scaler.pullspec".pathChanged() || ".tekton/custom-metrics-autoscaler-operator-bundle-push.yaml".pathChanged() || "rpms.lock.yaml".pathChanged() )
   creationTimestamp:
   labels:
     appstudio.openshift.io/application: custom-metrics-autoscaler-operator
