@@ -4,7 +4,7 @@
 # Chore: this will get used in the release policy, so update this when our version we're releasing changes
 ARG CMA_VERSION=2.18.1
 
-FROM brew.registry.redhat.io/rh-osbs/openshift-golang-builder:rhel_9_1.24 as builder
+FROM brew.registry.redhat.io/rh-osbs/openshift-golang-builder:rhel_9_1.25 as builder
 ARG CMA_VERSION
 
 LABEL stage=build
