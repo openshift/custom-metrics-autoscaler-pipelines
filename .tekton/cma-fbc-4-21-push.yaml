@@ -8,7 +8,7 @@ metadata:
     pipelinesascode.tekton.dev/cancel-in-progress: "false"
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch
-      == "main" && ( "catalogs/fbc-stage/***".pathChanged() || ".tekton/cma-fbc-4-21-push.yaml".pathChanged()
+      == "main" && ( "catalogs/fbc/***".pathChanged() || ".tekton/cma-fbc-4-21-push.yaml".pathChanged()
       || "catalogs/fbc/Containerfile.catalog-4-21".pathChanged() )
   creationTimestamp: null
   labels:
