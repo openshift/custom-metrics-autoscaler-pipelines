@@ -8,8 +8,9 @@ metadata:
     build.appstudio.redhat.com/target_branch: '{{target_branch}}'
     pipelinesascode.tekton.dev/cancel-in-progress: "true"
     pipelinesascode.tekton.dev/max-keep-runs: "3"
-    pipelinesascode.tekton.dev/on-cel-expression: event == "pull_request" && target_branch
-      == "main"
+    pipelinesascode.tekton.dev/on-cel-expression: |-
+      event == "pull_request" && target_branch == "main" && ( "catalogs/fbc-stage/***".pathChanged() || ".tekton/cma-fbc-stage-4-22-pull-request.yaml".pathChanged()
+        || "catalogs/fbc-stage/Containerfile.catalog-4-22".pathChanged() )
   labels:
     appstudio.openshift.io/application: cma-fbc-stage-4-22
     appstudio.openshift.io/component: cma-fbc-stage-4-22
@@ -31,6 +32,8 @@ spec:
     - linux/x86_64
   - name: dockerfile
     value: catalogs/fbc-stage/Containerfile.catalog-4-22
+  - name: path-context
+    value: catalogs/fbc-stage
   pipelineSpec:
     description: |
       This pipeline is ideal for building and verifying [file-based catalogs](https://konflux-ci.dev/docs/end-to-end/building-olm/#building-the-file-based-catalog).
