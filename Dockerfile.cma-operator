@@ -2,7 +2,7 @@
 # sets $VERSION to the go version and it looks like we're shipping KEDA 1.23
 # See: https://issues.redhat.com/browse/OCPBUGS-58129
 # Chore: this will get used in the release policy, so update this when our version we're releasing changes
-ARG CMA_VERSION=2.18.1
+ARG CMA_VERSION=2.19.0
 
 FROM brew.registry.redhat.io/rh-osbs/openshift-golang-builder:rhel_9_1.25 as builder
 ARG CMA_VERSION
@@ -96,7 +96,7 @@ LABEL io.k8s.display-name="OpenShift Custom Metrics Autoscaler Operator" \
       io.k8s.description="This is a component of OpenShift which manages Custom Metrics Autoscaler." \
       com.redhat.component="custom-metrics-autoscaler-operator-container" \
       name="custom-metrics-autoscaler/custom-metrics-autoscaler-rhel9-operator" \
-      cpe="cpe:/a:redhat:openshift_custom_metrics_autoscaler:2.18::el9" \
+      cpe="cpe:/a:redhat:openshift_custom_metrics_autoscaler:2.19::el9" \
       summary="custom-metrics-autoscaler-operator" \
       io.openshift.expose-services="" \
       io.openshift.tags="openshift,custom-metrics-autoscaler-operator" \
@@ -109,12 +109,12 @@ LABEL io.k8s.display-name="OpenShift Custom Metrics Autoscaler Operator" \
 #      upstream-vcs-type="git" \
 
 # Chore: update this when openshift release changes
-LABEL com.redhat.openshift.versions="v4.20"
+LABEL com.redhat.openshift.versions="v4.22"
 
 LABEL version="${CMA_VERSION}"
 # I don't know that we can auto-increment this without an additional pipeline stage or something, but if we omit it,
 # we fail the metadata requirements, so we have to put _something_ here
-LABEL release="2"
+LABEL release="1"
 
 CMD ["/usr/bin/manager"]
 

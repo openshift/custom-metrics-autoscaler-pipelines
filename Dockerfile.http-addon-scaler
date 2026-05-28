@@ -2,10 +2,10 @@
 # sets $VERSION to the go version and it looks like we're shipping KEDA 1.23
 # See: https://issues.redhat.com/browse/OCPBUGS-58129
 # Chore: this will get used in the release policy, so update this when our version we're releasing changes
-ARG CMA_VERSION=2.18.1
+ARG CMA_VERSION=2.19.0
 # This needs to be updated on rebases, we should be able to get this out of the changelog
 # TODO(jkyros): add some test that verifies this matches the changelog
-ARG HTTP_ADD_ON_VERSION=0.12.1
+ARG HTTP_ADD_ON_VERSION=0.14.0
 FROM brew.registry.redhat.io/rh-osbs/openshift-golang-builder:rhel_9_1.25 as builder
 ARG CMA_VERSION
 
@@ -46,14 +46,14 @@ LABEL io.k8s.display-name="OpenShift KEDA HTTP Add-on Scaler" \
       io.k8s.description="This is a component of OpenShift which provides the external scaler gRPC service for the KEDA HTTP Add-on." \
       com.redhat.component="keda-http-add-on-scaler-container" \
       name="custom-metrics-autoscaler/keda-http-add-on-scaler-rhel9" \
-      cpe="cpe:/a:redhat:openshift_custom_metrics_autoscaler:2.18::el9" \
+      cpe="cpe:/a:redhat:openshift_custom_metrics_autoscaler:2.19::el9" \
       io.openshift.expose-services="" \
       io.openshift.tags="openshift,keda,http-add-on" \
       description="keda-http-add-on-scaler-container" \
       maintainer="AOS node team <aos-node@redhat.com>"
 
 # Chore: update this when openshift release changes
-LABEL com.redhat.openshift.versions="v4.20"
+LABEL com.redhat.openshift.versions="v4.22"
 
 LABEL version="${CMA_VERSION}"
 LABEL http_add_on_version="${HTTP_ADD_ON_VERSION}"
