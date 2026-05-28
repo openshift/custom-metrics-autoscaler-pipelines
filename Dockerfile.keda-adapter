@@ -2,7 +2,7 @@
 # sets $VERSION to the go version and it looks like we're shipping KEDA 1.23
 # See: https://issues.redhat.com/browse/OCPBUGS-58129
 # Chore: this will get used in the release policy, so update this when our version we're releasing changes
-ARG CMA_VERSION=2.18.1
+ARG CMA_VERSION=2.19.0
 #TODO(jkyros): There is something wrong with repo cert trust between the published RPM repos and the builder
 # It's a builder though, so I dunno if I really care 
 FROM brew.registry.redhat.io/rh-osbs/openshift-golang-builder:rhel_9_1.25 as builder
@@ -92,7 +92,7 @@ LABEL io.k8s.display-name="OpenShift Custom Metrics Autoscaler Adapter" \
       io.k8s.description="This is a component of OpenShift which provides a custom metrics API endpoint for pod autoscaling." \
       com.redhat.component="custom-metrics-autoscaler-adapter-container" \
       name="custom-metrics-autoscaler/custom-metrics-autoscaler-adapter-rhel9" \
-      cpe="cpe:/a:redhat:openshift_custom_metrics_autoscaler:2.18::el9" \
+      cpe="cpe:/a:redhat:openshift_custom_metrics_autoscaler:2.19::el9" \
       summary="custom-metrics-autoscaler-adapter" \
       io.openshift.expose-services="" \
       io.openshift.tags="openshift,custom-metrics-autoscaler-adapter" \
@@ -105,12 +105,12 @@ LABEL io.k8s.display-name="OpenShift Custom Metrics Autoscaler Adapter" \
 #      upstream-vcs-type="git" \
 
 # Chore: update this when openshift release changes
-LABEL com.redhat.openshift.versions="v4.20"
+LABEL com.redhat.openshift.versions="v4.22"
 
 LABEL version="${CMA_VERSION}"
 # I don't know that we can auto-increment this without an additional pipeline stage or something, but if we omit it,
 # we fail the metadata requirements, so we have to put _something_ here
-LABEL release="2"
+LABEL release="1"
 
 
 ENTRYPOINT ["/usr/bin/keda-adapter", "--secure-port=6443", "--logtostderr=true", "--v=0"]

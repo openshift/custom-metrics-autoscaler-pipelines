@@ -58,7 +58,7 @@ LABEL operators.operatorframework.io.metrics.project_layout=go.kubebuilder.io/v3
 # These labels are necessary for satisfying the enterprise contract
 LABEL com.redhat.component="custom-metrics-autoscaler-operator-bundle-container" \
       name="custom-metrics-autoscaler/custom-metrics-autoscaler-operator-bundle" \
-      cpe="cpe:/a:redhat:openshift_custom_metrics_autoscaler:2.18::el9" \
+      cpe="cpe:/a:redhat:openshift_custom_metrics_autoscaler:2.19::el9" \
       summary="Custom Metrics Autoscaler for OpenShift bundle image" \
       io.openshift.expose-services="" \
       io.openshift.tags="openshift,custom-metrics-autoscaler-operator" \
@@ -69,13 +69,13 @@ LABEL com.redhat.component="custom-metrics-autoscaler-operator-bundle-container"
       com.redhat.delivery.operator.bundle=true
 
 # Chore: update this when openshift release changes
-LABEL com.redhat.openshift.versions="v4.20"
+LABEL com.redhat.openshift.versions="v4.22"
 
 # Chore: this will get used in the release policy, so update this when our version we're releasing changes
-LABEL version="2.18.1"
+LABEL version="2.19.0"
 # I don't know that we can auto-increment this without an additional pipeline stage or something, but if we omit it,
 # we fail the metadata requirements, so we have to put _something_ here
-LABEL release="2"
+LABEL release="1"
 
 # Need the license to pass enterprise pre-flight
 RUN mkdir /licenses
