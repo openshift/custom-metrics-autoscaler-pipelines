@@ -61,9 +61,9 @@ else
    KEDA_OPERATOR_PULLSPEC=$( echo $KEDA_OPERATOR_PULLSPEC | sed -e "s#$APP_PREFIX/keda-operator#$REWRITE_PREFIX/custom-metrics-autoscaler-$OSVER#" )
    KEDA_WEBHOOK_PULLSPEC=$( echo $KEDA_WEBHOOK_PULLSPEC | sed -e "s#$APP_PREFIX/keda-webhooks#$REWRITE_PREFIX/custom-metrics-autoscaler-admission-webhooks-$OSVER#" )
    KEDA_ADAPTER_PULLSPEC=$( echo $KEDA_ADAPTER_PULLSPEC | sed -e "s#$APP_PREFIX/keda-adapter#$REWRITE_PREFIX/custom-metrics-autoscaler-adapter-$OSVER#" )
-   HTTP_ADDON_INTERCEPTOR_PULLSPEC=$( echo $HTTP_ADDON_INTERCEPTOR_PULLSPEC | sed -e "s#$APP_BASE/http-addon-interceptor#$REWRITE_PREFIX/keda-http-add-on-interceptor-$OSVER#" )
-   HTTP_ADDON_OPERATOR_PULLSPEC=$( echo $HTTP_ADDON_OPERATOR_PULLSPEC | sed -e "s#$APP_BASE/http-addon-operator#$REWRITE_PREFIX/keda-http-add-on-operator-$OSVER#" )
-   HTTP_ADDON_SCALER_PULLSPEC=$( echo $HTTP_ADDON_SCALER_PULLSPEC | sed -e "s#$APP_BASE/http-addon-scaler#$REWRITE_PREFIX/keda-http-add-on-scaler-$OSVER#" )
+   HTTP_ADDON_INTERCEPTOR_PULLSPEC=$( echo $HTTP_ADDON_INTERCEPTOR_PULLSPEC | sed -e "s#$APP_BASE/http-addon-interceptor#$REWRITE_PREFIX/custom-metrics-autoscaler-http-add-on-interceptor-$OSVER#" )
+   HTTP_ADDON_OPERATOR_PULLSPEC=$( echo $HTTP_ADDON_OPERATOR_PULLSPEC | sed -e "s#$APP_BASE/http-addon-operator#$REWRITE_PREFIX/custom-metrics-autoscaler-http-add-on-operator-$OSVER#" )
+   HTTP_ADDON_SCALER_PULLSPEC=$( echo $HTTP_ADDON_SCALER_PULLSPEC | sed -e "s#$APP_BASE/http-addon-scaler#$REWRITE_PREFIX/custom-metrics-autoscaler-http-add-on-scaler-$OSVER#" )
 fi
 
 # Since we moved the versioned manifest to /manifests, we can just use it from there

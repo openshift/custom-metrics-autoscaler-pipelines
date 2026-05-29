@@ -44,12 +44,12 @@ USER nobody
 
 LABEL io.k8s.display-name="OpenShift KEDA HTTP Add-on Operator" \
       io.k8s.description="This is a component of OpenShift which provides HTTP-based autoscaling via the KEDA HTTP Add-on operator." \
-      com.redhat.component="keda-http-add-on-operator-container" \
+      com.redhat.component="custom-metrics-autoscaler-http-add-on-operator-container" \
       name="custom-metrics-autoscaler/custom-metrics-autoscaler-http-add-on-operator-rhel9" \
       cpe="cpe:/a:redhat:openshift_custom_metrics_autoscaler:2.19::el9" \
       io.openshift.expose-services="" \
       io.openshift.tags="openshift,keda,http-add-on" \
-      description="keda-http-add-on-operator-container" \
+      description="custom-metrics-autoscaler-http-add-on-operator-container" \
       maintainer="AOS node team <aos-node@redhat.com>"
 
 # Chore: update this when openshift release changes
