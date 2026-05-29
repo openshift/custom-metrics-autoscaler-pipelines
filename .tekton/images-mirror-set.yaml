@@ -23,3 +23,12 @@ spec:
   - mirrors:
     - registry.stage.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler-rhel9
     source: registry.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler-rhel9
+  - mirrors:
+    - registry.stage.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler-http-add-on-operator-rhel9
+    source: registry.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler-http-add-on-operator-rhel9
+  - mirrors:
+    - registry.stage.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler-http-add-on-interceptor-rhel9
+    source: registry.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler-http-add-on-interceptor-rhel9
+  - mirrors:
+    - registry.stage.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler-http-add-on-scaler-rhel9
+    source: registry.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler-http-add-on-scaler-rhel9
