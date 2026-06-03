@@ -270,13 +270,13 @@ arches:
     name: python3-ruamel-yaml
     evr: 0.16.6-7.el9.1
     sourcerpm: python-ruamel-yaml-0.16.6-7.el9.1.src.rpm
-  - url: https://cdn.redhat.com/content/dist/layered/rhel9/aarch64/rhocp/4.21/os/Packages/o/openshift-clients-4.21.0-202603290052.p2.g9d9df34.assembly.stream.el9.aarch64.rpm
+  - url: https://cdn.redhat.com/content/dist/layered/rhel9/aarch64/rhocp/4.21/os/Packages/o/openshift-clients-4.21.0-202605201414.p2.gfdf8dab.assembly.stream.el9.aarch64.rpm
     repoid: rhocp-4.21-for-rhel-9-aarch64-rpms
-    size: 28230328
-    checksum: sha256:d1733c551688744b76bacc1f6e7b81e6147a95472a686c1d1d75955284be906e
+    size: 28218400
+    checksum: sha256:217c257e0916475bc31705fb203537c51d5e335ad18a68b4816fb8bfab65fecf
     name: openshift-clients
-    evr: 4.21.0-202603290052.p2.g9d9df34.assembly.stream.el9
-    sourcerpm: openshift-clients-4.21.0-202603290052.p2.g9d9df34.assembly.stream.el9.src.rpm
+    evr: 4.21.0-202605201414.p2.gfdf8dab.assembly.stream.el9
+    sourcerpm: openshift-clients-4.21.0-202605201414.p2.gfdf8dab.assembly.stream.el9.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel9/9/aarch64/appstream/os/Packages/p/protobuf-3.14.0-17.el9_7.aarch64.rpm
     repoid: rhel-9-for-aarch64-appstream-rpms
     size: 962232
@@ -568,13 +568,13 @@ arches:
     name: python3-ruamel-yaml
     evr: 0.16.6-7.el9.1
     sourcerpm: python-ruamel-yaml-0.16.6-7.el9.1.src.rpm
-  - url: https://cdn.redhat.com/content/dist/layered/rhel9/ppc64le/rhocp/4.21/os/Packages/o/openshift-clients-4.21.0-202603290052.p2.g9d9df34.assembly.stream.el9.ppc64le.rpm
+  - url: https://cdn.redhat.com/content/dist/layered/rhel9/ppc64le/rhocp/4.21/os/Packages/o/openshift-clients-4.21.0-202605201414.p2.gfdf8dab.assembly.stream.el9.ppc64le.rpm
     repoid: rhocp-4.21-for-rhel-9-ppc64le-rpms
-    size: 27951124
-    checksum: sha256:347d84fec892712f895ce385aaae0d9e412fa7c39e342b652352e17e19fa6542
+    size: 27976857
+    checksum: sha256:daca7c5f71f5e6c18e199616799fb6375b22aa88506024c7f7a98b1afedecf52
     name: openshift-clients
-    evr: 4.21.0-202603290052.p2.g9d9df34.assembly.stream.el9
-    sourcerpm: openshift-clients-4.21.0-202603290052.p2.g9d9df34.assembly.stream.el9.src.rpm
+    evr: 4.21.0-202605201414.p2.gfdf8dab.assembly.stream.el9
+    sourcerpm: openshift-clients-4.21.0-202605201414.p2.gfdf8dab.assembly.stream.el9.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel9/9/ppc64le/appstream/os/Packages/p/protobuf-3.14.0-17.el9_7.ppc64le.rpm
     repoid: rhel-9-for-ppc64le-appstream-rpms
     size: 1059210
@@ -866,13 +866,13 @@ arches:
     name: python3-ruamel-yaml
     evr: 0.16.6-7.el9.1
     sourcerpm: python-ruamel-yaml-0.16.6-7.el9.1.src.rpm
-  - url: https://cdn.redhat.com/content/dist/layered/rhel9/s390x/rhocp/4.21/os/Packages/o/openshift-clients-4.21.0-202603290052.p2.g9d9df34.assembly.stream.el9.s390x.rpm
+  - url: https://cdn.redhat.com/content/dist/layered/rhel9/s390x/rhocp/4.21/os/Packages/o/openshift-clients-4.21.0-202605201414.p2.gfdf8dab.assembly.stream.el9.s390x.rpm
     repoid: rhocp-4.21-for-rhel-9-s390x-rpms
-    size: 29578323
-    checksum: sha256:cbc1e9751ee832c74aa96d902feb024e1c19fa4af36550ac0f3bea354910d50f
+    size: 29581751
+    checksum: sha256:2618dbb3945183e6201074e77ed3acbb32acedfc48217f7bdf5ea2fa9236a81b
     name: openshift-clients
-    evr: 4.21.0-202603290052.p2.g9d9df34.assembly.stream.el9
-    sourcerpm: openshift-clients-4.21.0-202603290052.p2.g9d9df34.assembly.stream.el9.src.rpm
+    evr: 4.21.0-202605201414.p2.gfdf8dab.assembly.stream.el9
+    sourcerpm: openshift-clients-4.21.0-202605201414.p2.gfdf8dab.assembly.stream.el9.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel9/9/s390x/appstream/os/Packages/p/protobuf-3.14.0-17.el9_7.s390x.rpm
     repoid: rhel-9-for-s390x-appstream-rpms
     size: 990055
@@ -1171,13 +1171,13 @@ arches:
     name: python3-ruamel-yaml
     evr: 0.16.6-7.el9.1
     sourcerpm: python-ruamel-yaml-0.16.6-7.el9.1.src.rpm
-  - url: https://cdn.redhat.com/content/dist/layered/rhel9/x86_64/rhocp/4.21/os/Packages/o/openshift-clients-4.21.0-202603290052.p2.g9d9df34.assembly.stream.el9.x86_64.rpm
+  - url: https://cdn.redhat.com/content/dist/layered/rhel9/x86_64/rhocp/4.21/os/Packages/o/openshift-clients-4.21.0-202605201414.p2.gfdf8dab.assembly.stream.el9.x86_64.rpm
     repoid: rhocp-4.21-for-rhel-9-x86_64-rpms
-    size: 31218244
-    checksum: sha256:b2d013a21d0b01743b4aaf33a4d4d2f117057043a5bd2b3bda801d97ef568a71
+    size: 31226512
+    checksum: sha256:dcef0296d1797348a126dff0ea5b7fe4ed09e6636925f3e01919eb88ba93b736
     name: openshift-clients
-    evr: 4.21.0-202603290052.p2.g9d9df34.assembly.stream.el9
-    sourcerpm: openshift-clients-4.21.0-202603290052.p2.g9d9df34.assembly.stream.el9.src.rpm
+    evr: 4.21.0-202605201414.p2.gfdf8dab.assembly.stream.el9
+    sourcerpm: openshift-clients-4.21.0-202605201414.p2.gfdf8dab.assembly.stream.el9.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel9/9/x86_64/appstream/os/Packages/p/protobuf-3.14.0-17.el9_7.x86_64.rpm
     repoid: rhel-9-for-x86_64-appstream-rpms
     size: 1059543
