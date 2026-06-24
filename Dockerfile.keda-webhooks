@@ -107,7 +107,7 @@ LABEL com.redhat.openshift.versions="v4.22"
 LABEL version="${CMA_VERSION}"
 # I don't know that we can auto-increment this without an additional pipeline stage or something, but if we omit it,
 # we fail the metadata requirements, so we have to put _something_ here
-LABEL release="1"
+LABEL release="2"
 
 ENTRYPOINT ["/usr/bin/keda-admission-webhooks", "--zap-log-level=info", "--zap-encoder=console"]
 
