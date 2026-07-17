@@ -57,6 +57,6 @@ LABEL com.redhat.openshift.versions="v4.22"
 
 LABEL version="${CMA_VERSION}"
 LABEL http_add_on_version="${HTTP_ADD_ON_VERSION}"
-LABEL release="2"
+LABEL release="3"
 
 ENTRYPOINT ["/usr/bin/http-add-on-operator"]
