@@ -1,15 +1,41 @@
-# OLM operator Konflux sample
+# Custom Metrics Autoscaler Pipelines
 
-It is possible to [build Operator Lifecyle Manager (OLM) operators in Konflux](https://konflux-ci.dev/docs/advanced-how-tos/building-olm/). This repository is dedicated to demonstrating how to build operators with a simple example.
+This repository contains the [Konflux](https://konflux-ci.dev/) build pipeline definitions, Dockerfiles, and release tooling for the **Custom Metrics Autoscaler (CMA)** for OpenShift. It does not contain the product's source code — instead, it pulls source from upstream repos via git submodules and defines everything needed to build, bundle, and release the CMA container images.
 
-## Build sources
+## What Gets Built
 
-In order to clearly indicate the work needed to support building the artifacts in Konflux, we will use git submodules to import the sources from other open source projects as the base for the artifacts built. This repository will only contain the build configurations needed (pipeline definitions, Containerfiles, scripts, etc.) that might be needed to build these components. If you are using this sample as a template for how to build your own artifacts, you can either follow this same pattern or integrate the build process more directly into your git repository.
+This repo produces the following container images via Konflux multi-arch builds (amd64, arm64, s390x, ppc64le):
 
-## Konflux onboarding process
+| Image | Dockerfile | Source Submodule |
+|-------|-----------|------------------|
+| keda-operator | `Dockerfile.keda-operator` | `kedacore-keda` |
+| keda-adapter | `Dockerfile.keda-adapter` | `kedacore-keda` |
+| keda-webhooks | `Dockerfile.keda-webhooks` | `kedacore-keda` |
+| cma-operator | `Dockerfile.cma-operator` | `custom-metrics-autoscaler-operator` |
+| cma-operator-bundle | `Dockerfile.cma-operator-bundle` | `custom-metrics-autoscaler-operator` |
+| http-addon-operator | `Dockerfile.http-addon-operator` | `kedacore-http-add-on` |
+| http-addon-scaler | `Dockerfile.http-addon-scaler` | `kedacore-http-add-on` |
+| http-addon-interceptor | `Dockerfile.http-addon-interceptor` | `kedacore-http-add-on` |
 
-Building OLM operators involves many different components that are inter-connected. While each aspect of the operators can be built within Konflux, care needs to be taken to ensure that the components are onboarded in an appropriate order and that they are properly referencing each other. We will aim to clearly describe this process in the [onboarding docs](docs/konflux-onboarding.md).
+Additionally, File-Based Catalog (FBC) images are built for each supported OCP version from `catalogs/fbc/` (production) and `catalogs/fbc-stage/` (staging).
 
-## Functionality demonstrated
+## Related Repositories
 
-Konflux offers many different features and functionality. While this sample will not explore all of the features, there are many different techniques that will be demonstrated. We will aim to clearly describe these in [demonstrated functionality docs](docs/functionality-demonstrated.md).
+| Repo | Relationship |
+|------|-------------|
+| [openshift/kedacore-keda](https://github.com/openshift/kedacore-keda) | KEDA operand source (downstream fork) |
+| [openshift/custom-metrics-autoscaler-operator](https://github.com/openshift/custom-metrics-autoscaler-operator) | CMA operator source |
+| [openshift/kedacore-http-add-on](https://github.com/openshift/kedacore-http-add-on) | HTTP Add-on source (downstream fork) |
+
+## User Documentation
+
+[Custom Metrics Autoscaler — OpenShift Docs](https://docs.openshift.com/container-platform/latest/nodes/cma/nodes-cma-autoscaling-custom.html)
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for development workflow and conventions. See [AGENTS.md](AGENTS.md) for AI-specific guidance.
+
+## More Information
+
+- [Konflux onboarding process](docs/konflux-onboarding.md)
+- [Functionality demonstrated](docs/functionality-demonstrated.md)
