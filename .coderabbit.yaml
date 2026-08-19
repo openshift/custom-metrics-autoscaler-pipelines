@@ -1,0 +1,75 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+# Docs: https://docs.coderabbit.ai/getting-started/configure-coderabbit
+
+language: en-US
+early_access: false
+
+reviews:
+  profile: "chill"
+  high_level_summary: false
+  poem: false
+  request_changes_workflow: false
+  collapse_walkthrough: true
+
+  path_filters:
+    - "!**/vendor/**"
+    - "!rpms.lock.yaml"
+    - "!catalogs/**/catalog/**"
+    - "!artifacts.lock.yaml"
+
+  path_instructions:
+    - path: "Dockerfile.*"
+      instructions: |
+        Check for multi-stage builds, no secrets or credentials,
+        correct base image references, and minimal image size.
+        Verify that ARG CMA_VERSION, LABEL version, LABEL release,
+        and cpe= labels are consistent across all Dockerfiles.
+
+    - path: ".tekton/**/*.yaml"
+      instructions: |
+        Review Tekton PipelineRun and Pipeline definitions for correct
+        on-cel-expression filters, proper pipelineRef usage, and that
+        build parameters (DOCKERFILE, CONTEXT) match the intended
+        component. Verify that changes to shared pipelines
+        (multi-arch-build-pipeline.yaml, single-arch-build-pipeline.yaml)
+        do not break other components.
+
+    - path: "bundle-hack/**"
+      instructions: |
+        These scripts run during bundle and catalog builds. Check for
+        correct pullspec rewriting logic, proper error handling (set -e),
+        and that image reference mappings between Konflux build registry
+        and production/staging registries are correct. Errors here can
+        produce broken operator bundles or catalogs.
+
+    - path: "catalogs/**/*template*"
+      instructions: |
+        Review FBC catalog templates for correct upgrade graph entries,
+        proper channel definitions, and valid bundle image references.
+        Rendered catalogs under catalog/ are generated from these
+        templates — verify the template was changed, not the output.
+
+    - path: "hack/**"
+      instructions: |
+        These scripts manage build dependencies and artifacts. Check
+        for correct error handling (set -e), proper checksum
+        verification, and that architecture mappings are complete.
+
+  tools:
+    gitleaks:
+      enabled: true
+    hadolint:
+      enabled: true
+
+  knowledge_base:
+    code_guidelines:
+      enabled: true
+      filePatterns:
+        - "**/AGENTS.md"
+        - "**/CONTRIBUTING.md"
+    learnings:
+      scope: auto
+    issues:
+      scope: auto
+    pull_requests:
+      scope: auto
