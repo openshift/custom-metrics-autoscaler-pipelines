@@ -116,13 +116,13 @@ arches:
     name: bash-completion
     evr: 1:2.11-5.el9
     sourcerpm: bash-completion-2.11-5.el9.src.rpm
-  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/aarch64/baseos/os/Packages/e/expat-2.5.0-6.el9_8.1.aarch64.rpm
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/aarch64/baseos/os/Packages/e/expat-2.5.0-6.el9_8.3.aarch64.rpm
     repoid: ubi-9-for-aarch64-baseos-rpms
-    size: 120882
-    checksum: sha256:7cc4e533f63bdec0ead003d176cb262b8d4d2583dfd57b2e9cfeeed4ead13475
+    size: 122400
+    checksum: sha256:df004398da989f75bae9267cfb0ad402ada6e6db46ebef0932c869894c013c08
     name: expat
-    evr: 2.5.0-6.el9_8.1
-    sourcerpm: expat-2.5.0-6.el9_8.1.src.rpm
+    evr: 2.5.0-6.el9_8.3
+    sourcerpm: expat-2.5.0-6.el9_8.3.src.rpm
   - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/aarch64/baseos/os/Packages/f/fuse-common-3.10.2-9.el9.aarch64.rpm
     repoid: ubi-9-for-aarch64-baseos-rpms
     size: 8718
@@ -270,13 +270,13 @@ arches:
     name: python3-ruamel-yaml
     evr: 0.16.6-7.el9.1
     sourcerpm: python-ruamel-yaml-0.16.6-7.el9.1.src.rpm
-  - url: https://cdn.redhat.com/content/dist/layered/rhel9/aarch64/rhocp/4.21/os/Packages/o/openshift-clients-4.21.0-202608132049.p2.g0aac049.assembly.stream.el9.aarch64.rpm
+  - url: https://cdn.redhat.com/content/dist/layered/rhel9/aarch64/rhocp/4.21/os/Packages/o/openshift-clients-4.21.0-202609012044.p2.g4717c66.assembly.stream.el9.aarch64.rpm
     repoid: rhocp-4.21-for-rhel-9-aarch64-rpms
-    size: 28244219
-    checksum: sha256:7580b406cfbe34cec10ded2197c2d11ef7f6b8cbd92cab9bd2195801180746cc
+    size: 28250644
+    checksum: sha256:3f2cc29fc7cf43d935b92251b367afabaaef080546a590f0495670f3edcb6911
     name: openshift-clients
-    evr: 4.21.0-202608132049.p2.g0aac049.assembly.stream.el9
-    sourcerpm: openshift-clients-4.21.0-202608132049.p2.g0aac049.assembly.stream.el9.src.rpm
+    evr: 4.21.0-202609012044.p2.g4717c66.assembly.stream.el9
+    sourcerpm: openshift-clients-4.21.0-202609012044.p2.g4717c66.assembly.stream.el9.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel9/9/aarch64/appstream/os/Packages/p/protobuf-3.14.0-17.el9_7.aarch64.rpm
     repoid: rhel-9-for-aarch64-appstream-rpms
     size: 962232
@@ -414,13 +414,13 @@ arches:
     name: bash-completion
     evr: 1:2.11-5.el9
     sourcerpm: bash-completion-2.11-5.el9.src.rpm
-  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/ppc64le/baseos/os/Packages/e/expat-2.5.0-6.el9_8.1.ppc64le.rpm
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/ppc64le/baseos/os/Packages/e/expat-2.5.0-6.el9_8.3.ppc64le.rpm
     repoid: ubi-9-for-ppc64le-baseos-rpms
-    size: 132202
-    checksum: sha256:eae0d2c0c23adc9b878e86d46a7cd176e991a84fc5780877dd58f15552b6a5c6
+    size: 133470
+    checksum: sha256:731fb187d6550a4a5fc6227d43370464d67a68e9fb41481c2e86b95e4560345b
     name: expat
-    evr: 2.5.0-6.el9_8.1
-    sourcerpm: expat-2.5.0-6.el9_8.1.src.rpm
+    evr: 2.5.0-6.el9_8.3
+    sourcerpm: expat-2.5.0-6.el9_8.3.src.rpm
   - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/ppc64le/baseos/os/Packages/f/fuse-common-3.10.2-9.el9.ppc64le.rpm
     repoid: ubi-9-for-ppc64le-baseos-rpms
     size: 8730
@@ -568,13 +568,13 @@ arches:
     name: python3-ruamel-yaml
     evr: 0.16.6-7.el9.1
     sourcerpm: python-ruamel-yaml-0.16.6-7.el9.1.src.rpm
-  - url: https://cdn.redhat.com/content/dist/layered/rhel9/ppc64le/rhocp/4.21/os/Packages/o/openshift-clients-4.21.0-202608132049.p2.g0aac049.assembly.stream.el9.ppc64le.rpm
+  - url: https://cdn.redhat.com/content/dist/layered/rhel9/ppc64le/rhocp/4.21/os/Packages/o/openshift-clients-4.21.0-202609012044.p2.g4717c66.assembly.stream.el9.ppc64le.rpm
     repoid: rhocp-4.21-for-rhel-9-ppc64le-rpms
-    size: 27954996
-    checksum: sha256:3c25175fce2f79772082adbad546dc6a9f08444dadb4bd5409ff88a35330d969
+    size: 27961506
+    checksum: sha256:cb208de0264799a3f2158faba63267fd7c6bb05f1e85398d5f622219b1eb639f
     name: openshift-clients
-    evr: 4.21.0-202608132049.p2.g0aac049.assembly.stream.el9
-    sourcerpm: openshift-clients-4.21.0-202608132049.p2.g0aac049.assembly.stream.el9.src.rpm
+    evr: 4.21.0-202609012044.p2.g4717c66.assembly.stream.el9
+    sourcerpm: openshift-clients-4.21.0-202609012044.p2.g4717c66.assembly.stream.el9.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel9/9/ppc64le/appstream/os/Packages/p/protobuf-3.14.0-17.el9_7.ppc64le.rpm
     repoid: rhel-9-for-ppc64le-appstream-rpms
     size: 1059210
@@ -712,13 +712,13 @@ arches:
     name: bash-completion
     evr: 1:2.11-5.el9
     sourcerpm: bash-completion-2.11-5.el9.src.rpm
-  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/s390x/baseos/os/Packages/e/expat-2.5.0-6.el9_8.1.s390x.rpm
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/s390x/baseos/os/Packages/e/expat-2.5.0-6.el9_8.3.s390x.rpm
     repoid: ubi-9-for-s390x-baseos-rpms
-    size: 123151
-    checksum: sha256:a5b24ad347a1722a948f417a7289a89b1aee9047350e88866173e05157239142
+    size: 124579
+    checksum: sha256:e6bd000496dc070c1e4cfd17162d512111341820f12c10442b8752c0767c68a0
     name: expat
-    evr: 2.5.0-6.el9_8.1
-    sourcerpm: expat-2.5.0-6.el9_8.1.src.rpm
+    evr: 2.5.0-6.el9_8.3
+    sourcerpm: expat-2.5.0-6.el9_8.3.src.rpm
   - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/s390x/baseos/os/Packages/f/fuse-common-3.10.2-9.el9.s390x.rpm
     repoid: ubi-9-for-s390x-baseos-rpms
     size: 8730
@@ -866,13 +866,13 @@ arches:
     name: python3-ruamel-yaml
     evr: 0.16.6-7.el9.1
     sourcerpm: python-ruamel-yaml-0.16.6-7.el9.1.src.rpm
-  - url: https://cdn.redhat.com/content/dist/layered/rhel9/s390x/rhocp/4.21/os/Packages/o/openshift-clients-4.21.0-202608132049.p2.g0aac049.assembly.stream.el9.s390x.rpm
+  - url: https://cdn.redhat.com/content/dist/layered/rhel9/s390x/rhocp/4.21/os/Packages/o/openshift-clients-4.21.0-202609012044.p2.g4717c66.assembly.stream.el9.s390x.rpm
     repoid: rhocp-4.21-for-rhel-9-s390x-rpms
-    size: 29581154
-    checksum: sha256:ad4b7cb45fdd194edb194767391acfc807a2d8599f1c2f4be1897701d165ba88
+    size: 29635994
+    checksum: sha256:ddf8624f935fe04806ea46dc311a02258ff4b7311663cd28d00dc69feab139fd
     name: openshift-clients
-    evr: 4.21.0-202608132049.p2.g0aac049.assembly.stream.el9
-    sourcerpm: openshift-clients-4.21.0-202608132049.p2.g0aac049.assembly.stream.el9.src.rpm
+    evr: 4.21.0-202609012044.p2.g4717c66.assembly.stream.el9
+    sourcerpm: openshift-clients-4.21.0-202609012044.p2.g4717c66.assembly.stream.el9.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel9/9/s390x/appstream/os/Packages/p/protobuf-3.14.0-17.el9_7.s390x.rpm
     repoid: rhel-9-for-s390x-appstream-rpms
     size: 990055
@@ -1017,13 +1017,13 @@ arches:
     name: bash-completion
     evr: 1:2.11-5.el9
     sourcerpm: bash-completion-2.11-5.el9.src.rpm
-  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/x86_64/baseos/os/Packages/e/expat-2.5.0-6.el9_8.1.x86_64.rpm
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/x86_64/baseos/os/Packages/e/expat-2.5.0-6.el9_8.3.x86_64.rpm
     repoid: ubi-9-for-x86_64-baseos-rpms
-    size: 126909
-    checksum: sha256:6a0c98d67b643fe620297e4cd7e990f99a86ed6bc90a8295a952c626ecbb9f62
+    size: 128577
+    checksum: sha256:3c9c96529f94f84fc19c8039d8852269e1085d16b5af2933f44ff286dec66a35
     name: expat
-    evr: 2.5.0-6.el9_8.1
-    sourcerpm: expat-2.5.0-6.el9_8.1.src.rpm
+    evr: 2.5.0-6.el9_8.3
+    sourcerpm: expat-2.5.0-6.el9_8.3.src.rpm
   - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/x86_64/baseos/os/Packages/f/fuse-common-3.10.2-9.el9.x86_64.rpm
     repoid: ubi-9-for-x86_64-baseos-rpms
     size: 8750
@@ -1171,13 +1171,13 @@ arches:
     name: python3-ruamel-yaml
     evr: 0.16.6-7.el9.1
     sourcerpm: python-ruamel-yaml-0.16.6-7.el9.1.src.rpm
-  - url: https://cdn.redhat.com/content/dist/layered/rhel9/x86_64/rhocp/4.21/os/Packages/o/openshift-clients-4.21.0-202608132049.p2.g0aac049.assembly.stream.el9.x86_64.rpm
+  - url: https://cdn.redhat.com/content/dist/layered/rhel9/x86_64/rhocp/4.21/os/Packages/o/openshift-clients-4.21.0-202609012044.p2.g4717c66.assembly.stream.el9.x86_64.rpm
     repoid: rhocp-4.21-for-rhel-9-x86_64-rpms
-    size: 31204702
-    checksum: sha256:7b0e89040ae6340b43751365b6c53e6309c0d025b67351c23c603f40ee05d15d
+    size: 31241660
+    checksum: sha256:e91169b92a42abffad0c25bc2ec60e7d0e0efa871a803c7bce759b6da84c8baa
     name: openshift-clients
-    evr: 4.21.0-202608132049.p2.g0aac049.assembly.stream.el9
-    sourcerpm: openshift-clients-4.21.0-202608132049.p2.g0aac049.assembly.stream.el9.src.rpm
+    evr: 4.21.0-202609012044.p2.g4717c66.assembly.stream.el9
+    sourcerpm: openshift-clients-4.21.0-202609012044.p2.g4717c66.assembly.stream.el9.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel9/9/x86_64/appstream/os/Packages/p/protobuf-3.14.0-17.el9_7.x86_64.rpm
     repoid: rhel-9-for-x86_64-appstream-rpms
     size: 1059543
