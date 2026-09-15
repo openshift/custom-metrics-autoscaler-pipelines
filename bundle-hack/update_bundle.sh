@@ -106,15 +106,8 @@ sed -i -e "s#ghcr.io/kedacore/keda-olm-operator:\(main\|[0-9.]*\)#${CMA_OPERATOR
        -e '/^spec:$/,$ s/^\(  version: \)[0-9.-]*$/\1'"${VERSION}-${CI_SPEC_RELEASE}"'/' \
        "${CSV_FILE}"
 
-# TODO(jkyros): clean this up when we fix the CSV bundle and don't need to inject
-# Inject RELATED_IMAGE_4/5/6 env vars after RELATED_IMAGE_3 in a separate pass so the
-# values are already resolved (the old single-pass append could never work because sed
-# replaces the anchor pattern before the append runs, and appended text doesn't re-run
-# earlier substitutions)
-sed -i "/name: RELATED_IMAGE_3/,/value:/{
-  /value:/a\\
-                - name: RELATED_IMAGE_4\n                  value: ${HTTP_ADDON_INTERCEPTOR_PULLSPEC}\n                - name: RELATED_IMAGE_5\n                  value: ${HTTP_ADDON_OPERATOR_PULLSPEC}\n                - name: RELATED_IMAGE_6\n                  value: ${HTTP_ADDON_SCALER_PULLSPEC}
-}" "${CSV_FILE}"
+# RELATED_IMAGE_4/5/6 are now in the source CSV via the carry commit in keda-olm-operator
+# (1d71566a), so we no longer need to inject them here.
 cat "${CSV_FILE}"
 
 export EPOC_TIMESTAMP=$(date +%s)
