@@ -27,7 +27,7 @@ RUN LOCALBIN=/src/bin GOFLAGS='-tags=strictfipsruntime' make CGO=1 VERSION=${CMA
 # so we need to keep the hash here and let MintMaker security update it. No, I don't like it either.
 # See: https://konflux.pages.redhat.com/docs/users/mintmaker/user.html#enable-container-image-tag-versioning
 # FROM registry.access.redhat.com/ubi9/ubi-minimal:latest
-FROM registry.access.redhat.com/ubi9/ubi-minimal:latest@sha256:d235f607e1d6d833f031db107dc42206e4dd4d5aa9142c43d3771fb7f9bea76a
+FROM registry.access.redhat.com/ubi9/ubi-minimal:latest@sha256:7b8e25a1b56ca4d00219198f3b5b51a3e1693a5c4f5369c5e190d7d6cb3f980e
 ARG CMA_VERSION
 ARG HTTP_ADD_ON_VERSION
 
