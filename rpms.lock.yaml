@@ -414,6 +414,13 @@ arches:
     name: bash-completion
     evr: 1:2.11-5.el9
     sourcerpm: bash-completion-2.11-5.el9.src.rpm
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/ppc64le/baseos/os/Packages/e/expat-2.5.0-6.el9_8.5.ppc64le.rpm
+    repoid: ubi-9-for-ppc64le-baseos-rpms
+    size: 133703
+    checksum: sha256:f379b66b57d67569fabaa4cecc75d7ed26b1c46733b626f3550fc31e740761af
+    name: expat
+    evr: 2.5.0-6.el9_8.5
+    sourcerpm: expat-2.5.0-6.el9_8.5.src.rpm
   - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/ppc64le/baseos/os/Packages/f/fuse-common-3.10.2-9.el9.ppc64le.rpm
     repoid: ubi-9-for-ppc64le-baseos-rpms
     size: 8730
@@ -575,13 +582,6 @@ arches:
     name: protobuf
     evr: 3.14.0-17.el9_7
     sourcerpm: protobuf-3.14.0-17.el9_7.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel9/9/ppc64le/baseos/os/Packages/e/expat-2.5.0-6.el9_8.5.ppc64le.rpm
-    repoid: rhel-9-for-ppc64le-baseos-rpms
-    size: 133703
-    checksum: sha256:f379b66b57d67569fabaa4cecc75d7ed26b1c46733b626f3550fc31e740761af
-    name: expat
-    evr: 2.5.0-6.el9_8.5
-    sourcerpm: expat-2.5.0-6.el9_8.5.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel9/9/ppc64le/baseos/os/Packages/o/oniguruma-6.9.6-1.el9.6.ppc64le.rpm
     repoid: rhel-9-for-ppc64le-baseos-rpms
     size: 249364
